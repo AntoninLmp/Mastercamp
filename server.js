@@ -35,3 +35,8 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 app.use("/home", require("./controllers/home.route"))
 app.use("/static", express.static(__dirname + '/static'));
 
+<<<<<<< HEAD
+=======
+app.use("/static", express.static(__dirname + '/static'));
+//app.use("/home", require("./controllers/home.route"));
+>>>>>>> dev_front_header_v1
