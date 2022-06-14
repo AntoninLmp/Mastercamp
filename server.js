@@ -33,5 +33,5 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 
 //ADD the routes
 
-//app.use("/static", express.static(__dirname + '/static'));
+app.use("/static", express.static(__dirname + '/static'));
 //app.use("/home", require("./controllers/home.route"));
