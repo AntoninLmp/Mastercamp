@@ -2,8 +2,12 @@
     width: 50%;
 }
 
+#signupFormClient {
+    width: 60%;
+}
+
 #logo_insc_form {
-    width: 300px;
+    width: 250px;
 }
 
 main {}

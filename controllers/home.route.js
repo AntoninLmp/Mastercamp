@@ -17,7 +17,7 @@ router.get("/connexion", (request, response) => {
     response.render("connexion");
 });
 router.get("/inscription", (request, response) => {
-    response.render("inscription");
+    response.render("inscription_sante");
 });
 
 
