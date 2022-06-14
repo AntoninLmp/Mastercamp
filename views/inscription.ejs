@@ -16,21 +16,25 @@
 
     <!-- Main -->
     <main class="d-flex justify-content-center ">
-        <article class="d-flex align-items-center bg_blue w-100 justify-content-center" id="container_medecins">
+        <article class="align-items-center bg_blue w-100 justify-content-center" id="container_medecins">
             <img src="../static/img/medecins.png" alt="medecins">
         </article>
-        <article class="p-4 text-center mb-5">
+        <article class="p-4 text-center mb-5 mt-5 wb65">
             <div>
                 <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
-                <h1 class="display-6 fs-3 text">Rejoignez la communauté et simplifiez vous la vie</h1>
+                <h1 class="display-6 fs-3 text">Se connecter</h1>
             </div>
+
             <form action="GET" id="loginFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
-                <input class="form-control border-success pb-2 mb-2" type="text" name="champNom" id="nom"
-                    placeholder="Dupont">
+                <input class="form-control border-success pb-2 mb-2" type="email" name="email" id="email"
+                    placeholder="Dupontjean@gmail.com">
                 <input class="form-control border-success pb-2 mb-2" type="password" name="pswd" id="pswd"
                     placeholder="************">
             </form>
             <button type="submit" class="btn btn-outline-success">Connexion</button>
+            <p class="m-4">Vous n'avez pas de compte ?
+                <a href="#" class="col-bc1 text-decoration-none" id="insc">Inscrivez vous</a>
+            </p>
         </article>
     </main>
     <!-- Footer -->

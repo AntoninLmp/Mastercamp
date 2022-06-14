@@ -17,3 +17,21 @@ main {}
         display: none;
     }
 }
+
+@media (min-width: 1000px) {
+    #container_medecins {
+        display: flex;
+    }
+}
+
+.wb65 {
+    width: 65%;
+}
+
+.col-bc1 {
+    color: #008E73;
+}
+
+#insc:hover {
+    color: #0E9BA1;
+}
