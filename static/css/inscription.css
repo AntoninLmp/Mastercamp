@@ -1,0 +1,19 @@
+#loginFormClient {
+    width: 50%;
+}
+
+#logo_insc_form {
+    width: 300px;
+}
+
+main {}
+
+.bg_blue {
+    background-color: #0E9BA1;
+}
+
+@media (max-width: 1000px) {
+    #container_medecins {
+        display: none;
+    }
+}
