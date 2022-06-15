@@ -1,7 +1,7 @@
 /*------------------------------------ FONTS ------------------------------------------*/
 @font-face {
     font-family: "CaviarDreams";
-    src: url("../static/fonts/caviar_dreams/CaviarDreams.ttf");
+    src: url("../fonts/caviar_dreams/CaviarDreams.ttf");
 }
 
 .CaviarDreams{
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: "CaviarDreamsBold";
-    src: url("../static/fonts/caviar_dreams/CaviarDreams_Bold.ttf");
+    src: url("../fonts/caviar_dreams/CaviarDreams_Bold.ttf");
 }
 
 .CaviarDreamsBold{
@@ -19,7 +19,7 @@
 
 @font-face {
     font-family: "CaviarDreamsItalic";
-    src: url("../static/fonts/caviar_dreams/CaviarDreams_Italic.ttf");
+    src: url("../fonts/caviar_dreams/CaviarDreams_Italic.ttf");
 }
 
 .CaviarDreamsItalic{
@@ -29,15 +29,15 @@
 /*------------------------------------*/
 @font-face {
     font-family: "LouisGeorge";
-    src: url("../static/fonts/louis_george_caf/Louis George Cafe.ttf");
+    src: url("../fonts/louis_george_caf/Louis George Cafe.ttf");
 }
 @font-face {
     font-family: "LouisGeorgeBold";
-    src: url("../static/fonts/louis_george_caf/Louis George Cafe Bold.ttf");
+    src: url("../fonts/louis_george_caf/Louis George Cafe Bold.ttf");
 }
 @font-face {
     font-family: "LouisGeorgeItalic";
-    src: url("../static/fonts/louis_george_caf/Louis George Cafe Italic.ttf");
+    src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
 }
 
 /*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
@@ -82,10 +82,20 @@
     color: #DBFCBB;
 }
 
+.f-white{
+    color: white;
+}
+
+
+/*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
+a.link-turquoise:hover{
+    color: #16DBB7;
+}
+
 /*------------------------------------ IMG ------------------------------------------*/
 #logo {
-    width: 170px;
-    height: 45px;
+    width: 200px;
+    height: 55px;
 }
 
 #burger{
