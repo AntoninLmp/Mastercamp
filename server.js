@@ -12,8 +12,8 @@ app.use(session({
 }));
 
 //ADD athentification
-//const auth = require("./utils/users.auth");
-//auth.initialization(app);
+const auth = require("./utils/utilisateur.auth");
+auth.initialization(app);
 
 app.listen(process.env.WEB_PORT,
     function () {
@@ -32,11 +32,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 
 //ADD the routes
-app.use("/home", require("./controllers/home.route"))
-app.use("/static", express.static(__dirname + '/static'));
 
-<<<<<<< HEAD
-=======
 app.use("/static", express.static(__dirname + '/static'));
-//app.use("/home", require("./controllers/home.route"));
->>>>>>> dev_front_header_v1
+app.use("/home", require("./controllers/home.route"));
+app.use("/connexion", require("./controllers/connexion.route"));
