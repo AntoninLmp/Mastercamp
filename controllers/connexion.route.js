@@ -26,24 +26,22 @@ async function ConnexionAction(request, response) {
             return next(err); 
         }
       });
-      /*
-      if (request.user.users_role === "ADMIN") {
-        response.redirect("/admin");
+      console.log(request.user);
+      if (request.user.Role === "PATIENT") {
+        response.redirect("/patient");
       } 
-      else if (request.user.users_role === "PARTICULAR") {
-        response.redirect("/particular");
+      else if (request.user.Role === "MEDECIN") {
+        response.redirect("/medecin");
       }
       else {
-        response.redirect("/student");
-      }*/
-      response.send("C'est bon");
+        response.redirect("/organismesante");
+      }
     } 
     else {
       var myContent=[];
       myContent.push({ "category": "ERREUR",  "message": "Votre identifiant ou votre mot de passe est incorrect." });
       response.render("connexion", { "content": myContent });
     }
-    
   }
 
 module.exports = router;
