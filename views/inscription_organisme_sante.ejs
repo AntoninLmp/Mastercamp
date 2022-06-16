@@ -20,30 +20,41 @@
                     <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
                 </div>
-                <form action="GET" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
+                
+                <form method="post" action="/inscription/organismesante/add" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
                     <div class="form-floating mb-3 w-75">
-                        <input type="text" class="form-control" id="floatingNom" placeholder="Jean"">
+                        <input name="nom" type="text" class="form-control" id="floatingNom" placeholder="Jean">
                     <label for=" floatingNom">Nom consultant</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
-                        <input type="number" class="form-control" id="floatingAdeli" placeholder="0601020304"
+                        <input name="numero" type="number" class="form-control" id="floatingAdeli" placeholder="0601020304"
                             max="9999999999" min="011111111">
                         <label for="floatingAdeli">N° Téléphone</label>
                     </div>
+                    <div style="color:red">
+                        <% if (content.length) { %>
+                           <% for (var c of content) { %>
+                               <p>
+                                 <%= c.category %>:
+                                 <%= c.message %>
+                               </p>
+                           <% }%>
+                        <% } %>
+                    </div>
                     <div class="form-floating mb-3 w-75">
-                        <input type="email" class="form-control" id="floatingEmail" placeholder="dupont.jean@gmail.com">
+                        <input name="email" type="email" class="form-control" id="floatingEmail" placeholder="dupont.jean@gmail.com">
                         <label for="floatingEmail">Adresse email</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
-                        <input type="password" class="form-control" id="floatingpassword1" placeholder="************">
+                        <input name="mdp" type="password" class="form-control" id="floatingpassword1" placeholder="************">
                         <label for="floatingpassword1">Mot de passe</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <input type="password" class="form-control" id="floatingpassword2" placeholder="************">
                         <label for="floatingpassword2">Mot de passe</label>
                     </div>
+                    <button type="submit" class="btn btn-outline-success">Inscription</button>
                 </form>
-                <button type="submit" class="btn btn-outline-success">Inscription</button>
             </article>
 
         </main>
