@@ -2,9 +2,9 @@
     width: 50%;
 }
 
-#signupFormClient {
+/* #signupFormClient {
     width: 60%;
-}
+} */
 
 #logo_insc_form {
     width: 250px;
@@ -30,6 +30,11 @@ main {}
 
 .wb65 {
     width: 65%;
+}
+
+.wb40 {
+    width: 40%;
+
 }
 
 .col-bc1 {

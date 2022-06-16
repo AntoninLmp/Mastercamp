@@ -16,8 +16,14 @@ function homeRootAction(response) {
 router.get("/connexion", (request, response) => {
     response.render("connexion");
 });
-router.get("/inscription", (request, response) => {
+router.get("/inscriptionsante", (request, response) => {
     response.render("inscription_sante");
+});
+router.get("/inscriptionpatient", (request, response) => {
+    response.render("inscription_patient");
+});
+router.get("/inscriptionconsultant", (request, response) => {
+    response.render("inscription_consultant");
 });
 
 
