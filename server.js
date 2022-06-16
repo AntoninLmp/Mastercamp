@@ -37,3 +37,6 @@ app.use("/static", express.static(__dirname + '/static'));
 app.use("/home", require("./controllers/home.route"));
 app.use("/connexion", require("./controllers/connexion.route"));
 app.use("/inscription", require("./controllers/inscription.route"));
+app.use("/patient", require("./controllers/patient.route"));
+app.use("/medecin", require("./controllers/medecin.route"));
+app.use("/organismesante", require("./controllers/organismesante.route"));

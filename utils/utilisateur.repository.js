@@ -40,4 +40,50 @@ module.exports = {
         }
     },
 
+    //Ajouetr un medecin
+    async addOneMedecin(){
+        
+    },
+
+    //Ajouter un patient
+    async addOnePatient(){
+
+    },
+
+    //Ajouter un organisme de santé
+    async addOneOrganismeSante(email, mdp, nomPharmacie, telPharmacie){
+        try {
+            console.log("ADDONEORGANISME 1");
+            conn = await pool.getConnection();          
+            sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PHARMACIE');  ";
+            const okPacket1 = await conn.query(sql, [email, mdp, nomPharmacie, telPharmacie, email]); 
+            sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, numero_telephone, email) VALUES (NULL, ?, ?, ?)";
+            const okPacket2 = await conn.query(sql, [nomPharmacie, nomPharmacie, email]); 
+            conn.end();
+            console.log(okPacket1);
+            console.log(okPacket2);
+            return okPacket2.insertId;
+        }
+        catch (error) {
+            throw error; 
+        }
+    },
+
+    //Vérifier l'addresse mail unique
+    async VerifExiste(email){
+        try{
+            conn = await pool.getConnection();
+            sql = "SELECT * FROM utilisateur WHERE email = ?";
+            const rows = await conn.query(sql, email);
+            console.log("USERS FETCHED: "+rows.length);
+            if (rows.length == 0){
+              return true;
+            }
+            else
+              return false;
+        }
+        catch(error){
+            throw error;
+        }
+    }
 }
