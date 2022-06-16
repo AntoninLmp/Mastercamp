@@ -9,59 +9,48 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/inscription.css">
     <link rel="icon" href="../static/img/HelloDoc Blue-01.png">
-    <title>Inscription Santé</title>
+    <title>Inscription Consultant</title>
 </head>
 
 <body>
     <!-- Header -->
 
     <!-- Main -->
-    <main class="d-flex justify-content-center ">
-        <!-- <article class="align-items-center w-25 bg_blue justify-content-center" id="container_medecins">
-            <img src="../static/img/inscription_medecin.png" alt="medecins">
-        </article> -->
-        <article class="p-4 text-center mb-5 mt-5 wb65">
+    <main class="d-flex justify-content-center">
+        <article class="align-items-center w-50 bg_blue justify-content-center" id="container_medecins">
+            <img src="../static/img/pharmacie-inscription.png" alt="consultant">
+        </article>
+        <article class="p-4 text-center mb-5 mt-5 wb65 text-center">
             <div>
                 <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                 <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
             </div>
             <form action="GET" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
-                <div class="form-floating mb-3 w-100">
+                <div class="form-floating mb-3 w-75">
                     <input type="text" class="form-control" id="floatingNom" placeholder="Jean"">
-                    <label for=" floatingNom">Nom</label>
+                    <label for=" floatingNom">Nom consultant</label>
                 </div>
-                <div class="form-floating mb-3 w-100">
-                    <input type="text" class="form-control" id="floatingPrenom" placeholder="Dupont">
-                    <label for="floatingPrenom">Prénom</label>
+                <div class="form-floating mb-3 w-75">
+                    <input type="number" class="form-control" id="floatingAdeli" placeholder="0601020304"
+                        max="9999999999" min="011111111">
+                    <label for="floatingAdeli">N° Téléphone</label>
                 </div>
-                <div class="form-floating mb-3 w-100">
-                    <input type="number" class="form-control" id="floatingRPPS" placeholder="145267389123"
-                        max="99999999999" min="11111111111">
-                    <label for="floatingRPPS">Numéro RPPS</label>
-                </div>
-                <div class="form-floating mb-3 w-100">
-                    <input type="number" class="form-control" id="floatingAdeli" placeholder="123456789" max="999999999"
-                        min="111111111">
-                    <label for="floatingAdeli">Numéro Adeli</label>
-                </div>
-                <div class="form-floating mb-3 w-100">
+                <div class="form-floating mb-3 w-75">
                     <input type="email" class="form-control" id="floatingEmail" placeholder="dupont.jean@gmail.com">
                     <label for="floatingEmail">Adresse email</label>
                 </div>
-                <div class="form-floating mb-3 w-100">
+                <div class="form-floating mb-3 w-75">
                     <input type="password" class="form-control" id="floatingpassword1" placeholder="************">
                     <label for="floatingpassword1">Mot de passe</label>
                 </div>
-                <div class="form-floating mb-3 w-100">
+                <div class="form-floating mb-3 w-75">
                     <input type="password" class="form-control" id="floatingpassword2" placeholder="************">
                     <label for="floatingpassword2">Mot de passe</label>
                 </div>
             </form>
             <button type="submit" class="btn btn-outline-success">Inscription</button>
         </article>
-        <article class="align-items-center w-40 bg_blue justify-content-center" id="container_medecins">
-            <img src="../static/img/Inscription_medecin_4.png" alt="medecins">
-        </article>
+
     </main>
     <!-- Footer -->
 
