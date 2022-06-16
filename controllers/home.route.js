@@ -8,4 +8,5 @@ function homeRootAction(response) {
     response.render("home");
 }
 
+
 module.exports = router;
