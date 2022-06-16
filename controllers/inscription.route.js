@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/", (request, response) => {
-    response.render("inscription");
+    response.render("inscription_choix");
 });
 
 module.exports = router;

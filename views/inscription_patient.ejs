@@ -2,89 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/inscription.css">
-    <link rel="icon" href="../static/img/HelloDoc Blue-01.png">
-    <title>Inscription Santé</title>
+    <%- include('partial_header') %>
+        <link rel="stylesheet" href="../static/css/inscription.css">
+        <title>Inscription Santé</title>
 </head>
 
 <body>
     <!-- Header -->
+    <%- include('header') %>
 
-    <!-- Main -->
-    <main class="d-flex justify-content-center ">
-        <article class="align-items-center w-40 bg_blue justify-content-center" id="container_medecins">
-            <img src="../static/img/patient_inscription.png" alt="patient">
-        </article>
-        <article class="p-4 text-center mb-5 mt-5 wb65">
-            <div>
-                <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
-                <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
-            </div>
-            <form action="GET" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
-                <div class="form-floating m-3 wb40">
-                    <input type="text" class="form-control" id="floatingNom" required placeholder="Jean">
-                    <label for=" floatingNom">Nom</label>
+        <!-- Main -->
+        <main class="d-flex justify-content-center ">
+            <article class="align-items-center w-40 bg_blue justify-content-center" id="container_medecins">
+                <img src="../static/img/patient_inscription.png" alt="patient">
+            </article>
+            <article class="p-4 text-center mb-5 mt-5 wb65">
+                <div>
+                    <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
+                    <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
                 </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="text" class="form-control" id="floatingPrenom" required placeholder="Dupont">
-                    <label for="floatingPrenom">Prénom</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="date" class="form-control" id="floatingDate" required placeholder="Date">
-                    <label for="floatingDate">Date de naissance</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="text" class="form-control" id="floatingAdresse" required placeholder="Adresse">
-                    <label for="floatingAdresse">Adresse</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="number" class="form-control" id="floatingCodePostal" max="99999" min="11111" required
-                        placeholder="**">
-                    <label for="floatingCodePostal">Code Postal</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="text" class="form-control" id="floatingVille" required placeholder="**">
-                    <label for="floatingVille">Ville</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="number" class="form-control" id="floatingNumTel" required placeholder="**">
-                    <label for="floatingNumTel">N° Téléphone</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="number" class="form-control" id="floatingSecuSocial" required placeholder="**">
-                    <label for="floatingSecuSocial">N° Securité sociale</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="email" class="form-control" id="floatingEmail" required
-                        placeholder="dupont.jean@gmail.com">
-                    <label for="floatingEmail">Adresse email</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="password" class="form-control" id="floatingpassword1" required
-                        placeholder="************">
-                    <label for="floatingpassword1">Mot de passe</label>
-                </div>
-                <div class="form-floating m-3 wb40">
-                    <input type="password" class="form-control" id="floatingpassword2" required
-                        placeholder="************">
-                    <label for="floatingpassword2">Mot de passe</label>
-                </div>
-            </form>
-            <button type="submit" class="btn btn-outline-success">Inscription</button>
-        </article>
+                <form action="GET" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
+                    <div class="form-floating m-3 wb40">
+                        <input type="text" class="form-control" id="floatingNom" required placeholder="Jean">
+                        <label for=" floatingNom">Nom</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="text" class="form-control" id="floatingPrenom" required placeholder="Dupont">
+                        <label for="floatingPrenom">Prénom</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="date" class="form-control" id="floatingDate" required placeholder="Date">
+                        <label for="floatingDate">Date de naissance</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="text" class="form-control" id="floatingAdresse" required placeholder="Adresse">
+                        <label for="floatingAdresse">Adresse</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="number" class="form-control" id="floatingCodePostal" max="99999" min="11111"
+                            required placeholder="**">
+                        <label for="floatingCodePostal">Code Postal</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="text" class="form-control" id="floatingVille" required placeholder="**">
+                        <label for="floatingVille">Ville</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="number" class="form-control" id="floatingNumTel" required placeholder="**">
+                        <label for="floatingNumTel">N° Téléphone</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="number" class="form-control" id="floatingSecuSocial" required placeholder="**">
+                        <label for="floatingSecuSocial">N° Securité sociale</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="email" class="form-control" id="floatingEmail" required
+                            placeholder="dupont.jean@gmail.com">
+                        <label for="floatingEmail">Adresse email</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="password" class="form-control" id="floatingpassword1" required
+                            placeholder="************">
+                        <label for="floatingpassword1">Mot de passe</label>
+                    </div>
+                    <div class="form-floating m-3 wb40">
+                        <input type="password" class="form-control" id="floatingpassword2" required
+                            placeholder="************">
+                        <label for="floatingpassword2">Mot de passe</label>
+                    </div>
+                </form>
+                <button type="submit" class="btn btn-outline-success">Inscription</button>
+            </article>
 
-    </main>
-    <!-- Footer -->
+        </main>
+        <!-- Footer -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
-    <script src="../static/js/inscription.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+        <script src="../static/js/inscription.js"></script>
 </body>
 
 </html>
