@@ -49,6 +49,19 @@
     #container_medecins {
         display: none;
     }
+
+    /* .p_art {
+        display: none;
+    } */
+
+    #container_inscrip {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box_inscrip {
+        width: 55% !important;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -94,4 +107,8 @@
 
 .button_insc:hover {
     background-color: rgb(246, 246, 246);
+}
+
+.box_inscrip {
+    width: 75%;
 }
