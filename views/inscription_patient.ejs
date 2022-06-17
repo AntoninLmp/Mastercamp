@@ -21,47 +21,57 @@
                     <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
                 </div>
-                <form action="GET" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
+                <form method= "post" action="/inscription/patient/add" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
                     <div class="form-floating m-3 wb40">
-                        <input type="text" class="form-control" id="floatingNom" required placeholder="Jean">
+                        <input name="nom" type="text" class="form-control" id="floatingNom" required placeholder="Jean">
                         <label for=" floatingNom">Nom</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="text" class="form-control" id="floatingPrenom" required placeholder="Dupont">
+                        <input name="prenom" type="text" class="form-control" id="floatingPrenom" required placeholder="Dupont">
                         <label for="floatingPrenom">Prénom</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="date" class="form-control" id="floatingDate" required placeholder="Date">
+                        <input name="dateNaissance" type="date" class="form-control" id="floatingDate" required placeholder="Date">
                         <label for="floatingDate">Date de naissance</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="text" class="form-control" id="floatingAdresse" required placeholder="Adresse">
+                        <input name="adresse" type="text" class="form-control" id="floatingAdresse" required placeholder="Adresse">
                         <label for="floatingAdresse">Adresse</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="number" class="form-control" id="floatingCodePostal" max="99999" min="11111"
+                        <input name="codePostal" type="number" class="form-control" id="floatingCodePostal" max="99999" min="11111"
                             required placeholder="**">
                         <label for="floatingCodePostal">Code Postal</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="text" class="form-control" id="floatingVille" required placeholder="**">
+                        <input name="ville" type="text" class="form-control" id="floatingVille" required placeholder="**">
                         <label for="floatingVille">Ville</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="number" class="form-control" id="floatingNumTel" required placeholder="**">
+                        <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel" required placeholder="**">
                         <label for="floatingNumTel">N° Téléphone</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="number" class="form-control" id="floatingSecuSocial" required placeholder="**">
+                        <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial" required placeholder="**">
                         <label for="floatingSecuSocial">N° Securité sociale</label>
                     </div>
+                    <div style="color:red">
+                        <% if (content.length) { %>
+                            <% for (var c of content) { %>
+                                <p>
+                                    <%= c.category %>:
+                                        <%= c.message %>
+                                </p>
+                                <% }%>
+                         <% } %>
+                    </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="email" class="form-control" id="floatingEmail" required
+                        <input name="email" type="email" class="form-control" id="floatingEmail" required
                             placeholder="dupont.jean@gmail.com">
                         <label for="floatingEmail">Adresse email</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="password" class="form-control" id="floatingpassword1" required
+                        <input name="mdp" type="password" class="form-control" id="floatingpassword1" required
                             placeholder="************">
                         <label for="floatingpassword1">Mot de passe</label>
                     </div>
