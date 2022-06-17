@@ -1,1 +1,56 @@
-Ceci est la page d'accueil d'un patient
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+        <title>Patient</title>
+        <link rel="stylesheet" href="../static/css/inscription.css">
+</head>
+
+<body class="">
+    <%- include("header.ejs"); %>
+        <main class="d-flex mt-4 CaviarDreams ">
+            <nav class="border rounded m-3 p-4 bg_blue5 opacity-50 w-25 height_ftcont">
+                <ul class="list-unstyled">
+                    <li class="text-white p-2 CaviarDreamsBold">Mes Ordonnances</li>
+                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                </ul>
+            </nav>
+            <article>
+                <section>
+                    <h1 class="CaviarDreamsBold">Mes Ordonnances</h1>
+                    <aside class="d-flex">
+                        <% for (var ord of ordonnances) { %>
+                            <div class="text-center border rounded rounded-4 mt-4 m-2 p-3 bg_blue5-1">
+                                <h1>Ordonnance</h1>
+                                <h2>
+                                    <%= ord.ville %>
+                                </h2>
+                                <p class="text-start">
+                                    <%= ord.description %>
+                                </p>
+                                <h3>
+                                    <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                </h3>
+
+                            </div>
+                            <% } %>
+                    </aside>
+                </section>
+                <section>
+                    <h1 class="CaviarDreamsBold">Utilisation</h1>
+                    <section class="border rounded mx-5 p-3">
+                        <p class="fs-4">
+                            Voici votre espace qui regroupe vos différentes <span class="c_blue">ordonnances</span> .
+                            Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
+                            ainsi que par votre pharmacien.
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <h1 class="CaviarDreamsBold">Mes informations</h1>
+
+                </section>
+            </article>
+        </main>
+
+</body>

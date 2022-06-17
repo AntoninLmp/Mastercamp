@@ -28,6 +28,14 @@
     background-color: #16DBB7;
 }
 
+.bg_blue5 {
+    background-color: #008e74;
+}
+
+.bg_blue5-1 {
+    background-color: #008e743a;
+}
+
 .c_blue {
     color: #0E9BA1;
 }
@@ -111,4 +119,8 @@
 
 .box_inscrip {
     width: 75%;
+}
+
+.height_ftcont {
+    height: fit-content;
 }
