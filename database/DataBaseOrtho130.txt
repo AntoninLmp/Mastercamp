@@ -167,7 +167,9 @@ INSERT INTO Pharmacie VALUES
 	(1, "PHARMACIE", "0000000000", "pharmacie@gmail.com");
 
 INSERT INTO Ordonnance VALUES
-	(1, 2021-09-22, "Villejuif", "1 comprimé par jour le matin", 1, 1);
+	(1, "2021-09-22", "Villejuif", "1 comprimé par jour le matin", 1, 1),
+   (2, "2020-05-22", "Paris", "1 comprimé par jour le soir", 1, 1),
+   (3, "2021-09-22", "Villejuif", "Doliprane", 1, 1);
     
 INSERT INTO contenir VALUES
 	(1, 1, 3),
