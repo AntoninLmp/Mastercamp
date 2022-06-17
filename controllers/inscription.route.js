@@ -1,5 +1,6 @@
 //controllers/inscription.route.js
 const express = require('express');
+const { GestionRpps } = require('../utils/utilisateur.repository');
 const router = express.Router();
 
 //importer
@@ -25,10 +26,44 @@ router.get('/organismesante',  (request, response) => {
 });
 
 //ROUTE D'INSCRIPTION
+router.post("/medecin/add", addMedecin);
 router.post("/patient/add", addPatient);
 router.post("/organismesante/add", addOrganismeSante);
 
-//Route inscription pour les organismes de sante
+
+//Route inscription pour les patients
+async function addMedecin(request, response){
+    bool = await utilisateurRepo.VerifExiste(request.body.email);
+    if (bool != true){
+        var myContent=[];
+        myContent.push({ "category": "ERREUR",  "message": "Cette addresse email est déjà utilisée." });
+        response.render("inscription_sante",  { "content": myContent });
+    }
+    else{
+        bool2 = await utilisateurRepo.GestionRpps(request.body.rpps);
+        if (bool2 != true){
+            var myContent=[];
+            myContent.push({ "category": "ERREUR",  "message": "Ce numéro RPPS n'est pas valide." });
+            response.render("inscription_sante",  { "content": myContent });
+        }
+        else {
+            var inserer = await utilisateurRepo.addOneMedecin(
+                request.body.email ,
+                request.body.mdp ,
+                request.body.nom ,
+                request.body.prenom ,
+                request.body.rpps ,
+                request.body.adeli,
+                request.body.proffesion
+            )
+            request.session.flashMessage = "NEW USER: "+request.body.email;
+            response.redirect("/connexion");
+        }  
+    }
+}
+
+
+//Route inscription pour les patients
 async function addPatient(request, response){
     bool = await utilisateurRepo.VerifExiste(request.body.email);
     if (bool != true){
