@@ -3,7 +3,7 @@
 
 <head>
     <%- include('partial_header') %>
-        <link rel="stylesheet" href="../static/css/inscription.css">
+        <link rel="stylesheet" href="/static/css/inscription.css">
         <title>Inscription Santé</title>
 </head>
 
@@ -14,45 +14,52 @@
         <!-- Main -->
         <main class="d-flex justify-content-center ">
             <article class="align-items-center w-50 bg_blue justify-content-center" id="container_medecins">
-                <img src="../static/img/patient_inscription.png" alt="patient">
+                <img src="/static/img/patient_inscription.png" alt="patient">
             </article>
             <article class="p-4 text-center mb-5 mt-5 wb65">
                 <div>
-                    <img src="../static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
+                    <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
                 </div>
-                <form method= "post" action="/inscription/patient/add" id="signupFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
+                <form method="post" action="/inscription/patient/add" id="signupFormClient"
+                    class="d-flex flex-wrap justify-content-center mx-auto">
                     <div class="form-floating m-3 wb40">
                         <input name="nom" type="text" class="form-control" id="floatingNom" required placeholder="Jean">
                         <label for=" floatingNom">Nom</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="prenom" type="text" class="form-control" id="floatingPrenom" required placeholder="Dupont">
+                        <input name="prenom" type="text" class="form-control" id="floatingPrenom" required
+                            placeholder="Dupont">
                         <label for="floatingPrenom">Prénom</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="dateNaissance" type="date" class="form-control" id="floatingDate" required placeholder="Date">
+                        <input name="dateNaissance" type="date" class="form-control" id="floatingDate" required
+                            placeholder="Date">
                         <label for="floatingDate">Date de naissance</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="adresse" type="text" class="form-control" id="floatingAdresse" required placeholder="Adresse">
+                        <input name="adresse" type="text" class="form-control" id="floatingAdresse" required
+                            placeholder="Adresse">
                         <label for="floatingAdresse">Adresse</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="codePostal" type="number" class="form-control" id="floatingCodePostal" max="99999" min="11111"
-                            required placeholder="**">
+                        <input name="codePostal" type="number" class="form-control" id="floatingCodePostal" max="99999"
+                            min="11111" required placeholder="**">
                         <label for="floatingCodePostal">Code Postal</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="ville" type="text" class="form-control" id="floatingVille" required placeholder="**">
+                        <input name="ville" type="text" class="form-control" id="floatingVille" required
+                            placeholder="**">
                         <label for="floatingVille">Ville</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel" required placeholder="**">
+                        <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel" required
+                            placeholder="**">
                         <label for="floatingNumTel">N° Téléphone</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial" required placeholder="**">
+                        <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial" required
+                            placeholder="**">
                         <label for="floatingSecuSocial">N° Securité sociale</label>
                     </div>
                     <div style="color:red">
@@ -63,7 +70,7 @@
                                         <%= c.message %>
                                 </p>
                                 <% }%>
-                         <% } %>
+                                    <% } %>
                     </div>
                     <div class="form-floating m-3 wb40">
                         <input name="email" type="email" class="form-control" id="floatingEmail" required
