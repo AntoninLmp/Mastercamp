@@ -82,7 +82,7 @@ CREATE TABLE Pharmacie(
 
 CREATE TABLE Ordonnance(
    id_ordo INT,
-   date_delivrance DATE,
+   date_delivrance DATE NOT NULL,
    ville VARCHAR(50),
    description VARCHAR(50),
    id_professionneldesante INT NOT NULL,
