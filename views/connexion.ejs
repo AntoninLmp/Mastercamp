@@ -6,8 +6,8 @@
 
     <title>Connexion</title>
 
-    <!-- Static CSS/JS references... --><!-- Static CSS/JS references... -->
-    <link rel="stylesheet" href="../static/css/inscription.css">
+    <!-- Static CSS/JS references... -->
+    <link rel="stylesheet" href="/static/css/inscription.css">
 
 </head>
 
@@ -15,8 +15,9 @@
 <body>
     <!-- Header -->
     <%- include("header.ejs"); %>
+
     <!-- Main -->
-    <main class="d-flex justify-content-center ">
+    <main class="flex-grow-1 d-flex flex-grow-1 justify-content-center">
         <article class="align-items-center bg_blue w-100 justify-content-center" id="container_medecins">
             <img src="../static/img/medecins.png" alt="medecins">
         </article>
@@ -39,22 +40,26 @@
 
             <form method="post" action = "../../connexion/connexion" id="loginFormClient" class="d-flex flex-wrap justify-content-center mx-auto">
                 <input class="form-control border-success pb-2 mb-2" type="email" name="email" id="email"
-                    placeholder="Dupontjean@gmail.com">
+                    placeholder="dupontjean@gmail.com">
                 <input class="form-control border-success pb-2 mb-2" type="password" name="mdp" id="mdp"
                     placeholder="************">
                     <button type="submit" class="btn btn-outline-success">Connexion</button>
             </form>
             
             <p class="m-4">Vous n'avez pas de compte ?
-                <a href="#" class="col-bc1 text-decoration-none" id="insc">Inscrivez vous</a>
+                <a href="#" class="col-bc1 text-decoration-none" id="insc">Inscrivez-vous.</a>
             </p>
         </article>
     </main>
+
     <!-- Footer -->
+    <%- include("footer.ejs"); %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
 </body>
+
+
 
 </html>
