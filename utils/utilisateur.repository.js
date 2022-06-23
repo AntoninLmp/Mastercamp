@@ -6,6 +6,7 @@ module.exports = {
         //TODO
     },
 
+    //Vérifier que cet utilisateur existe
     async areValidCredentials(email, password) {
         try {
             conn = await pool.getConnection();
@@ -40,28 +41,53 @@ module.exports = {
         }
     },
 
-    //Ajouetr un medecin
-    async addOneMedecin(){
-        
+    //Ajouter un medecin
+    async addOneMedecin(email, mdp, nom, prenom, RPPS, adeli, proffession ){
+        try {
+            conn = await pool.getConnection();          
+            sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'MEDECIN');  ";
+            const okPacket1 = await conn.query(sql, [email, mdp]); 
+            sql = "INSERT INTO professionneldesante (id_professionneldesante, nom, prenom, RPPS, adeli, proffession, email) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+            const okPacket2 = await conn.query(sql, [nom, prenom, RPPS, adeli, proffession, email]); 
+            conn.end();
+            //console.log(okPacket1);
+            //console.log(okPacket2);
+            return okPacket2.insertId;
+        }
+        catch (error) {
+            throw error; 
+        }
     },
 
     //Ajouter un patient
-    async addOnePatient(){
-
+    async addOnePatient(email, mdp, nom, prenom, dateNaissance, adresse, codePostal, ville, numeroTelephone, numeroSecurite){
+        try {
+            conn = await pool.getConnection();          
+            sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PATIENT');  ";
+            const okPacket1 = await conn.query(sql, [email, mdp]); 
+            sql = "INSERT INTO patients (id_patient, nom, prenom, date_naissance, adresse, code_postal, ville, numero_telephone, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            const okPacket2 = await conn.query(sql, [nom, prenom, dateNaissance, adresse, codePostal, ville, numeroTelephone, numeroSecurite, email]); 
+            conn.end();
+            //console.log(okPacket1);
+            //console.log(okPacket2);
+            return okPacket2.insertId;
+        }
+        catch (error) {
+            throw error; 
+        }
     },
 
     //Ajouter un organisme de santé
     async addOneOrganismeSante(email, mdp, nomPharmacie, telPharmacie){
         try {
-            console.log("ADDONEORGANISME 1");
             conn = await pool.getConnection();          
             sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PHARMACIE');  ";
-            const okPacket1 = await conn.query(sql, [email, mdp, nomPharmacie, telPharmacie, email]); 
+            const okPacket1 = await conn.query(sql, [email, mdp]); 
             sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, numero_telephone, email) VALUES (NULL, ?, ?, ?)";
             const okPacket2 = await conn.query(sql, [nomPharmacie, nomPharmacie, email]); 
             conn.end();
-            console.log(okPacket1);
-            console.log(okPacket2);
+            //console.log(okPacket1);
+            //console.log(okPacket2);
             return okPacket2.insertId;
         }
         catch (error) {
@@ -81,6 +107,26 @@ module.exports = {
             }
             else
               return false;
+        }
+        catch(error){
+            throw error;
+        }
+    },
+
+    //Vérifier l'addresse mail unique
+    async GestionRpps(rpps){
+        try{
+            conn = await pool.getConnection();
+            sql = "SELECT * FROM rpps WHERE num_rpps = ? AND Utiliser = 0";
+            const rows = await conn.query(sql, rpps);
+            console.log("rpps FETCHED: "+rows.length);
+            if (rows.length == 1){
+                sql = "UPDATE rpps SET Utiliser=1 WHERE num_rpps = ?";
+                const rows = await conn.query(sql, rpps);
+                return true;
+            }
+            else
+                return false;
         }
         catch(error){
             throw error;

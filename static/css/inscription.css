@@ -10,49 +10,6 @@
     width: 250px;
 }
 
-/* ---------- COLOR AND BACKGROUND ---------- */
-
-.bg_blue {
-    background-color: #0E9BA1;
-}
-
-.bg_blue2 {
-    background-color: #13678A;
-}
-
-.bg_blue3 {
-    background-color: #184C78;
-}
-
-.bg_blue4 {
-    background-color: #16DBB7;
-}
-
-.bg_blue5 {
-    background-color: #008e74;
-}
-
-.bg_blue5-1 {
-    background-color: #008e743a;
-}
-
-.c_blue {
-    color: #0E9BA1;
-}
-
-.c_blue2 {
-    color: #13678A;
-}
-
-.c_blue3 {
-    color: #184C78;
-}
-
-.c_blue4 {
-    color: #16DBB7;
-}
-
-
 @media (max-width: 1000px) {
     #container_medecins {
         display: none;
@@ -85,10 +42,6 @@
 
 .wb40 {
     width: 40%;
-}
-
-.col-bc1 {
-    color: #008E73;
 }
 
 #insc:hover {
