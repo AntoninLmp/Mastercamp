@@ -8,39 +8,155 @@
 
 <body class="">
     <%- include("header.ejs"); %>
-        <main class="d-flex mt-4 CaviarDreams ">
+        <main class="d-flex mt-4 CaviarDreams w-100">
             <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
                 <ul class="list-unstyled">
-                    <li class="text-white p-2 CaviarDreamsBold">Mes Ordonnances</li>
-                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#MP_" class="text-decoration-none text-white">Mes patients</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
+                    </li>
                 </ul>
             </nav>
-            <article>
+            <article class="w-100">
                 <section>
-                    <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
+                    <h1 class="CaviarDreamsBold f-blue2" id="EO_">Editer une ordonnance</h1>
+                    <ul class="list-unstyled f-blue_green px-4">
+                        <li>
+                            <section class=" m-3 text-center">
+
+                                <div class="d-flex" id="fleche_creeOrdo">
+                                    <h2 class="px-3">&#9660</h2>
+                                    <h2>Créer ordonnance en ligne</h2>
+                                </div>
+                                <article id="formCO_">
+                                    <form action="" method="post" class="text-center">
+                                        <div class="form-row d-flex flex-wrap justify-content-around">
+                                            <div class="form-group col-md-5 m-2">
+                                                <label for="inputDatePatient">Date</label>
+                                                <input type="date" class="form-control" id="inputDatePatient"
+                                                    placeholder="Date">
+                                            </div>
+                                            <div class="form-group col-md-5 m-2">
+                                                <label for="inputVille">Ville</label>
+                                                <input type="text" class="form-control" id="inputVille"
+                                                    placeholder="Paris">
+                                            </div>
+                                            <div class="form-group col-md-5 m-2">
+                                                <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
+                                                <input type="number" class="form-control" id="inputNumSecuSociale"
+                                                    placeholder="1123544645121">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="border rounded m-3">Enregistrer</button>
+                                    </form>
+                                    <div class="d-flex mt-3">
+                                        <hr class="w-40 ">
+                                        <h1 class="px-3">Patient</h1>
+                                        <hr class="w-40 ">
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="col-6 text-center">
+                                            <h1>Ajout médicament</h1>
+                                            <form action="" method="post">
+                                                <div class="form-row">
+                                                    <div class="form-group m-2 px-5">
+                                                        <label for="inputMedicament">Medicament</label>
+                                                        <input type="text" class="form-control" id="inputMedicament"
+                                                            placeholder="Doliprane 1g">
+                                                    </div>
+                                                    <div class="form-group m-2 px-5">
+                                                        <label for="inputFrequence">Fréquence</label>
+                                                        <input type="text" class="form-control" id="inputFrequence"
+                                                            placeholder="2 fois par jour">
+                                                    </div>
+                                                    <div class="form-group m-2 px-5">
+                                                        <label for="inputDuree">Durée de la prise</label>
+                                                        <input type="text" class="form-control" id="inputDuree"
+                                                            placeholder="7 jours">
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="border rounded m-3">Ajouter</button>
+                                            </form>
+                                        </div>
+                                        <div class="w-100">
+                                            <h1>Liste </h1>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Nom Médicament</th>
+                                                        <th scope="col">Fréquence</th>
+                                                        <th scope="col">Durée de la prise</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Doliprane 1g</th>
+                                                        <td>2 fois par jour (matin et soir)</td>
+                                                        <td>2 semaines</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </article>
+                                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo"
+                                    id="pdf_img">
+                                <button type="button" class="border rounded m-4 f-blue2 text-uppercase btn-lg">Générer
+                                    PDF</button>
+                            </section>
+                        </li>
+                        <li>
+                            <section class="m-3">
+                                <div class="d-flex" id="fleche_ScanOrdo">
+                                    <h2 class="px-3">&#9660</h2>
+                                    <h2>Scanner une ordonnance</h2>
+                                </div>
+                                <article id="scan_ordo">
+                                    <!--  -->
+                                    <div class="p-5 m-5 w-50 text-center border-dash">
+                                        <h1>+</h1>
+                                        <h5>Ajout d'un document</h5>
+                                    </div>
+                                </article>
+                            </section>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
 
                 </section>
-                <section class="mt-3">
-                    <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded mx-5 p-3">
-                        <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes <span
-                                class="f-blue_green">ordonnances</span> .
-                            Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
-                            ainsi que par votre pharmacien.
-                        </p>
-                        <ul>
-                            <li>Toutes vos ordonnances de votre medecin, kinésithérapeute, podologue...</li>
-                            <li>Vos médicaments avec leur dosage</li>
-                        </ul>
 
-                    </section>
-                </section>
                 <section>
-                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
-
+                    <h1 class="CaviarDreamsBold f-blue2" id="Mesinformations">Mes informations</h1>
+                    <form action="" method="get" class="w-50">
+                        <div class="form-row">
+                            <div class="form-group m-2 px-5">
+                                <label for="inputNom-info">Nom</label>
+                                <input type="text" class="form-control" id="inputNom-info">
+                            </div>
+                            <div class="form-group m-2 px-5">
+                                <label for="inputDuree">Prénom</label>
+                                <input type="text" class="form-control" id="inputDuree">
+                            </div>
+                            <div class="form-group m-2 px-5">
+                                <label for="inputEmail-info">Email</label>
+                                <input type="text" class="form-control" id="inputEmail-info">
+                            </div>
+                        </div>
+                        <button type="button" class="border rounded m-3">Ajouter</button>
+                    </form>
                 </section>
             </article>
         </main>
+        <%- include("footer.ejs"); %>
+            <script src="/static/js/medecin_home.js"></script>
 
 </body>
