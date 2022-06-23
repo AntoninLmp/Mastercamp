@@ -45,7 +45,7 @@
 /*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
 
 /*---PRIMARY---*/
-.bg-blue1{
+.bg-blue1 {
     background: #184C78;
 }
 
@@ -66,19 +66,19 @@
 }
 
 /*---SECONDARY---*/
-.bg-blue3{
+.bg-blue3 {
     background: #012030;
 }
 
-.bg-blue4{
+.bg-blue4 {
     background: #0B2B40;
 }
 
-.bg-blue5{
+.bg-blue5 {
     background: #154666;
 }
 
-.bg-green{
+.bg-green {
     background: #008E73;
 }
 
@@ -86,7 +86,7 @@
     background-color: #008e743a;
 }
 
-.bg-apple-green{
+.bg-apple-green {
     background: #BDEF04;
 }
 
@@ -115,18 +115,18 @@
     color: white;
 }
 
-.f-white-green{
+.f-white-green {
     color: #D0ECE7;
 }
 
 
 /*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
 
-.link-turquoise:hover{
+.link-turquoise:hover {
     color: #16DBB7;
 }
 
-.link-white:hover{
+.link-white:hover {
     color: white;
 }
 
@@ -141,15 +141,14 @@
     height: 75px;
 }
 
-#burger{
+#burger {
     width: 40px;
     height: 40px;
 }
 
-.nav-container input[type="checkbox"]:checked ~ .logo{
+.nav-container input[type="checkbox"]:checked~.logo {
     display: none;
-}*/
-
+}
 
 .div_ordo {
     transition: transform 0.2s ease;
@@ -164,6 +163,12 @@
 
 .div_ordo:hover {
     /* margin: 0.5em 2.5em 0.5em 0; */
+    transform: scale(1.1);
+
+}
+
+.choix_inscription:hover {
+    transition: transform 0.2s ease;
     transform: scale(1.1);
 
 }
