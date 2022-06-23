@@ -76,6 +76,18 @@
     background: #154666;
 }
 
+.bg-green{
+    background: #008E73;
+}
+
+.bg-green-1 {
+    background-color: #008e743a;
+}
+
+.bg-apple-green{
+    background: #BDEF04;
+}
+
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
 .f-blue1{
     color: #184C78;
@@ -107,11 +119,11 @@
 
 
 /*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
-a.link-turquoise:hover{
+.link-turquoise:hover{
     color: #16DBB7;
 }
 
-a.link-white:hover{
+.link-white:hover{
     color: white;
 }
 
