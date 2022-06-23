@@ -4,7 +4,7 @@
     src: url("../fonts/caviar_dreams/CaviarDreams.ttf");
 }
 
-.CaviarDreams{
+.CaviarDreams {
     font-family: CaviarDreams, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }
 
@@ -13,7 +13,7 @@
     src: url("../fonts/caviar_dreams/CaviarDreams_Bold.ttf");
 }
 
-.CaviarDreamsBold{
+.CaviarDreamsBold {
     font-family: CaviarDreamsBold, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }
 
@@ -22,7 +22,7 @@
     src: url("../fonts/caviar_dreams/CaviarDreams_Italic.ttf");
 }
 
-.CaviarDreamsItalic{
+.CaviarDreamsItalic {
     font-family: CaviarDreamsItalic, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }
 
@@ -31,10 +31,12 @@
     font-family: "LouisGeorge";
     src: url("../fonts/louis_george_caf/Louis George Cafe.ttf");
 }
+
 @font-face {
     font-family: "LouisGeorgeBold";
     src: url("../fonts/louis_george_caf/Louis George Cafe Bold.ttf");
 }
+
 @font-face {
     font-family: "LouisGeorgeItalic";
     src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
@@ -47,19 +49,19 @@
     background: #184C78;
 }
 
-.bg-blue2{
+.bg-blue2 {
     background: #13678A;
 }
 
-.bg-blue_green{
+.bg-blue_green {
     background: #0E9BA1;
 }
 
-.bg-turquoise{
+.bg-turquoise {
     background: #16DBB7;
 }
 
-.bg-light_green{
+.bg-light_green {
     background: #DBFCBB;
 }
 
@@ -89,27 +91,27 @@
 }
 
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
-.f-blue1{
+.f-blue1 {
     color: #184C78;
 }
 
-.f-blue2{
+.f-blue2 {
     color: #13678A;
 }
 
-.f-blue_green{
+.f-blue_green {
     color: #0E9BA1;
 }
 
-.f-turquoise{
+.f-turquoise {
     color: #16DBB7;
 }
 
-.f-light_green{
+.f-light_green {
     color: #DBFCBB;
 }
 
-.f-white{
+.f-white {
     color: white;
 }
 
@@ -119,6 +121,7 @@
 
 
 /*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
+
 .link-turquoise:hover{
     color: #16DBB7;
 }
@@ -143,4 +146,32 @@
     height: 40px;
 }
 
+.nav-container input[type="checkbox"]:checked ~ .logo{
+    display: none;
+}*/
 
+
+.div_ordo {
+    transition: transform 0.2s ease;
+    /* position: relative; */
+    width: calc(33.33333% - 2.5em);
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 1em;
+    border: 0;
+    margin: 2.5em 1em 2.5em 1em;
+    padding: 1em;
+}
+
+.div_ordo:hover {
+    /* margin: 0.5em 2.5em 0.5em 0; */
+    transform: scale(1.1);
+
+}
+
+.display_h:hover {
+    display: block;
+}
+
+.display_h {
+    display: none;
+}

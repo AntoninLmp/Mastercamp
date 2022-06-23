@@ -35,6 +35,7 @@
     }
 }
 
+/* ----------------------- TAILLES ----------------------- */
 .wb65 {
     width: 65%;
 }
@@ -76,4 +77,17 @@
 
 .height_ftcont {
     height: fit-content;
+}
+
+.btn_generer_pdf {
+    border: 1px solid #0E9BA1;
+    border-radius: 10px;
+    padding: 0.5em;
+    background-color: transparent;
+    margin-top: 0.6em;
+}
+
+.btn_generer_pdf:hover {
+    background-color: #008e7480;
+    font-weight: bold;
 }
