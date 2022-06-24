@@ -16,12 +16,25 @@ module.exports = {
         }else{
           return false
         }
-        
-        
     } catch (err) {
         console.log(err)
         throw err
     }
-    },
+  },
+
+  async updatePatient( email, nom_pat, prenom_pat, adresse_pat, ville_pat, code_postal_pat, numero_tel) {
+    try {
+      conn = await pool.getConnection();
+      sql = "UPDATE patients SET nom_pat=?, prenom_pat=?, adresse_pat=?, ville_pat=?, code_postal_pat= ?, numero_telephone_pat = ? WHERE email=?";
+      const okPacket = await conn.query(sql, 
+            [nom_pat, prenom_pat, adresse_pat, ville_pat, code_postal_pat, numero_tel, email]);
+      conn.end();
+      console.log(okPacket); 
+      return okPacket.affectedRows; 
+    } catch (err) {
+      throw err;
+    }
+},
+
 }
     
