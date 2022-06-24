@@ -23,5 +23,18 @@ module.exports = {
             console.log(err)
             throw err
         }
+    },
+    async getOneOrdonnance(IdOrdo){
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM Ordonnance WHERE id_ordo=?;"
+            const rows = await conn.query(sql, IdOrdo)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows[0]
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
     }
 }
