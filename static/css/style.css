@@ -197,3 +197,7 @@
     border: 2px dashed gray;
     border-radius: 10px;
 }
+
+#loupe {
+    width: 30px;
+}
