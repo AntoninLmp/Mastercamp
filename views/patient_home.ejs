@@ -90,12 +90,12 @@
                         class="d-flex flex-wrap justify-content-center mx-auto">
                         <div class="form-group m-3 wb40">
                             <label for=" floatingNom">Nom</label>
-                            <input name="nom" type="text" class="form-control" id="floatingNom" value="<%= patient.nom %>"
+                            <input name="nom" type="text" class="form-control" id="floatingNom" value="<%= patient.nom_pat %>"
                                 >
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingPrenom">Prénom</label>
-                            <input name="prenom" type="text" class="form-control" id="floatingPrenom" value= "<%= patient.prenom %>"
+                            <input name="prenom" type="text" class="form-control" id="floatingPrenom" value= "<%= patient.prenom_pat %>"
                                 >
                         </div>
                         <div class="form-group m-3 wb40">
@@ -105,13 +105,13 @@
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingAdresse">Adresse</label>
-                            <input name="adresse" type="text" class="form-control" id="floatingAdresse" value="<%= patient.address %>"
+                            <input name="adresse" type="text" class="form-control" id="floatingAdresse" value="<%= patient.adresse_pat %>"
                                 >
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingCodePostal">Code Postal</label>
                             <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
-                                max="99999" min="11111" value="<%= patient.code_postal %>" >
+                                max="99999" min="11111" value="<%= patient.code_postal_pat %>" >
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingVille">Ville</label>
@@ -121,27 +121,19 @@
                         <div class="form-group m-3 wb40">
                             <label for="floatingNumTel">N° Téléphone</label>
                             <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
-                                value="" >
+                                value="<%= patient.numero_telephone_pat %>" >
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingSecuSocial">N° Securité sociale</label>
                             <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
-                                value=""  disabled>
+                                value="<%= patient.numero_sercurite %>"  disabled>
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingEmail">Adresse email</label>
-                            <input name="email" type="email" class="form-control" id="floatingEmail" value=""
-                                >
+                            <input name="email" type="email" class="form-control" id="floatingEmail" value="<%= patient.email %>"
+                                disabled>
                         </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingpassword1">Mot de passe</label>
-                            <input name="mdp" type="password" class="form-control" id="floatingpassword1" value=""
-                                >
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingpassword2">Mot de passe</label>
-                            <input type="password" class="form-control" id="floatingpassword2" value="">
-                        </div>
+                        
                         <div class="form-group mb-3 w-75 text-center">
                             <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 

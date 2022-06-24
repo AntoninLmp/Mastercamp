@@ -42,7 +42,7 @@ module.exports = {
           conn = await pool.getConnection();          
           sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'MEDECIN');  ";
           const okPacket1 = await conn.query(sql, [email, mdp]); 
-          sql = "INSERT INTO professionneldesante (id_professionneldesante, nom, prenom, RPPS, adeli, proffession, email) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+          sql = "INSERT INTO professionneldesante (id_professionneldesante, nom_pro, prenom_pro, RPPS, adeli, proffession, email) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
           const okPacket2 = await conn.query(sql, [nom, prenom, RPPS, adeli, proffession, email]); 
           conn.end();
           //console.log(okPacket1);
@@ -60,7 +60,7 @@ module.exports = {
           conn = await pool.getConnection();          
           sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PATIENT');  ";
           const okPacket1 = await conn.query(sql, [email, mdp]); 
-          sql = "INSERT INTO patients (id_patient, nom, prenom, date_naissance, adresse, code_postal, ville_pat, numero_telephone, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          sql = "INSERT INTO patients (id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postalpat, ville_pat, numero_telephone_pat, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           const okPacket2 = await conn.query(sql, [nom, prenom, dateNaissance, adresse, codePostal, ville, numeroTelephone, numeroSecurite, email]); 
           conn.end();
           //console.log(okPacket1);
@@ -79,7 +79,7 @@ module.exports = {
           sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PHARMACIE');  ";
           const okPacket1 = await conn.query(sql, [email, mdp]); 
           sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, numero_telephone, email) VALUES (NULL, ?, ?, ?)";
-          const okPacket2 = await conn.query(sql, [nomPharmacie, nomPharmacie, email]); 
+          const okPacket2 = await conn.query(sql, [nomPharmacie, telPharmacie, email]); 
           conn.end();
           //console.log(okPacket1);
           //console.log(okPacket2);

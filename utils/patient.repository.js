@@ -7,7 +7,7 @@ module.exports = {
     async getOnePatient(email) {
       try {
         conn = await pool.getConnection()
-        sql = "SELECT * FROM patients WHERE email = ?;"
+        sql = "SELECT * FROM patients INNER JOIN utilisateur USING (email) WHERE email = ?;"
         const rows = await conn.query(sql,email)
         conn.end()
         console.log("ROWS FETCHED: " + rows.length)
