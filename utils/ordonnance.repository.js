@@ -5,7 +5,7 @@ module.exports = {
         return {
             "id_ordo": 0,
             "date_delivrance": "YYYY/MM/JJ",
-            "ville": "X",
+            "ville_ordo": "X",
             "description": "X",
             "id_professionneldesante": 0,
             "id_patient": 0
