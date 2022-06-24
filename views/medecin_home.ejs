@@ -2,43 +2,46 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Professionel de Santé</title>
+        <title>Accueil - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body class="">
     <%- include("header.ejs"); %>
-        <main class="d-flex mt-4 CaviarDreams ">
-            <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
-                <ul class="list-unstyled">
+        <main class="container d-flex CaviarDreams p-3 vh-100">
+
+            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content vw-25 vh-25">
+                <ul class="list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">Mes Ordonnances</li>
                     <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
                 </ul>
             </nav>
-            <article>
-                <section>
-                    <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
 
+            <article class="m-3">
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
+
+                <section>
+                    <h1 class="CaviarDreamsBold f-blue2 pt-2">Mes Ordonnances</h1>
                 </section>
-                <section class="mt-3">
-                    <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded mx-5 p-3">
+
+                <section class="mt-3 mx-5">
+                    <h2 class="CaviarDreamsBold f-blue1">Utilisation</h2>
+                    <section class="border rounded p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes <span
-                                class="f-blue_green">ordonnances</span> .
-                            Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
+                            Voici votre espace regroupant vos différentes <span
+                                class="f-blue_green">ordonnances</span>.
+                            Vous pourrez y avoir accès à tout moment, elles sont également accessibles par votre médecin
                             ainsi que par votre pharmacien.
                         </p>
                         <ul>
                             <li>Toutes vos ordonnances de votre medecin, kinésithérapeute, podologue...</li>
                             <li>Vos médicaments avec leur dosage</li>
                         </ul>
-
                     </section>
                 </section>
-                <section>
-                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
 
+                <section class="mt-5">
+                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
                 </section>
             </article>
         </main>

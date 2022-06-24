@@ -1,1 +1,47 @@
-Ceci est la page d'accueil d'un organisme de santé (ce nom c'est de la merde)
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+    <title>Accueil - Organisme de santé</title>
+    <link rel="stylesheet" href="/static/css/inscription.css">
+</head>
+
+<body class="">
+    <!-- HEADER -->
+    <%- include("header.ejs"); %>
+
+    <!-- MAIN BODY -->
+    <main class="container d-flex CaviarDreams p-3 vh-100">
+
+        <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content vw-25 vh-25">
+            <ul class="list-unstyled h5">
+                <li class="text-white p-2 CaviarDreamsBold">Historique des traitements</li>
+                <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+            </ul>
+        </nav>
+
+        <section class="pt-3 ms-3">
+            <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace !</h1>
+            <form>
+                <h5 class="CaviarDreamsBold">Rechercher une ordonnance :</h5>
+                <div class="row g-3 mt-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="floatingNumOrdo" class="col-form-label">Numéro d'ordonnance : </label>
+                    </div>
+                    <div class="col-auto">
+                        <input name="numeroOrdo" type="number" class="form-control" id="floatingNumOrdo" required placeholder="Ex : 248024">
+                    </div>
+                    <div class="col-auto">
+                        <btn class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green">Rechercher</btn>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <%- include("footer.ejs"); %>
+
+</body>
+</html>

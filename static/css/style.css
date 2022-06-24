@@ -42,6 +42,28 @@
     src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
 }
 
+/*------------------------------------ SIZING RELATIVE TO VIEWPORT ------------------------------------------*/
+
+.vh-10{
+    height: 10vh;
+}
+
+.vw-10{
+    width: 10vh;
+}
+
+.vh-25{
+    height: 25vh;
+}
+
+.vw-25{
+    width: 25vh;
+}
+
+.min-width-content{
+    min-width: fit-content;
+}
+
 /*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
 
 /*---PRIMARY---*/
@@ -122,12 +144,33 @@
 
 /*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
 
+.link-blue-green:hover {
+    color: #0E9BA1;
+}
+
 .link-turquoise:hover {
     color: #16DBB7;
 }
 
 .link-white:hover {
     color: white;
+}
+
+/*------------------------------------ BUTTON HOVER COLORS ------------------------------------------*/
+
+.btn-link-turquoise:hover {
+    background: #16DBB7;
+}
+
+.btn-link-white:hover {
+    background: white;
+    border-color: #0E9BA1;
+}
+
+/*------------------------------------ BORDER RADIUS PROPERTIES ------------------------------------------*/
+
+.rounded-4{
+    border-radius: 10%;
 }
 
 /*------------------------------------ IMG ------------------------------------------*/
