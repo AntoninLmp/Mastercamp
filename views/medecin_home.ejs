@@ -132,12 +132,19 @@
                 </section>
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
-                        <span class="input-group-text border-0" id="search-addon">
-                            <i class="fas fa-search"></i>
-                        </span>
+                    <div>
+                        <form action="#MP_" method="get" class="input-group rounded w-100">
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher nom"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher prenom"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="search" class="rounded border p-1 w-25 mx-1"
+                                placeholder="Rechercher numéro sécu" aria-label="search"
+                                aria-describedby="search-addon" />
+                            <button class="input-group-text border-0 " id="search-addon">
+                                <img src="/static/img/loupe.png" alt="loupe" id="loupe">
+                            </button>
+                        </form>
                     </div>
                     <section class="d-flex">
                         <div class="div_ordo text-center border rounded rounded-4 ">

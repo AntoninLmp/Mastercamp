@@ -26,6 +26,16 @@
             <article>
                 <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
+                    <form action="/patient/ordonnances" method="get">
+                        <div class="input-group rounded d-flex">
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher ville"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="date" class="rounded border p-1 w-25 mx-1" />
+                            <button type="submit" class="input-group-text border-0 " id="search-addon">
+                                <img src="/static/img/loupe.png" alt="loupe" id="loupe">
+                            </button>
+                        </div>
+                    </form>
                     <section class="d-flex">
                         <% for (var ord of ordonnances) { %>
                             <div class="div_ordo text-center border rounded rounded-4 ">
