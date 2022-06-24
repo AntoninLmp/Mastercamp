@@ -1,0 +1,199 @@
+/*------------------------------------ FONTS ------------------------------------------*/
+@font-face {
+    font-family: "CaviarDreams";
+    src: url("../fonts/caviar_dreams/CaviarDreams.ttf");
+}
+
+.CaviarDreams {
+    font-family: CaviarDreams, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "CaviarDreamsBold";
+    src: url("../fonts/caviar_dreams/CaviarDreams_Bold.ttf");
+}
+
+.CaviarDreamsBold {
+    font-family: CaviarDreamsBold, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "CaviarDreamsItalic";
+    src: url("../fonts/caviar_dreams/CaviarDreams_Italic.ttf");
+}
+
+.CaviarDreamsItalic {
+    font-family: CaviarDreamsItalic, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+/*------------------------------------*/
+@font-face {
+    font-family: "LouisGeorge";
+    src: url("../fonts/louis_george_caf/Louis George Cafe.ttf");
+}
+
+@font-face {
+    font-family: "LouisGeorgeBold";
+    src: url("../fonts/louis_george_caf/Louis George Cafe Bold.ttf");
+}
+
+@font-face {
+    font-family: "LouisGeorgeItalic";
+    src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
+}
+
+/*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
+
+/*---PRIMARY---*/
+.bg-blue1 {
+    background: #184C78;
+}
+
+.bg-blue2 {
+    background: #13678A;
+}
+
+.bg-blue_green {
+    background: #0E9BA1;
+}
+
+.bg-turquoise {
+    background: #16DBB7;
+}
+
+.bg-light_green {
+    background: #DBFCBB;
+}
+
+/*---SECONDARY---*/
+.bg-blue3 {
+    background: #012030;
+}
+
+.bg-blue4 {
+    background: #0B2B40;
+}
+
+.bg-blue5 {
+    background: #154666;
+}
+
+.bg-green {
+    background: #008E73;
+}
+
+.bg-green-1 {
+    background-color: #008e743a;
+}
+
+.bg-apple-green {
+    background: #BDEF04;
+}
+
+/*------------------------------------ FONTS COLORS ------------------------------------------*/
+.f-blue1 {
+    color: #184C78;
+}
+
+.f-blue2 {
+    color: #13678A;
+}
+
+.f-blue_green {
+    color: #0E9BA1;
+}
+
+.f-turquoise {
+    color: #16DBB7;
+}
+
+.f-light_green {
+    color: #DBFCBB;
+}
+
+.f-white {
+    color: white;
+}
+
+.f-white-green {
+    color: #D0ECE7;
+}
+
+
+/*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
+
+.link-turquoise:hover {
+    color: #16DBB7;
+}
+
+.link-white:hover {
+    color: white;
+}
+
+/*------------------------------------ IMG ------------------------------------------*/
+#header-logo {
+    width: 200px;
+    height: 55px;
+}
+
+#footer-logo,
+#pdf_img {
+    width: 75px;
+    height: 75px;
+}
+
+#burger {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-container input[type="checkbox"]:checked~.logo {
+    display: none;
+}
+
+.div_ordo {
+    transition: transform 0.2s ease;
+    /* position: relative; */
+    width: calc(33.33333% - 2.5em);
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 1em;
+    border: 0;
+    margin: 2.5em 1em 2.5em 1em;
+    padding: 1em;
+}
+
+.div_ordo:hover {
+    /* margin: 0.5em 2.5em 0.5em 0; */
+    transform: scale(1.1);
+
+}
+
+.choix_inscription:hover {
+    transition: transform 0.2s ease;
+    transform: scale(1.1);
+
+}
+
+.display_h:hover {
+    display: block;
+}
+
+.display_h {
+    display: none;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+/* MEDECIN */
+
+#fleche_creeOrdo:hover,
+#fleche_ScanOrdo:hover {
+    cursor: pointer;
+}
+
+.border-dash {
+    border: 2px dashed gray;
+    border-radius: 10px;
+}

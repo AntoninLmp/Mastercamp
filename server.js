@@ -12,8 +12,8 @@ app.use(session({
 }));
 
 //ADD athentification
-//const auth = require("./utils/users.auth");
-//auth.initialization(app);
+const auth = require("./utils/users.auth");
+auth.initialization(app);
 
 app.listen(process.env.WEB_PORT,
     function(){
@@ -33,5 +33,11 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 
 //ADD the routes
 
-//app.use("/static", express.static(__dirname + '/static'));
-//app.use("/home", require("./controllers/home.route"));
+app.use("/static", express.static(__dirname + '/static'));
+
+app.use("/home", require("./controllers/home.route"));
+app.use("/connexion", require("./controllers/connexion.route"));
+app.use("/inscription", require("./controllers/inscription.route"));
+app.use("/patient", require("./controllers/patient.route"));
+app.use("/medecin", require("./controllers/medecin.route"));
+app.use("/organismesante", require("./controllers/organismesante.route"));

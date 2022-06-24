@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+
+        <title>Connexion</title>
+
+        <!-- Static CSS/JS references... -->
+        <link rel="stylesheet" href="/static/css/inscription.css">
+
+</head>
+
+
+<body>
+    <!-- Header -->
+    <%- include("header.ejs"); %>
+
+        <!-- Main -->
+        <main class="d-flex vh-100 justify-content-center align-items-center">
+            <article class="align-items-center bg-blue_green w-100 justify-content-center h-100"
+                id="container_medecins">
+                <img src="/static/img/medecins.png" alt="medecins">
+            </article>
+
+            <article class="p-4 text-center mb-5 mt-5 wb65">
+                <div>
+                    <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
+                    <h1 class="display-6 fs-3 text">Se connecter</h1>
+                </div>
+
+                <div style="color:red">
+                    <% if (content.length) { %>
+                        <% for (var c of content) { %>
+                            <p>
+                                <%= c.category %>:
+                                    <strong>
+                                        <%= c.message %>
+                                    </strong>
+                            </p>
+                            <% }%>
+                                <% } %>
+                </div>
+
+                <form method="post" action="../../connexion/connexion" id="loginFormClient"
+                    class="d-flex flex-wrap justify-content-center mx-auto">
+                    <input class="form-control border-success pb-2 mb-2" type="email" name="email" id="email"
+                        placeholder="dupontjean@gmail.com">
+                    <input class="form-control border-success pb-2 mb-2" type="password" name="mdp" id="mdp"
+                        placeholder="************">
+                    <button type="submit" class="btn btn-outline-success">Connexion</button>
+                </form>
+
+                <p class="m-4">Vous n'avez pas de compte ?
+                    <a href="/inscription" class="col-bc1 text-decoration-none link-turquoise"
+                        id="insc">Inscrivez-vous.</a>
+                </p>
+            </article>
+        </main>
+
+        <!-- Footer -->
+        <%- include("footer.ejs"); %>
+</body>
+
+
+
+</html>

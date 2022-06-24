@@ -1,0 +1,180 @@
+drop DATABASE if exists orto130db ;
+create database if not exists ortho130db;
+use ortho130db;
+
+drop table if exists exercer;
+drop table if exists contenir;
+drop table if exists Ordonnance;
+drop table if exists Pharmacie;
+drop table if exists ProfessionnelDeSante;
+drop table if exists Patients;
+drop table if exists Utilisateur;
+drop table if exists ListeDeMedicaments;
+drop table if exists RPPS;
+drop table if exists Etablissement;
+
+CREATE TABLE Etablissement(
+   id_etablissement INT,
+   nom_etablissement VARCHAR(100),
+   adresse_etab VARCHAR(50),
+   code_postal_etab INT,
+   ville_etab VARCHAR(50),
+   numero_telephone_etab VARCHAR(10),
+   FINESS INT,
+   PRIMARY KEY(id_etablissement)
+);
+
+CREATE TABLE RPPS(
+   num_rpps BIGINT,
+   Utiliser BOOLEAN,
+   PRIMARY KEY(num_rpps)
+);
+
+CREATE TABLE ListeDeMedicaments(
+   id_medic INT,
+   nom_medicament VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_medic)
+);
+
+CREATE TABLE Utilisateur(
+   email VARCHAR(100),
+   mdp VARCHAR(100),
+   date_creation DATETIME,
+   Role VARCHAR(50),
+   PRIMARY KEY(email)
+);
+
+CREATE TABLE Patients(
+   id_pat INT AUTO_INCREMENT,
+   nom_pat VARCHAR(50),
+   prenom_pat VARCHAR(50),
+   date_naissance DATE,
+   adresse_pat VARCHAR(50),
+   code_postal_pat INT,
+   ville_pat VARCHAR(50),
+   numero_telephone_pat VARCHAR(10),
+   numero_sercurite BIGINT,
+   email VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_patient),
+   FOREIGN KEY(email) REFERENCES Utilisateur(email)
+);
+
+CREATE TABLE ProfessionnelDeSante(
+   id_professionneldesante INT auto_increment,
+   nom_pro VARCHAR(50),
+   prenom_pro VARCHAR(50),
+   RPPS BIGINT,
+   adeli BIGINT,
+   proffession VARCHAR(50),
+   email VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_professionneldesante),
+   FOREIGN KEY(email) REFERENCES Utilisateur(email)
+);
+
+CREATE TABLE Pharmacie(
+   id_pharmacie INT AUTO_INCREMENT,
+   nom_pharmacie VARCHAR(50),
+   numero_telephone VARCHAR(50),
+   email VARCHAR(100) NOT NULL,
+   PRIMARY KEY(id_pharmacie),
+   FOREIGN KEY(email) REFERENCES Utilisateur(email)
+);
+
+CREATE TABLE Ordonnance(
+   id_ordo INT,
+   date_delivrance DATE NOT NULL,
+   ville_ordo VARCHAR(50),
+   description VARCHAR(50),
+   id_professionneldesante INT NOT NULL,
+   id_patient INT NOT NULL,
+   PRIMARY KEY(id_ordo),
+   FOREIGN KEY(id_professionneldesante) REFERENCES ProfessionnelDeSante(id_professionneldesante),
+   FOREIGN KEY(id_patient) REFERENCES Patients(id_patient)
+);
+
+CREATE TABLE contenir(
+   id_medic INT,
+   id_ordo INT,
+   quantité INT,
+   PRIMARY KEY(id_medic, id_ordo),
+   FOREIGN KEY(id_medic) REFERENCES ListeDeMedicaments(id_medic),
+   FOREIGN KEY(id_ordo) REFERENCES Ordonnance(id_ordo)
+);
+
+CREATE TABLE exercer(
+   id_professionneldesante INT,
+   id_etablissement INT,
+   PRIMARY KEY(id_professionneldesante, id_etablissement),
+   FOREIGN KEY(id_professionneldesante) REFERENCES ProfessionnelDeSante(id_professionneldesante),
+   FOREIGN KEY(id_etablissement) REFERENCES Etablissement(id_etablissement)
+);
+
+
+INSERT INTO Etablissement VALUES
+	(1, "Hôpital Privé de Vitry site Clinique Pasteur - Elsan", "22 rue de la Petite Saussaie", 94400, "Vitry-sur-Seine", "0145733535", 940003999),
+    (2, "Hôpital Privé de Vitry - site Clinique des Noriets- Elsan", "12 rue des Noriets", 94400, "Vitry-sur-Seine", "0145595500", 940013999),
+    (3, "Centre Hospitalier Intercommunal de Villeneuve-Saint-Georges Lucie et Raymond Aubrac", "40 allée de la Source", 94190, "Villeneuve-Saint-Georges", "0143862000", 940903999),
+    (4, "Clinique de Villeneuve-Saint-Georges - Ramsay Santé", "47 rue de Crosne", 94190, "Villeneuve-Saint-Georges", "01451082", 940673999),
+	(5, "Assistance Publique - Hôpitaux de Paris - site Hôpital Paul-Brousse", "12 avenue Paul Vaillant-Couturier", 94800, "Villejuif", "0145593000", 940003900),
+    (6, "Institut Gustave Roussy - Centre de Lutte Contre le Cancer - site Cancer Campus", "39 rue Camille Desmoulins", 94800, "Villejuif", "0141659014", 940003976),
+	(7, "Clinique Médicale de Diététique de Villecresnes - Almaviva Santé", "8 boulevard Richerand", 94440, "Villecresnes", "0145955757", 940005699),
+	(8, "Hôpital Privé de Thiais", "8112 avenue du Général de Gaulle", 94320, "Thiais", "0145602828", 94007899),
+    (9, "Hôpitaux de Saint-Maurice", "12-14 rue du Val d’Osne", 94410, "Saint-Maurice", "0143966161", 940001234),
+    (10, "Clinique Gaston-Métivet", "48 rue Alsace-Lorraine", 94100, "Saint-Maur-des-Fossés", "0149767649", 940003995);
+
+INSERT INTO RPPS VALUES
+	(12345678909, true),
+    (13542676787, false),
+    (43454534789, false),
+    (12121789874, false),
+    (90909078785, false),
+    (56565656578, false),
+    (81828393045, false),
+    (11111111111, false),
+    (22222222222, false),
+    (33333333333, false),
+    (44444444444, false);
+    
+INSERT INTO ListeDeMedicaments VALUES
+	(1, "DOLIPRANE"),
+    (2, "EFFERALGAN"),
+    (3, "DAFALGAN"),
+    (4, "LEVOTHYROX"),
+    (5, "IMODIUM"),
+    (6, "KARDEGIC"),
+    (7, "SPASFON"),
+    (8, "ISIMIG"),
+    (9, "TAHOR"),
+    (10, "SPEDIFEN"),
+    (11, "VOLTARENE"),
+    (12, "ELUDRIL"),
+    (13, "IXPRIM"),
+    (14, "PARACETAMOL BIOGARAN"),
+    (15, "FORLAX");
+
+INSERT INTO Utilisateur VALUES 
+	("patient@gmail.com", sha2(concat(now(), 'pa'), 224), now(), "PATIENT"),
+    ("medecin@gmail.com", sha2(concat(now(), 'me'), 224), now(), "MEDECIN"),
+    ("pharmacie@gmail.com", sha2(concat(now(), 'ph'), 224), now(), "PHARMACIE");
+
+INSERT INTO Patients VALUES
+	(1, "Patient", "Amélie", 2000-09-22, "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "patient@gmail.com");
+
+INSERT INTO ProfessionnelDeSante VALUES 
+	(1, "Médecin", "Antonin", 12345678909, 951703248, "Généraliste", "medecin@gmail.com");
+
+INSERT INTO Pharmacie VALUES
+	(1, "PHARMACIE", "0000000000", "pharmacie@gmail.com");
+
+INSERT INTO Ordonnance VALUES
+	(1, "2021-09-22", "Villejuif", "1 comprimé par jour le matin", 1, 1),
+   (2, "2020-05-22", "Paris", "1 comprimé par jour le soir", 1, 1),
+   (3, "2021-09-22", "Villejuif", "Doliprane", 1, 1);
+    
+INSERT INTO contenir VALUES
+	(1, 1, 3),
+    (7, 1, 2);
+    
+INSERT INTO exercer VALUES
+	(1, 1),
+    (1, 2);

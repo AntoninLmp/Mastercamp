@@ -1,0 +1,93 @@
+#loginFormClient {
+    width: 50%;
+}
+
+/* #signupFormClient {
+    width: 60%;
+} */
+
+#logo_insc_form {
+    width: 250px;
+}
+
+@media (max-width: 1000px) {
+    #container_medecins {
+        display: none;
+    }
+
+    /* .p_art {
+        display: none;
+    } */
+
+    #container_inscrip {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box_inscrip {
+        width: 55% !important;
+    }
+}
+
+@media (min-width: 1000px) {
+    #container_medecins {
+        display: flex;
+    }
+}
+
+/* ----------------------- TAILLES ----------------------- */
+.wb65 {
+    width: 65%;
+}
+
+.wb40 {
+    width: 40%;
+}
+
+#insc:hover {
+    color: #0E9BA1;
+}
+
+.button_insc {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.8em;
+    width: 35%;
+    background-color: white;
+}
+
+.box_sha:hover {
+    box-shadow: 3px 3px 5px #1e6a8a;
+    position: relative;
+    top: -2px;
+}
+
+.button_insc a {
+    color: #0E9BA1;
+    text-transform: uppercase;
+}
+
+.button_insc:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+.box_inscrip {
+    width: 75%;
+}
+
+.height_ftcont {
+    height: fit-content;
+}
+
+.btn_generer_pdf {
+    border: 1px solid #0E9BA1;
+    border-radius: 10px;
+    padding: 0.5em;
+    background-color: transparent;
+    margin-top: 0.6em;
+}
+
+.btn_generer_pdf:hover {
+    background-color: #008e7480;
+    font-weight: bold;
+}
