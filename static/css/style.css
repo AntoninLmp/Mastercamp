@@ -179,7 +179,8 @@
     height: 55px;
 }
 
-#footer-logo {
+#footer-logo,
+#pdf_img {
     width: 75px;
     height: 75px;
 }
@@ -222,4 +223,24 @@
 
 .display_h {
     display: none;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+/* MEDECIN */
+
+#fleche_creeOrdo:hover,
+#fleche_ScanOrdo:hover {
+    cursor: pointer;
+}
+
+.border-dash {
+    border: 2px dashed gray;
+    border-radius: 10px;
+}
+
+#loupe {
+    width: 30px;
 }
