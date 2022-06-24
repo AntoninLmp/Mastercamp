@@ -11,12 +11,20 @@
         <main class="d-flex mt-4 CaviarDreams ">
             <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
                 <ul class="list-unstyled">
-                    <li class="text-white p-2 CaviarDreamsBold">Mes Ordonnances</li>
-                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#MO_" class="text-decoration-none text-white">Mes Ordonnances</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="" class="text-decoration-none text-white">Utilisation</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="" class="text-decoration-none text-white"></a>
+                        Mes informations
+                    </li>
                 </ul>
             </nav>
             <article>
-                <section>
+                <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
                     <section class="d-flex">
                         <% for (var ord of ordonnances) { %>
@@ -43,7 +51,8 @@
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
                     <section class="border rounded mx-5 p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes <span class="f-blue_green">ordonnances</span> .
+                            Voici votre espace qui regroupe vos différentes <span
+                                class="f-blue_green">ordonnances</span> .
                             Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
                             ainsi que par votre pharmacien.
                         </p>
@@ -56,7 +65,68 @@
                 </section>
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
+                    <form method="get" action="" id="signupFormClient"
+                        class="d-flex flex-wrap justify-content-center mx-auto">
+                        <div class="form-group m-3 wb40">
+                            <label for=" floatingNom">Nom</label>
+                            <input name="nom" type="text" class="form-control" id="floatingNom" required
+                                placeholder="Jean">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingPrenom">Prénom</label>
+                            <input name="prenom" type="text" class="form-control" id="floatingPrenom" required
+                                placeholder="Dupont">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingDate">Date de naissance</label>
+                            <input name="dateNaissance" type="date" class="form-control" id="floatingDate" required
+                                placeholder="Date" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingAdresse">Adresse</label>
+                            <input name="adresse" type="text" class="form-control" id="floatingAdresse" required
+                                placeholder="Adresse">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingCodePostal">Code Postal</label>
+                            <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
+                                max="99999" min="11111" required placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingVille">Ville</label>
+                            <input name="ville" type="text" class="form-control" id="floatingVille" required
+                                placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingNumTel">N° Téléphone</label>
+                            <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
+                                required placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingSecuSocial">N° Securité sociale</label>
+                            <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
+                                required placeholder="**" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingEmail">Adresse email</label>
+                            <input name="email" type="email" class="form-control" id="floatingEmail" required
+                                placeholder="dupont.jean@gmail.com">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingpassword1">Mot de passe</label>
+                            <input name="mdp" type="password" class="form-control" id="floatingpassword1" required
+                                placeholder="************">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingpassword2">Mot de passe</label>
+                            <input type="password" class="form-control" id="floatingpassword2" required
+                                placeholder="************">
+                        </div>
+                        <div class="form-group mb-3 w-75 text-center">
+                            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 
+                        </div>
+                    </form>
                 </section>
             </article>
         </main>
