@@ -14,7 +14,7 @@ module.exports = {
     async getAllOrdonnance() {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT * FROM Ordonnance;"
+            sql = "SELECT * FROM Ordonnance ;"
             const rows = await conn.query(sql)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
@@ -23,5 +23,21 @@ module.exports = {
             console.log(err)
             throw err
         }
+    },
+
+    async getAllOrdonnanceByPatient(email) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE email = ?;"
+            const rows = await conn.query(sql,email)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
     }
+    
+
 }

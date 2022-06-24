@@ -60,7 +60,7 @@ module.exports = {
           conn = await pool.getConnection();          
           sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PATIENT');  ";
           const okPacket1 = await conn.query(sql, [email, mdp]); 
-          sql = "INSERT INTO patients (id_patient, nom, prenom, date_naissance, adresse, code_postal, ville, numero_telephone, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          sql = "INSERT INTO patients (id_patient, nom, prenom, date_naissance, adresse, code_postal, ville_pat, numero_telephone, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           const okPacket2 = await conn.query(sql, [nom, prenom, dateNaissance, adresse, codePostal, ville, numeroTelephone, numeroSecurite, email]); 
           conn.end();
           //console.log(okPacket1);
