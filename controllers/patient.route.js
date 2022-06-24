@@ -17,5 +17,10 @@ router.get("/", auth.checkAuthentication("PATIENT"), async function (request, re
     response.render("patient_home.ejs", { "ordonnances": ordonnance, "flashMessage": flashMessage });
 });
 
+router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("PATIENT"), voirOrdonnance);
+async function voirOrdonnance(request, response){
+    var my_ordo = await ordonnanceRepo.getOneOrdonnance(request.params.OrdoId);
+    response.render("vue_ordonnance", {"my_ordo" : my_ordo});
+}
 
 module.exports = router;
