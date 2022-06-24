@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", function (request, response) {
     var myContent=[];
+    console.log(request.user.email);
     response.render("medecin_home.ejs", { "content": myContent });
 });
 
