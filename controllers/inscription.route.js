@@ -1,10 +1,9 @@
 //controllers/inscription.route.js
 const express = require('express');
-const { GestionRpps } = require('../utils/utilisateur.repository');
 const router = express.Router();
 
 //importer
-const utilisateurRepo = require("../utils/utilisateur.repository");
+const utilisateurRepo = require("../utils/users.repository");
 
 router.get("/", (request, response) => {
     response.render("inscription_choix");

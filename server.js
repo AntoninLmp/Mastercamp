@@ -12,12 +12,12 @@ app.use(session({
 }));
 
 //ADD athentification
-const auth = require("./utils/utilisateur.auth");
+const auth = require("./utils/users.auth");
 auth.initialization(app);
 
 app.listen(process.env.WEB_PORT,
-    function () {
-        console.log("Listen on " + process.env.WEB_PORT);
+    function(){
+        console.log("Listen on "+process.env.WEB_PORT);
     }
 );
 
@@ -34,6 +34,13 @@ app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 //ADD the routes
 
 app.use("/static", express.static(__dirname + '/static'));
+
+//app.use("/home", require("./controllers/home.route"));
+//app.use("/login", require("./controllers/login.route"));
+//app.use("/admin", require("./controllers/admin.route"));
+//app.use("/student", require("./controllers/student.route"));
+//app.use("/particular", require("./controllers/particular.route"));
+
 app.use("/home", require("./controllers/home.route"));
 app.use("/connexion", require("./controllers/connexion.route"));
 app.use("/inscription", require("./controllers/inscription.route"));
