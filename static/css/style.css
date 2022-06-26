@@ -44,23 +44,23 @@
 
 /*------------------------------------ SIZING RELATIVE TO VIEWPORT ------------------------------------------*/
 
-.vh-10{
+.vh-10 {
     height: 10vh;
 }
 
-.vw-10{
+.vw-10 {
     width: 10vh;
 }
 
-.vh-25{
+.vh-25 {
     height: 25vh;
 }
 
-.vw-25{
+.vw-25 {
     width: 25vh;
 }
 
-.min-width-content{
+.min-width-content {
     min-width: fit-content;
 }
 
@@ -110,6 +110,10 @@
 
 .bg-apple-green {
     background: #BDEF04;
+}
+
+.bg-grey {
+    background-color: rgb(250, 250, 250);
 }
 
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
@@ -169,12 +173,13 @@
 
 /*------------------------------------ BORDER RADIUS PROPERTIES ------------------------------------------*/
 
-.rounded-4{
+.rounded-4 {
     border-radius: 10%;
 }
 
 /*------------------------------------ IMG ------------------------------------------*/
-#header-logo {
+#header-logo,
+.img_logo {
     width: 200px;
     height: 55px;
 }
@@ -229,6 +234,10 @@
     width: 40%;
 }
 
+.w-30 {
+    width: 30%;
+}
+
 /* MEDECIN */
 
 #fleche_creeOrdo:hover,
@@ -243,4 +252,16 @@
 
 #loupe {
     width: 30px;
+}
+
+
+/* ORDONNANCE */
+
+#prescription {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#ordonnance {
+    width: 65%;
 }

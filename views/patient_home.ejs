@@ -24,6 +24,7 @@
                 </ul>
             </nav>
             <article>
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
                 <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
                     <form action="/patient/ordonnances" method="get">
@@ -36,10 +37,11 @@
                             </button>
                         </div>
                     </form>
-                    <section class="d-flex">
+                    <section class="d-flex flex-wrap">
                         <% for (var ord of ordonnances) { %>
                             <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>" class="text-decoration-none text-dark">
+                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                    class="text-decoration-none text-dark">
                                     <h1>Ordonnance</h1>
                                     <h2 class="f-blue_green">
                                         <%= ord.ville %>
@@ -50,7 +52,6 @@
                                     <h3>
                                         <%= ord.date_delivrance.toISOString().slice(0, 10) %>
                                     </h3>
-                                    <button type="button" class="btn_generer_pdf">Générer PDF</button>
                                 </a>
 
                             </div>
@@ -61,8 +62,8 @@
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
                     <section class="border rounded mx-5 p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes <span
-                                class="f-blue_green">ordonnances</span> .
+                            Voici votre espace qui regroupe vos différentes
+                            <span class="f-blue_green">ordonnances</span>.
                             Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
                             ainsi que par votre pharmacien.
                         </p>
@@ -150,6 +151,6 @@
                 </section>
             </article>
         </main>
-
+        <%- include("footer.ejs"); %>
 
 </body>
