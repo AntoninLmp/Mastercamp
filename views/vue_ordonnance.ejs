@@ -1,7 +1,5 @@
 <!--/views/vue_ordonnance-->
 
-
-
 <html lang="fr">
 
 <head>
@@ -21,14 +19,32 @@
             <section class="d-flex">
                 <section id="ordonnance" class="border bg-grey p-4">
                     <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
-                        <p class="text-uppercase"> CABINET DE OSTHéOPATHIE <br>
-                            21,RUE d'estienne d'orves - 91220 Brétigny-sur-orge <br>
-                            TEL. 06 60 95 30 20</p>
+                        <% for (var eta of etablissement) { %>
+                            <p class="text-uppercase">
+                                <span class="text-decoration-underline">
+                                    <%= eta.nom_etablissement %><br>
+                                </span>
+                                <%= eta.adresse %>, <%= eta.code_postal %>
+                                        <%= eta.ville %> <br>
+                                            TEL.<%= eta.numero_telephone %>
+                            </p>
+                            <% } %>
                     </div>
                     <div class="CaviarDreamsBold f-blue2">
-                        <p>Docteur LOIC ARMSTRONG <br>
-                            Specialité <br>
-                            code bar</p>
+                        <p>
+                            DOCTEUR
+                            <span class="text-uppercase">
+                                <%=medecin.nom %>
+                                    <%=medecin.prenom %>
+                            </span><br>
+                            <%=medecin.proffession %> <br>
+                                <span class="CaviarDreams">
+                                    N° RPPS : <br>
+                                    <%=medecin.RPPS %> <br>
+                                        N° ADELI : <br>
+                                        <%=medecin.adeli %> <br>
+                                </span>
+                        </p>
                     </div>
                     <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
                         <p>
@@ -36,35 +52,57 @@
                         </p>
                     </div>
                     <div id="prescription">
-                        <table>
+                        <table class="text-center">
                             <thead>
                                 <tr>
-                                    <th>Nom Médicament</th>
+                                    <th>Médicament</th>
                                     <th>Fréquence</th>
                                     <th>Durée de la prise</th>
+                                    <th>Quantité</th>
                                 </tr>
                             </thead>
-                            <tbody class="">
-                                <tr>
-                                    <td class="w-25">Doliprane 1g</td>
-                                    <td class="w-25">2 fois par jour (matin et soir)</td>
-                                    <td class="w-25">2 semaines</td>
-                                </tr>
+                            <tbody>
+                                <% for (var medoc of listeMedicament) { %>
+                                    <tr class="m-3">
+                                        <td class="w-25 p-2">
+                                            <%= medoc.nom%>
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            2 fois par jour (matin et soir)
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            7 jours
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            <%= medoc.quantité%>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+
 
                             </tbody>
                         </table>
                     </div>
                     <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
-                        <p>Signature : <br> NOM DU Medecin</p>
+                        <p>Signature :<br>
+                            <span class="text-uppercase">
+                                <%=medecin.nom %>
+                                    <%=medecin.prenom %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <img src="/static/img/HelloDoc Blue-04.png" alt="logo_site" class="img_logo">
+                        <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
                     </div>
                 </section>
-                <section>
-                    Id Ordo <%= my_ordo.id_ordo %> <br>
-                        Date Délivrance <%= my_ordo.date_delivrance %> <br>
-                            Ville <%= my_ordo.ville %> <br>
-                                Description <%= my_ordo.description %> <br>
-                                    Id Proffesionnel de santé <%= my_ordo.id_professionneldesante %> <br>
-                                        Id Proffesion <%= my_ordo.id_patient %> <br>
+                <section class="CaviarDreams p-4">
+                    <h2 class="f-blue_green">
+                        Conseil du médécin
+                    </h2>
+                    <p class="">
+                        <%= my_ordo.description %>
+                    </p>
                 </section>
             </section>
             <section class="w-100 text-center m-4">

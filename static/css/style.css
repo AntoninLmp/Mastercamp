@@ -178,7 +178,8 @@
 }
 
 /*------------------------------------ IMG ------------------------------------------*/
-#header-logo {
+#header-logo,
+.img_logo {
     width: 200px;
     height: 55px;
 }
@@ -233,6 +234,10 @@
     width: 40%;
 }
 
+.w-30 {
+    width: 30%;
+}
+
 /* MEDECIN */
 
 #fleche_creeOrdo:hover,
@@ -258,5 +263,5 @@
 }
 
 #ordonnance {
-    width: 60%;
+    width: 65%;
 }
