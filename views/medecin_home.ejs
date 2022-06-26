@@ -8,18 +8,19 @@
 
 <body class="">
     <%- include("medecin_header.ejs"); %>
-        <main class="container d-flex CaviarDreams p-3 vh-100">
-            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content vw-25 vh-25"">
-                <ul class="list-unstyled">
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
-                    </li>
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#MP_" class="text-decoration-none text-white">Mes patients</a>
-                    </li>
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
-                    </li>
+        <main class="container d-flex CaviarDreams p-3 ">
+            <!-- vh-100 : sinon le footer ne se place pas bien -->
+            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content min-height-content vw-25 vh-25"">
+                <ul class=" list-unstyled">
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
+                </li>
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#MP_" class="text-decoration-none text-white">Mes patients</a>
+                </li>
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
+                </li>
                 </ul>
             </nav>
 
@@ -30,7 +31,7 @@
                     <h1 class="CaviarDreamsBold f-blue2 pt-2" id="EO_">Editer une ordonnance</h1>
                     <ul class="list-unstyled f-blue_green px-4">
                         <li>
-                            <section class="mx-5 m-3 text-center">
+                            <section class="m-3 text-center">
 
                                 <div class="d-flex" id="fleche_creeOrdo">
                                     <h2 class="px-3">&#9660</h2>
@@ -221,6 +222,6 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-        <script src="/static/js/medecin_home.js"></script>
+            <script src="/static/js/medecin_home.js"></script>
 
 </body>

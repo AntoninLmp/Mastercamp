@@ -24,6 +24,7 @@
                 </ul>
             </nav>
             <article>
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
                 <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
                     <form action="/patient/ordonnances" method="get">
@@ -39,7 +40,8 @@
                     <section class="d-flex">
                         <% for (var ord of ordonnances) { %>
                             <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>" class="text-decoration-none text-dark">
+                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                    class="text-decoration-none text-dark">
                                     <h1>Ordonnance</h1>
                                     <h2 class="f-blue_green">
                                         <%= ord.ville %>
