@@ -2,14 +2,14 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Professionel de Santé</title>
+        <title>Accueil - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body class="">
     <%- include("medecin_header.ejs"); %>
-        <main class="d-flex mt-4 CaviarDreams w-100">
-            <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
+        <main class="container d-flex CaviarDreams p-3 vh-100">
+            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content vw-25 vh-25"">
                 <ul class="list-unstyled">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
@@ -22,12 +22,15 @@
                     </li>
                 </ul>
             </nav>
-            <article class="w-100">
+
+            <article class="m-3">
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
+
                 <section>
-                    <h1 class="CaviarDreamsBold f-blue2" id="EO_">Editer une ordonnance</h1>
+                    <h1 class="CaviarDreamsBold f-blue2 pt-2" id="EO_">Editer une ordonnance</h1>
                     <ul class="list-unstyled f-blue_green px-4">
                         <li>
-                            <section class=" m-3 text-center">
+                            <section class="mx-5 m-3 text-center">
 
                                 <div class="d-flex" id="fleche_creeOrdo">
                                     <h2 class="px-3">&#9660</h2>
@@ -166,7 +169,7 @@
                     </section>
                 </section>
 
-                <section>
+                <section class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="Mesinformations">Mes informations</h1>
                     <form method="get" action="" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
@@ -218,6 +221,6 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-            <script src="/static/js/medecin_home.js"></script>
+        <script src="/static/js/medecin_home.js"></script>
 
 </body>
