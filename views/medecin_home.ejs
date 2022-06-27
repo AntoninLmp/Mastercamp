@@ -151,22 +151,21 @@
                         </form>
                     </div>
                     <section class="d-flex">
-                        <div class="div_ordo text-center border rounded rounded-4 ">
-                            <a href="" class="text-decoration-none text-dark">
-                                <h1>Ordonnance</h1>
-                                <h2 class="f-blue_green">
-                                    Paris
-                                </h2>
-                                <p class="text-start display_h">
-                                    Doliprane, 1g 2/jours, 1 semaine
-                                </p>
-                                <h3>
-                                    02/02/2021
-                                </h3>
-                                <button type="button" class="btn_generer_pdf">Générer PDF</button>
-                            </a>
+                        <% for (var pdm of pdms) { %>
+                            <div class="div_ordo text-center border rounded rounded-4 ">
+                                <a href="" class="text-decoration-none text-dark">
+                                    <h1><%= pdm.nom_pat %></h1>
+                                    <h2 class="f-blue_green">
+                                        <%= pdm.prenom_pat %>
+                                    </h2>
+                                    <h3>
+                                        <%= pdm.numero_sercurite %>
+                                        <%= pdm.ville_pat %>
+                                    </h3>
+                                </a>
 
-                        </div>
+                            </div>
+                            <% } %>
                     </section>
                 </section>
 

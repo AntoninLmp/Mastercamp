@@ -8,12 +8,13 @@ const medecinRepo = require("../utils/medecin.repository")
 
 router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     console.log(request.user.email);
     console.log(medecin);
     if (medecin == false){
         response.redirect("/connexion");
     }else{
-        response.render("medecin_home.ejs", { "medecin": medecin });
+        response.render("medecin_home.ejs", { "medecin": medecin, "pdms": patientDuMedecin });
     }
 });
 
