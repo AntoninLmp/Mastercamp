@@ -31,5 +31,15 @@ async function updateUser (request, response){
     response.redirect("/patient");
 }
 
+router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("PATIENT"), voirOrdonnance);
+async function voirOrdonnance(request, response) {
+    var my_ordo = await ordonnanceRepo.getOneOrdonnance(request.params.OrdoId);
+    var medecin = await ordonnanceRepo.getMedecinAboutOrdonnance(my_ordo.id_professionneldesante);
+    var etablissement = await ordonnanceRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
+    var listeMedicament = await ordonnanceRepo.getListeMedicament(my_ordo.id_ordo);
+    request.session.flashMessage = "";
+    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament });
+}
+
 
 module.exports = router;

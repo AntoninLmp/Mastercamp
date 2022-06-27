@@ -42,6 +42,28 @@
     src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
 }
 
+/*------------------------------------ SIZING RELATIVE TO VIEWPORT ------------------------------------------*/
+
+.vh-10 {
+    height: 10vh;
+}
+
+.vw-10 {
+    width: 10vh;
+}
+
+.vh-25 {
+    height: 25vh;
+}
+
+.vw-25 {
+    width: 25vh;
+}
+
+.min-width-content {
+    min-width: fit-content;
+}
+
 /*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
 
 /*---PRIMARY---*/
@@ -90,6 +112,10 @@
     background: #BDEF04;
 }
 
+.bg-grey {
+    background-color: rgb(250, 250, 250);
+}
+
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
 .f-blue1 {
     color: #184C78;
@@ -122,6 +148,10 @@
 
 /*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
 
+.link-blue-green:hover {
+    color: #0E9BA1;
+}
+
 .link-turquoise:hover {
     color: #16DBB7;
 }
@@ -130,8 +160,26 @@
     color: white;
 }
 
+/*------------------------------------ BUTTON HOVER COLORS ------------------------------------------*/
+
+.btn-link-turquoise:hover {
+    background: #16DBB7;
+}
+
+.btn-link-white:hover {
+    background: white;
+    border-color: #0E9BA1;
+}
+
+/*------------------------------------ BORDER RADIUS PROPERTIES ------------------------------------------*/
+
+.rounded-4 {
+    border-radius: 10%;
+}
+
 /*------------------------------------ IMG ------------------------------------------*/
-#header-logo {
+#header-logo,
+.img_logo {
     width: 200px;
     height: 55px;
 }
@@ -186,6 +234,10 @@
     width: 40%;
 }
 
+.w-30 {
+    width: 30%;
+}
+
 /* MEDECIN */
 
 #fleche_creeOrdo:hover,
@@ -196,4 +248,20 @@
 .border-dash {
     border: 2px dashed gray;
     border-radius: 10px;
+}
+
+#loupe {
+    width: 30px;
+}
+
+
+/* ORDONNANCE */
+
+#prescription {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#ordonnance {
+    width: 65%;
 }

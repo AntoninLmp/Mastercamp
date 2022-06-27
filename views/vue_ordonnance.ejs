@@ -1,0 +1,118 @@
+<!--/views/vue_ordonnance-->
+
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+        <title>Patient</title>
+        <link rel="stylesheet" href="../static/css/inscription.css">
+</head>
+
+<body class="">
+    <%- include("header.ejs"); %>
+        <main class="m-5">
+            <section class="text-center">
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">
+                    Mon Ordonnance !
+                </h1>
+            </section>
+            <section class="d-flex">
+                <section id="ordonnance" class="border bg-grey p-4">
+                    <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
+                        <% for (var eta of etablissement) { %>
+                            <p class="text-uppercase">
+                                <span class="text-decoration-underline">
+                                    <%= eta.nom_etablissement %><br>
+                                </span>
+                                <%= eta.adresse %>, <%= eta.code_postal %>
+                                        <%= eta.ville %> <br>
+                                            TEL.<%= eta.numero_telephone %>
+                            </p>
+                            <% } %>
+                    </div>
+                    <div class="CaviarDreamsBold f-blue2">
+                        <p>
+                            DOCTEUR
+                            <span class="text-uppercase">
+                                <%=medecin.nom %>
+                                    <%=medecin.prenom %>
+                            </span><br>
+                            <%=medecin.proffession %> <br>
+                                <span class="CaviarDreams">
+                                    N° RPPS : <br>
+                                    <%=medecin.RPPS %> <br>
+                                        N° ADELI : <br>
+                                        <%=medecin.adeli %> <br>
+                                </span>
+                        </p>
+                    </div>
+                    <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
+                        <p>
+                            <%= my_ordo.ville %>, le 10/06/2021
+                        </p>
+                    </div>
+                    <div id="prescription">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th>Médicament</th>
+                                    <th>Fréquence</th>
+                                    <th>Durée de la prise</th>
+                                    <th>Quantité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (var medoc of listeMedicament) { %>
+                                    <tr class="m-3">
+                                        <td class="w-25 p-2">
+                                            <%= medoc.nom%>
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            2 fois par jour (matin et soir)
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            7 jours
+                                        </td>
+                                        <td class="w-25 p-2">
+                                            <%= medoc.quantité%>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
+                        <p>Signature :<br>
+                            <span class="text-uppercase">
+                                <%=medecin.nom %>
+                                    <%=medecin.prenom %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <img src="/static/img/HelloDoc Blue-04.png" alt="logo_site" class="img_logo">
+                        <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
+                    </div>
+                </section>
+                <section class="CaviarDreams p-4">
+                    <h2 class="f-blue_green">
+                        Conseil du médécin
+                    </h2>
+                    <p class="">
+                        <%= my_ordo.description %>
+                    </p>
+                </section>
+            </section>
+            <section class="w-100 text-center m-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo" id="pdf_img">
+                <button type="button" class="border rounded m-4 f-blue2 text-uppercase btn-lg">Générer
+                    PDF</button>
+            </section>
+        </main>
+        <%- include("footer.ejs"); %>
+
+</body>
+
+</html>

@@ -37,7 +37,59 @@ module.exports = {
             console.log(err)
             throw err
         }
+    },
+    async getOneOrdonnance(IdOrdo) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM Ordonnance WHERE id_ordo=?;"
+            const rows = await conn.query(sql, IdOrdo)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows[0]
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async getMedecinAboutOrdonnance(IdMedecin) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM professionneldesante WHERE id_professionneldesante=?;"
+            const rows = await conn.query(sql, IdMedecin)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows[0]
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
     }
-    
+    ,
+    async getEtablissementDuMedecin(IdMedecin) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM exercer inner join etablissement USING(id_etablissement) where id_professionneldesante = ?;"
+            const rows = await conn.query(sql, IdMedecin)
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async getListeMedicament(IdOrdo) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM contenir INNER join listedemedicaments USING(id_medic) where id_ordo = ?;"
+            const rows = await conn.query(sql, IdOrdo)
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    }
 
 }

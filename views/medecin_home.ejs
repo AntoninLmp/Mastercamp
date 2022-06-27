@@ -2,32 +2,36 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Professionel de Santé</title>
+        <title>Accueil - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body class="">
-    <%- include("header.ejs"); %>
-        <main class="d-flex mt-4 CaviarDreams w-100">
-            <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
-                <ul class="list-unstyled">
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
-                    </li>
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#MP_" class="text-decoration-none text-white">Mes patients</a>
-                    </li>
-                    <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
-                    </li>
+    <%- include("medecin_header.ejs"); %>
+        <main class="container d-flex CaviarDreams p-3 ">
+            <!-- vh-100 : sinon le footer ne se place pas bien -->
+            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content min-height-content vw-25 vh-25"">
+                <ul class=" list-unstyled">
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
+                </li>
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#MP_" class="text-decoration-none text-white">Mes patients</a>
+                </li>
+                <li class="text-white p-2 CaviarDreamsBold">
+                    <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
+                </li>
                 </ul>
             </nav>
-            <article class="w-100">
+
+            <article class="m-3">
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
+
                 <section>
-                    <h1 class="CaviarDreamsBold f-blue2" id="EO_">Editer une ordonnance</h1>
+                    <h1 class="CaviarDreamsBold f-blue2 pt-2" id="EO_">Editer une ordonnance</h1>
                     <ul class="list-unstyled f-blue_green px-4">
                         <li>
-                            <section class=" m-3 text-center">
+                            <section class="m-3 text-center">
 
                                 <div class="d-flex" id="fleche_creeOrdo">
                                     <h2 class="px-3">&#9660</h2>
@@ -132,12 +136,19 @@
                 </section>
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
-                        <span class="input-group-text border-0" id="search-addon">
-                            <i class="fas fa-search"></i>
-                        </span>
+                    <div>
+                        <form action="#MP_" method="get" class="input-group rounded w-100">
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher nom"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher prenom"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="search" class="rounded border p-1 w-25 mx-1"
+                                placeholder="Rechercher numéro sécu" aria-label="search"
+                                aria-describedby="search-addon" />
+                            <button class="input-group-text border-0 " id="search-addon">
+                                <img src="/static/img/loupe.png" alt="loupe" id="loupe">
+                            </button>
+                        </form>
                     </div>
                     <section class="d-flex">
                         <div class="div_ordo text-center border rounded rounded-4 ">
@@ -159,7 +170,7 @@
                     </section>
                 </section>
 
-                <section>
+                <section class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="Mesinformations">Mes informations</h1>
                     <form method="get" action="" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
