@@ -7,21 +7,41 @@
 </head>
 
 <body class="">
-    <%- include("header.ejs"); %>
+    <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams ">
             <nav class="border rounded m-3 p-4 bg-green opacity-50 w-25 height_ftcont">
                 <ul class="list-unstyled">
-                    <li class="text-white p-2 CaviarDreamsBold">Mes Ordonnances</li>
-                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#MO_" class="text-decoration-none text-white">Mes Ordonnances</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="" class="text-decoration-none text-white">Utilisation</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="" class="text-decoration-none text-white"></a>
+                        Mes informations
+                    </li>
                 </ul>
             </nav>
             <article>
-                <section>
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
+                <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
-                    <section class="d-flex">
+                    <form action="/patient/ordonnances" method="get">
+                        <div class="input-group rounded d-flex">
+                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher ville"
+                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="date" class="rounded border p-1 w-25 mx-1" />
+                            <button type="submit" class="input-group-text border-0 " id="search-addon">
+                                <img src="/static/img/loupe.png" alt="loupe" id="loupe">
+                            </button>
+                        </div>
+                    </form>
+                    <section class="d-flex flex-wrap">
                         <% for (var ord of ordonnances) { %>
                             <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="" class="text-decoration-none text-dark">
+                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                    class="text-decoration-none text-dark">
                                     <h1>Ordonnance</h1>
                                     <h2 class="f-blue_green">
                                         <%= ord.ville %>
@@ -32,7 +52,6 @@
                                     <h3>
                                         <%= ord.date_delivrance.toISOString().slice(0, 10) %>
                                     </h3>
-                                    <button type="button" class="btn_generer_pdf">Générer PDF</button>
                                 </a>
 
                             </div>
@@ -43,7 +62,8 @@
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
                     <section class="border rounded mx-5 p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes <span class="f-blue_green">ordonnances</span> .
+                            Voici votre espace qui regroupe vos différentes
+                            <span class="f-blue_green">ordonnances</span>.
                             Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
                             ainsi que par votre pharmacien.
                         </p>
@@ -54,11 +74,83 @@
 
                     </section>
                 </section>
-                <section>
-                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
+                <section class="mt-3">
+                    <h1 class="CaviarDreamsBold f-blue2">Mes pharmaciens</h1>
+                    <div id="map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5257.036226222494!2d2.364675612577518!3d48.79108938623863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673e39a9dbbb3%3A0x15086347c0e355d0!2sPharmacie%20Villejuif%20Aragon!5e0!3m2!1sfr!2sfr!4v1656084413250!5m2!1sfr!2sfr"
+                            width="95%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
 
+                </section>
+                <section class="mt-3">
+                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
+                    <form method="get" action="" id="signupFormClient"
+                        class="d-flex flex-wrap justify-content-center mx-auto">
+                        <div class="form-group m-3 wb40">
+                            <label for=" floatingNom">Nom</label>
+                            <input name="nom" type="text" class="form-control" id="floatingNom" required
+                                placeholder="Jean">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingPrenom">Prénom</label>
+                            <input name="prenom" type="text" class="form-control" id="floatingPrenom" required
+                                placeholder="Dupont">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingDate">Date de naissance</label>
+                            <input name="dateNaissance" type="date" class="form-control" id="floatingDate" required
+                                placeholder="Date" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingAdresse">Adresse</label>
+                            <input name="adresse" type="text" class="form-control" id="floatingAdresse" required
+                                placeholder="Adresse">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingCodePostal">Code Postal</label>
+                            <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
+                                max="99999" min="11111" required placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingVille">Ville</label>
+                            <input name="ville" type="text" class="form-control" id="floatingVille" required
+                                placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingNumTel">N° Téléphone</label>
+                            <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
+                                required placeholder="**">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingSecuSocial">N° Securité sociale</label>
+                            <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
+                                required placeholder="**" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingEmail">Adresse email</label>
+                            <input name="email" type="email" class="form-control" id="floatingEmail" required
+                                placeholder="dupont.jean@gmail.com">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingpassword1">Mot de passe</label>
+                            <input name="mdp" type="password" class="form-control" id="floatingpassword1" required
+                                placeholder="************">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingpassword2">Mot de passe</label>
+                            <input type="password" class="form-control" id="floatingpassword2" required
+                                placeholder="************">
+                        </div>
+                        <div class="form-group mb-3 w-75 text-center">
+                            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
+
+                        </div>
+                    </form>
                 </section>
             </article>
         </main>
+        <%- include("footer.ejs"); %>
 
 </body>
