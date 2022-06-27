@@ -1,5 +1,6 @@
 const creerOrdo = document.querySelector("#formCO_")
 const ScanOrdo = document.querySelector("#scan_ordo")
+const ajout_etablissement = document.querySelector("#add_eta_btn")
 
 creerOrdo.style.display = ""
 ScanOrdo.style.display = "none"
@@ -19,5 +20,3 @@ fleche_ScanOrdo.onclick = function () {
     else
         ScanOrdo.style.display = "none"
 }
-
-
