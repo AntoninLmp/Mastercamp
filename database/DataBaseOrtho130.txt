@@ -45,7 +45,7 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Patients(
-   id_pat INT AUTO_INCREMENT,
+   id_patient INT AUTO_INCREMENT,
    nom_pat VARCHAR(50),
    prenom_pat VARCHAR(50),
    date_naissance DATE,
