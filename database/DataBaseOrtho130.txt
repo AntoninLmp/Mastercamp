@@ -16,10 +16,10 @@ drop table if exists Etablissement;
 CREATE TABLE Etablissement(
    id_etablissement INT,
    nom_etablissement VARCHAR(100),
-   adresse VARCHAR(50),
-   code_postal INT,
-   ville VARCHAR(50),
-   numero_telephone VARCHAR(10),
+   adresse_etab VARCHAR(50),
+   code_postal_etab INT,
+   ville_etab VARCHAR(50),
+   numero_telephone_etab VARCHAR(10),
    FINESS INT,
    PRIMARY KEY(id_etablissement)
 );
@@ -32,7 +32,7 @@ CREATE TABLE RPPS(
 
 CREATE TABLE ListeDeMedicaments(
    id_medic INT,
-   nom VARCHAR(100) NOT NULL,
+   nom_medicament VARCHAR(100) NOT NULL,
    PRIMARY KEY(id_medic)
 );
 
@@ -45,14 +45,14 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Patients(
-   id_patient INT AUTO_INCREMENT,
-   nom VARCHAR(50),
-   prenom VARCHAR(50),
+   id_pat INT AUTO_INCREMENT,
+   nom_pat VARCHAR(50),
+   prenom_pat VARCHAR(50),
    date_naissance DATE,
-   adresse VARCHAR(50),
-   code_postal INT,
-   ville VARCHAR(50),
-   numero_telephone VARCHAR(10),
+   adresse_pat VARCHAR(50),
+   code_postal_pat INT,
+   ville_pat VARCHAR(50),
+   numero_telephone_pat VARCHAR(10),
    numero_sercurite BIGINT,
    email VARCHAR(100) NOT NULL,
    PRIMARY KEY(id_patient),
@@ -61,8 +61,8 @@ CREATE TABLE Patients(
 
 CREATE TABLE ProfessionnelDeSante(
    id_professionneldesante INT auto_increment,
-   nom VARCHAR(50),
-   prenom VARCHAR(50),
+   nom_pro VARCHAR(50),
+   prenom_pro VARCHAR(50),
    RPPS BIGINT,
    adeli BIGINT,
    proffession VARCHAR(50),
@@ -83,7 +83,7 @@ CREATE TABLE Pharmacie(
 CREATE TABLE Ordonnance(
    id_ordo INT,
    date_delivrance DATE NOT NULL,
-   ville VARCHAR(50),
+   ville_ordo VARCHAR(50),
    description VARCHAR(50),
    id_professionneldesante INT NOT NULL,
    id_patient INT NOT NULL,
