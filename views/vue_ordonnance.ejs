@@ -24,9 +24,9 @@
                                 <span class="text-decoration-underline">
                                     <%= eta.nom_etablissement %><br>
                                 </span>
-                                <%= eta.adresse %>, <%= eta.code_postal %>
-                                        <%= eta.ville %> <br>
-                                            TEL.<%= eta.numero_telephone %>
+                                <%= eta.adresse_etab %>, <%= eta.code_postal_etab %>
+                                        <%= eta.ville_etab %> <br>
+                                            TEL.<%= eta.numero_telephone_etab %>
                             </p>
                             <% } %>
                     </div>
@@ -34,8 +34,8 @@
                         <p>
                             DOCTEUR
                             <span class="text-uppercase">
-                                <%=medecin.nom %>
-                                    <%=medecin.prenom %>
+                                <%=medecin.nom_pro %>
+                                    <%=medecin.prenom_pro %>
                             </span><br>
                             <%=medecin.proffession %> <br>
                                 <span class="CaviarDreams">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
                         <p>
-                            <%= my_ordo.ville %>, le 10/06/2021
+                            <%= my_ordo.ville_ordo %>, le 10/06/2021
                         </p>
                     </div>
                     <div id="prescription">
@@ -65,7 +65,7 @@
                                 <% for (var medoc of listeMedicament) { %>
                                     <tr class="m-3">
                                         <td class="w-25 p-2">
-                                            <%= medoc.nom%>
+                                            <%= medoc.nom_medicament%>
                                         </td>
                                         <td class="w-25 p-2">
                                             2 fois par jour (matin et soir)
@@ -86,8 +86,8 @@
                     <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
                         <p>Signature :<br>
                             <span class="text-uppercase">
-                                <%=medecin.nom %>
-                                    <%=medecin.prenom %>
+                                <%=medecin.nom_pro %>
+                                    <%=medecin.prenom_pro %>
                             </span>
                         </p>
                     </div>
