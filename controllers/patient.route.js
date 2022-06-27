@@ -11,7 +11,6 @@ const patientRepo = require('../utils/patient.repository');
 
 router.get("/", auth.checkAuthentication("PATIENT"), async function (request, response) {
     console.log(request.user);
-    var myContent = [];
     var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatient(request.user.email);
     var patient = await patientRepo.getOnePatient(request.user.email);
     var flashMessage = request.session.flashMessage;
