@@ -49,6 +49,7 @@ module.exports = {
       throw err;
     }
   },
+
   async getEtablissementDuMedecin(IdMedecin) {
     try {
       conn = await pool.getConnection()
@@ -74,6 +75,19 @@ module.exports = {
       console.log(err)
       throw err
     }
-  }
+  },
 
+
+  async getPatientByMedecin(email) {
+    try {
+      conn = await pool.getConnection();
+      sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email FROM patients pa INNER JOIN ordonnance USING (id_patient) INNER JOIN professionneldesante p USING (id_professionneldesante) WHERE p.email = ? GROUP BY nom_pat;";
+      const rows = await conn.query(sql, email);
+      conn.end();
+      console.log(rows); 
+      return rows
+    } catch (err) {
+      throw err;
+    }
+  }
 }
