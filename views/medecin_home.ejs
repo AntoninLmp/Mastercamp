@@ -172,47 +172,38 @@
 
                 <section class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="Mesinformations">Mes informations</h1>
-                    <form method="get" action="" id="signupFormClient"
+                    <form method="post" action="/medecin/updateMedecin" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
                         <div class="form-group mb-3 w-50 px-5">
                             <label for=" floatingNom">Nom</label>
-                            <input name="nom" type="text" class="form-control" id="floatingNom" placeholder="Jean">
+                            <input name="nom" type="text" class="form-control" id="floatingNom" value="<%= medecin.nom_pro %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingPrenom">Prénom</label>
                             <input name="prenom" type="text" class="form-control" id="floatingPrenom"
-                                placeholder="Dupont">
+                            value="<%= medecin.prenom_pro %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingRPPS">Numéro RPPS</label>
-                            <input name="rpps" type="number" class="form-control" id="floatingRPPS" placeholder="*"
-                                max="99999999999" min="11111111111" disabled>
+                            <input name="rpps" type="number" class="form-control" id="floatingRPPS" 
+                                max="99999999999" min="11111111111" value="<%= medecin.RPPS %>" disabled>
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingAdeli">Numéro Adeli</label>
                             <input name="adeli" type="number" class="form-control" id="floatingAdeli"
-                                placeholder="123456789" max="999999999" min="111111111" disabled>
+                            value="<%= medecin.adeli %>" max="999999999" min="111111111" disabled>
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingProfession">Profession</label>
-                            <input name="proffesion" type="text" class="form-control" id="floatingProfession"
-                                placeholder="Medecin">
+                            <input name="profession" type="text" class="form-control" id="floatingProfession"
+                            value="<%= medecin.proffession %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingEmail">Adresse email</label>
                             <input name="email" type="email" class="form-control" id="floatingEmail"
-                                placeholder="dupont.jean@gmail.com">
+                            value="<%= medecin.email %>" disabled>
                         </div>
-                        <div class="form-group mb-3 w-50 px-5">
-                            <label for="floatingpassword1">Mot de passe</label>
-                            <input name="mdp" type="password" class="form-control" id="floatingpassword1"
-                                placeholder="************">
-                        </div>
-                        <div class="form-group mb-3 w-50 px-5">
-                            <label for="floatingpassword2">Mot de passe</label>
-                            <input type="password" class="form-control" id="floatingpassword2"
-                                placeholder="************">
-                        </div>
+                        
                         <div class="form-group mb-3 w-75 text-center">
                             <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 
