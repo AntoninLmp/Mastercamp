@@ -22,6 +22,24 @@ module.exports = {
     }
   },
 
+  async getOnePatientById(IdPatient) {
+    try {
+      conn = await pool.getConnection()
+      sql = "SELECT * FROM patients INNER JOIN utilisateur USING (email) WHERE id_patient = ?;"
+      const rows = await conn.query(sql,IdPatient)
+      conn.end()
+      console.log("ROWS FETCHED: " + rows.length)
+      if (rows.length == 1){
+        return rows[0]
+      }else{
+        return false
+      }
+  } catch (err) {
+      console.log(err)
+      throw err
+  }
+},
+
   async updatePatient( email, nom_pat, prenom_pat, adresse_pat, ville_pat, code_postal_pat, numero_tel) {
     try {
       conn = await pool.getConnection();
