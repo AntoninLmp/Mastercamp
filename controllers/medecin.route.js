@@ -54,11 +54,13 @@ async function voirOrdonnance(request, response) {
     request.session.flashMessage = "";
     response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient });
 }
+
 router.get("/delEtab/:EtabId", auth.checkAuthentication("MEDECIN"), delEtab);
 async function delEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     medecinRepo.delEtabByMed(request.params.EtabId,medecin.id_professionneldesante);
     response.redirect("/medecin");
 }
+
 
 module.exports = router;
