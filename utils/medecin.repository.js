@@ -63,6 +63,8 @@ module.exports = {
       throw err
     }
   },
+
+
   async getALLEtablissementSansCeuxQuiADeja(IdMedecin) {
     try {
       conn = await pool.getConnection()
@@ -77,6 +79,20 @@ module.exports = {
     }
   },
 
+
+  async delEtabByMed(EtabId,MedId){
+    try {
+        conn = await pool.getConnection();
+        sql = "DELETE FROM exercer WHERE  id_etablissement= ? AND id_professionneldesante = ? ;";
+        const okPacket = await conn.query(sql, [EtabId,MedId]); 
+        conn.end();
+        console.log(okPacket);
+        return okPacket.affectedRows;
+    }
+    catch (error) {
+        throw error; 
+    }
+},
 
   async getPatientByMedecin(email) {
     try {
