@@ -16,8 +16,22 @@
                     Mon Ordonnance !
                 </h1>
             </section>
-            <section class="d-flex">
-                <section id="ordonnance" class="border bg-grey p-4">
+            <section>
+                <section class="CaviarDreams p-4">
+                    <article class="text-center">
+                        <h3 class="f-blue_green">
+                            Numéro de l'ordonnance :
+                            <span class="f-blue1 CaviarDreamsBold">
+                                <%= my_ordo.id_ordo %>
+                            </span>,
+                            Numéro de sécurité sociale :
+                            <span class="f-blue1 CaviarDreamsBold">
+                                <%= patient.numero_sercurite %>
+                            </span>
+                        </h3>
+                    </article>
+                </section>
+                <section id="ordonnance" class="border bg-grey p-4 mlr-17p ">
                     <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
                         <% for (var eta of etablissement) { %>
                             <p class="text-uppercase">
@@ -60,36 +74,40 @@
                         </p>
                     </div>
                     <div id="prescription">
-                        <table class="text-center">
-                            <thead>
-                                <tr>
-                                    <th>Médicament</th>
-                                    <th>Fréquence</th>
-                                    <th>Durée de la prise</th>
-                                    <th>Quantité</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for (var medoc of listeMedicament) { %>
-                                    <tr class="m-3">
-                                        <td class="w-25 p-2">
-                                            <%= medoc.nom_medicament%>
-                                        </td>
-                                        <td class="w-25 p-2">
-                                            <%= medoc.frequence%>
-                                        </td>
-                                        <td class="w-25 p-2">
-                                            <%= medoc.duree%>
-                                        </td>
-                                        <td class="w-25 p-2">
-                                            <%= medoc.quantité%>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-
-
-                            </tbody>
-                        </table>
+                        <% if (my_ordo.description!=null) {%>
+                            <p class="text-uppercase dt">
+                                <%= my_ordo.description %>
+                            </p>
+                            <% } else { %>
+                                <table class="text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Médicament</th>
+                                            <th>Fréquence</th>
+                                            <th>Durée de la prise</th>
+                                            <th>Quantité</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (var medoc of listeMedicament) { %>
+                                            <tr class="m-3">
+                                                <td class="w-25 p-2">
+                                                    <%= medoc.nom_medicament%>
+                                                </td>
+                                                <td class="w-25 p-2">
+                                                    <%= medoc.frequence%>
+                                                </td>
+                                                <td class="w-25 p-2">
+                                                    <%= medoc.duree%>
+                                                </td>
+                                                <td class="w-25 p-2">
+                                                    <%= medoc.quantité%>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                                <% } %>
                     </div>
                     <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
                         <p>Signature :<br>
@@ -104,17 +122,7 @@
                         <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
                     </div>
                 </section>
-                <section class="CaviarDreams p-4">
-                    <article>
-                        <h2 class="f-blue_green">
-                            Numéro de l'ordonnance :
-                        </h2>
-                        <h2 class="text-center f-blue1">
-                            <%= my_ordo.id_ordo %>
-                        </h2>
 
-                    </article>
-                </section>
             </section>
             <section class="w-100 text-center m-4">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo" id="pdf_img">
