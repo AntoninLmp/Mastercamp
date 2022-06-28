@@ -5,59 +5,119 @@
         <title>Accueil - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
-<body class="">
+
+<body>
     <%- include("medecin_header.ejs"); %>
+        <main class="p-2 d-flex">
+            <section>
+                <h1 class="CaviarDreamsBold f-blue2" id="ETAB">
+                    <%=patient.nom_pat %>
+                        <%=patient.prenom_pat %>
+                </h1>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Nom du Patient
+                            </td>
+                            <td>
+                                <%=patient.nom_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Prénom du Patient
+                            </td>
+                            <td>
+                                <%=patient.prenom_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Date de naissance
+                            </td>
+                            <td>
+                                <%=patient.date_naissance %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Adresse
+                            </td>
+                            <td>
+                                <%=patient.adresse_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Code Postal
+                            </td>
+                            <td>
+                                <%=patient.code_postal_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Ville
+                            </td>
+                            <td>
+                                <%=patient.ville_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Numéro de téléphone
+                            </td>
+                            <td>
+                                <%=patient.numero_telephone_pat %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Numéro de sécurité sociale
+                            </td>
+                            <td>
+                                <%=patient.numero_sercurite %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="f-blue_green CaviarDreamsBold">
+                                Email
+                            </td>
+                            <td>
+                                <%=patient.email %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
 
-    <h1 class="CaviarDreamsBold f-blue2" id="ETAB"><%=patient.nom_pat %> <%=patient.prenom_pat %></h1>
+            </section>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nom du Patient</th>
-                <th scope="col">Prénom du Patient</th>
-                <th scope="col">Date de naissance</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Code Postal</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Numéro de téléphone</th>
-                <th scope="col">Numéro de sécurité sociale</th>
-                <th scope="col">Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row" class="f-blue2"><%=patient.nom_pat %></th>
-                <td><%=patient.prenom_pat %></td>
-                <td><%=patient.date_naissance %></td>
-                <td><%=patient.adresse_pat %></td>
-                <td><%=patient.code_postal_pat %></td> 
-                <td><%=patient.ville_pat %></td>
-                <td><%=patient.numero_telephone_pat %></td>
-                <td><%=patient.numero_sercurite %></td>
-                <td><%=patient.email %></td>
-            </tr>
-        </tbody>
-    </table>
 
-    <section class="d-flex flex-wrap">
-        <% for (var ord of ordoPatient) { %>
-            <div class="div_ordo text-center border rounded rounded-4 ">
-                <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
-                    class="text-decoration-none text-dark">
-                    <h1>Ordonnance</h1>
-                    <h2 class="f-blue_green">
-                        <%= ord.ville_ordo %>
-                    </h2>
-                    <h3>
-                        <%= ord.date_delivrance.toISOString().slice(0, 10) %>
-                    </h3>
-                </a>
 
-            </div>
-            <% } %>
-    </section>
 
-    <%- include("footer.ejs"); %>
-    <script src="/static/js/medecin_home.js"></script>
+            <section class="d-flex flex-wrap">
+                <% for (var ord of ordoPatient) { %>
+                    <div class="div_ordo text-center border rounded rounded-4 ">
+                        <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
+                            class="text-decoration-none text-dark">
+                            <h1>Ordonnance</h1>
+                            <h2 class="f-blue_green">
+                                <%= ord.ville_ordo %>
+                            </h2>
+                            <h3>
+                                <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                            </h3>
+                        </a>
+
+                    </div>
+                    <% } %>
+            </section>
+        </main>
+
+        <%- include("footer.ejs"); %>
+            <script src="/static/js/medecin_home.js"></script>
 
 </body>

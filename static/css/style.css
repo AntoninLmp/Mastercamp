@@ -269,3 +269,11 @@
 .mlr-17p {
     margin: 0 17%;
 }
+
+.resize-h {
+    resize: horizontal;
+}
+
+.h-10 {
+    height: 10%;
+}
