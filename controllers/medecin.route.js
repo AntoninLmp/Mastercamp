@@ -13,14 +13,29 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     //console.log(patientDuMedecin);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
-    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
-    //console.log(medecin);
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
+    var patientTrie = [];
+
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin });
+        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier" : patientTrie });
     }
 });
+
+router.post("/searchPatByNPS", auth.checkAuthentication("MEDECIN"), searchPatByNPS)
+async function searchPatByNPS(request, response){
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
+    var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp,request.body.numsecup);
+    if (medecin == false) {
+        response.redirect("/connexion");
+    } else {
+        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier" : patientTrie });
+    }
+};
 
 router.post("/updateMedecin", auth.checkAuthentication("MEDECIN"), updateUser);
 async function updateUser(request, response) {
@@ -41,7 +56,14 @@ router.get("/VoirPatient/:PatientEmail", auth.checkAuthentication("MEDECIN"), vo
 async function voirPatient(request, response) {
     var patient = await patientRepo.getOnePatient(request.params.PatientEmail);
     var ordoPatient = await ordonnanceRepository.getAllOrdonnanceByPatient(request.params.PatientEmail);
-    response.render("medecin_OnePatient", {"patient": patient, "ordoPatient":ordoPatient});
+    // get current date
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    // get current month
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    // get current year
+    let year = date_time.getFullYear();
+    response.render("medecin_OnePatient", { "patient": patient, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date });
 }
 
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("MEDECIN"), voirOrdonnance);
@@ -62,5 +84,18 @@ async function delEtab(request, response) {
     response.redirect("/medecin");
 }
 
+router.post("/addPrescriptionMedicale", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
+async function addPrescriptionMedicale(request, response){
+    var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    ordonnanceRepository.addOneOrdoPrescription(
+        request.body.date,
+        request.body.ville,
+        request.body.prescription,
+        medecin.id_professionneldesante,
+        patient.id_patient
+    );
+    response.redirect("/medecin");
+}
 
 module.exports = router;

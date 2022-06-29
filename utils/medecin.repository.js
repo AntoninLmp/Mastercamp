@@ -29,7 +29,7 @@ module.exports = {
       const okPacket = await conn.query(sql,
         [nom_pro, prenom_pro, profession, email]);
       conn.end();
-      console.log(okPacket);
+      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
@@ -86,13 +86,13 @@ module.exports = {
         sql = "DELETE FROM exercer WHERE  id_etablissement= ? AND id_professionneldesante = ? ;";
         const okPacket = await conn.query(sql, [EtabId,MedId]); 
         conn.end();
-        console.log(okPacket);
+        //console.log(okPacket);
         return okPacket.affectedRows;
     }
     catch (error) {
         throw error; 
     }
-},
+  },
 
   async getPatientByMedecin(email) {
     try {
@@ -100,9 +100,60 @@ module.exports = {
       sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email FROM patients pa INNER JOIN ordonnance USING (id_patient) INNER JOIN professionneldesante p USING (id_professionneldesante) WHERE p.email = ? GROUP BY nom_pat;";
       const rows = await conn.query(sql, email);
       conn.end();
-      console.log(rows); 
+      //console.log(rows); 
       return rows
     } catch (err) {
+      throw err;
+    }
+  },
+
+  async getPatientByNPS(email, nomp, prenomp,numsecup){
+    try {
+      conn = await pool.getConnection();
+      var rows =[];
+      if(numsecup !=""){
+        sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
+        +"FROM patients pa "
+        +"INNER JOIN ordonnance USING (id_patient) "
+        +"INNER JOIN professionneldesante p USING (id_professionneldesante) "
+        +"WHERE p.email = ?" 
+        +"AND pa.numero_sercurite = ?"
+        +"GROUP BY nom_pat;";
+        rows = await conn.query(sql,[email, nomp, prenomp,numsecup]);
+      }else if(nomp!="" && prenomp != ""){
+        sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
+        +"FROM patients pa "
+        +"INNER JOIN ordonnance USING (id_patient) "
+        +"INNER JOIN professionneldesante p USING (id_professionneldesante) "
+        +"WHERE p.email = ?" 
+        +"AND pa.nom_pat = ?"
+        +"AND pa.prenom_pat = ?"
+        +"GROUP BY nom_pat;";
+        rows = await conn.query(sql,[email, nomp, prenomp]);
+      }else if(nomp!=""){
+        sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
+        +"FROM patients pa "
+        +"INNER JOIN ordonnance USING (id_patient) "
+        +"INNER JOIN professionneldesante p USING (id_professionneldesante) "
+        +"WHERE p.email = ?" 
+        +"AND pa.nom_pat = ?"
+        +"GROUP BY nom_pat;";
+        rows = await conn.query(sql,[email, nomp]);
+      }else if(prenomp!=""){
+        sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
+        +"FROM patients pa "
+        +"INNER JOIN ordonnance USING (id_patient) "
+        +"INNER JOIN professionneldesante p USING (id_professionneldesante) "
+        +"WHERE p.email = ?" 
+        +"AND pa.prenom_pat = ?"
+        +"GROUP BY nom_pat;";
+        rows = await conn.query(sql,[email, prenomp]);
+      }
+      conn.end()
+      console.log("ROWS FETCHED: " + rows.length)
+      return rows;
+    } catch (err) {
+      console.log(err);
       throw err;
     }
   }

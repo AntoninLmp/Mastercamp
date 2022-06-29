@@ -91,7 +91,7 @@ CREATE TABLE Pharmacie(
 );
 
 CREATE TABLE Ordonnance(
-   id_ordo INT,
+   id_ordo INT AUTO_INCREMENT,
    date_delivrance DATE NOT NULL,
    ville_ordo VARCHAR(50),
    description VARCHAR(50),
