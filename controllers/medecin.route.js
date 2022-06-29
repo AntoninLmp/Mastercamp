@@ -41,7 +41,14 @@ router.get("/VoirPatient/:PatientEmail", auth.checkAuthentication("MEDECIN"), vo
 async function voirPatient(request, response) {
     var patient = await patientRepo.getOnePatient(request.params.PatientEmail);
     var ordoPatient = await ordonnanceRepository.getAllOrdonnanceByPatient(request.params.PatientEmail);
-    response.render("medecin_OnePatient", {"patient": patient, "ordoPatient":ordoPatient});
+    // get current date
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    // get current month
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    // get current year
+    let year = date_time.getFullYear();
+    response.render("medecin_OnePatient", { "patient": patient, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date });
 }
 
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("MEDECIN"), voirOrdonnance);
