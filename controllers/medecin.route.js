@@ -13,8 +13,7 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     //console.log(patientDuMedecin);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
-    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
-    //console.log(medecin);
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
@@ -69,5 +68,18 @@ async function delEtab(request, response) {
     response.redirect("/medecin");
 }
 
+router.post("/addPrescriptionMedicale", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
+async function addPrescriptionMedicale(request, response){
+    var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    ordonnanceRepository.addOneOrdoPrescription(
+        request.body.date,
+        request.body.ville,
+        request.body.prescription,
+        medecin.id_professionneldesante,
+        patient.id_patient
+    );
+    response.redirect("/medecin");
+}
 
 module.exports = router;
