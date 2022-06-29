@@ -4,16 +4,16 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Patient</title>
-        <link rel="stylesheet" href="../static/css/inscription.css">
+        <title>Ordonnance</title>
+        <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body class="">
-    <%- include("medecin_header.ejs"); %>
+    <%- include("vue_ordo_header.ejs"); %>
         <main class="m-5">
             <section class="text-center">
                 <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">
-                    Mon Ordonnance !
+                    Votre ordonnance :
                 </h1>
             </section>
             <section>
@@ -23,8 +23,8 @@
                             Numéro de l'ordonnance :
                             <span class="f-blue1 CaviarDreamsBold">
                                 <%= my_ordo.id_ordo %>
-                            </span>,
-                            Numéro de sécurité sociale :
+                            </span>|
+                            Numéro de Sécurité Sociale :
                             <span class="f-blue1 CaviarDreamsBold">
                                 <%= patient.numero_sercurite %>
                             </span>

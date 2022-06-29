@@ -2,7 +2,7 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Accueil - Professionel de Santé</title>
+        <title>Mon espace - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
@@ -33,9 +33,9 @@
 
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2 pt-2" id="EO_">Editer une ordonnance</h1>
-                    <ul class="list-unstyled f-blue_green px-4">
+                    <ul class="list-unstyled ps-0 f-blue_green px-4">
                         <li>
-                            <section class="m-3 text-center">
+                            <section class="mt-3 mb-3 text-center">
 
                                 <div class="d-flex" id="fleche_creeOrdo">
                                     <h2 class="px-3">&#9660</h2>
@@ -52,15 +52,15 @@
                                             <div class="form-group col-md-5 m-2">
                                                 <label for="inputVille">Ville</label>
                                                 <input type="text" class="form-control" id="inputVille"
-                                                    placeholder="Paris">
+                                                    placeholder="Ex : Paris">
                                             </div>
                                             <div class="form-group col-md-5 m-2">
-                                                <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
+                                                <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
                                                 <input type="number" class="form-control" id="inputNumSecuSociale"
-                                                    placeholder="1123544645121">
+                                                    placeholder="Ex : 1123544645121">
                                             </div>
                                         </div>
-                                        <button type="button" class="border rounded m-3">Enregistrer</button>
+                                        <button type="button" class="border rounded m-3">CREER</button>
                                     </form>
                                     <div class="d-flex mt-3">
                                         <hr class="w-40 ">
@@ -221,7 +221,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Nom Etablissement</th>
+                                <th scope="col">Nom Établissement</th>
                                 <th scope="col">Adresse</th>
                                 <th scope="col">Code postal</th>
                                 <th scope="col">Ville</th>
@@ -278,6 +278,6 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-            <script src="/static/js/medecin_home.js"></script>
+        <script src="/static/js/medecin_home.js"></script>
 
 </body>
