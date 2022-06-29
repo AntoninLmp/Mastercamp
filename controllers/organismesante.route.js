@@ -17,19 +17,21 @@ router.get("/", auth.checkAuthentication("PHARMACIE"), async function (request, 
 
 router.post("/searchByIdOrdonnance", auth.checkAuthentication("PHARMACIE"), SearchByIdOrdonnance)
 async function SearchByIdOrdonnance(request, response){
+    var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnances = [];
     var ordonnance = await ordonnanceRepo.getOneOrdonnance(request.body.numeroOrdo);
     console.log(ordonnance);
-    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances});
+    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie});
 };
 
 
 router.post("/searchByPatientOrdonnance", auth.checkAuthentication("PHARMACIE"), searchByPatientOrdonnance)
 async function searchByPatientOrdonnance(request, response){
+    var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnance = [];
     var ordonnances = await ordonnanceRepo.getAllOrdonnanceByPatientBySecu(request.body.numeroSecu);
     console.log(ordonnances);
-    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances});
+    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie});
 };
 
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
