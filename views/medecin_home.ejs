@@ -141,13 +141,13 @@
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
                     <div>
-                        <form action="#MP_" method="get" class="input-group rounded w-100">
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher nom"
-                                aria-label="search" aria-describedby="search-addon" />
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher prenom"
-                                aria-label="search" aria-describedby="search-addon" />
-                            <input type="search" class="rounded border p-1 w-25 mx-1"
-                                placeholder="Rechercher numéro sécu" aria-label="search"
+                        <form method="post" action="/medecin/searchPatByNPS" class="input-group rounded w-100">
+                            <input name="nomp" type="text" class="rounded border p-1 w-25 mx-1" value ="" placeholder="Rechercher nom"
+                             aria-label="search" aria-describedby="search-addon" />
+                            <input name="prenomp" type="text" class="rounded border p-1 w-25 mx-1" value ="" placeholder="Rechercher prenom"
+                            aria-label="search" aria-describedby="search-addon" />
+                            <input name="numsecup" type="number" class="rounded border p-1 w-25 mx-1"
+                            value ="" placeholder="Rechercher numéro sécu" aria-label="search"
                                 aria-describedby="search-addon" />
                             <button class="input-group-text border-0 " id="search-addon">
                                 <img src="/static/img/loupe.png" alt="loupe" id="loupe">
@@ -155,23 +155,43 @@
                         </form>
                     </div>
                     <section class="d-flex">
-                        <% for (var pdm of pdms) { %>
-                            <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="Medecin/VoirPatient/<%= pdm.email %>" class="text-decoration-none text-dark">
-                                    <h1>
-                                        <%= pdm.nom_pat %>
-                                    </h1>
-                                    <h2 class="f-blue_green">
-                                        <%= pdm.prenom_pat %>
-                                    </h2>
-                                    <h3>
-                                        <%= pdm.numero_sercurite %>
-                                            <%= pdm.ville_pat %>
-                                    </h3>
-                                </a>
+                        <% if ( ptrier.length !=0) { %>
+                            <% for (var pat of ptrier) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 ">
+                                    <a href="Medecin/VoirPatient/<%= pat.email %>" class="text-decoration-none text-dark">
+                                        <h1>
+                                            <%= pat.nom_pat %>
+                                        </h1>
+                                        <h2 class="f-blue_green">
+                                            <%= pat.prenom_pat %>
+                                        </h2>
+                                        <h3>
+                                            <%= pat.numero_sercurite %>
+                                                <%= pat.ville_pat %>
+                                        </h3>
+                                    </a>
 
-                            </div>
+                                </div>
                             <% } %>
+                        <% } else { %>
+                            <% for (var pdm of pdms) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 ">
+                                    <a href="Medecin/VoirPatient/<%= pdm.email %>" class="text-decoration-none text-dark">
+                                        <h1>
+                                            <%= pdm.nom_pat %>
+                                        </h1>
+                                        <h2 class="f-blue_green">
+                                            <%= pdm.prenom_pat %>
+                                        </h2>
+                                        <h3>
+                                            <%= pdm.numero_sercurite %>
+                                                <%= pdm.ville_pat %>
+                                        </h3>
+                                    </a>
+
+                                </div>
+                            <% } %>
+                        <% } %>
                     </section>
                 </section>
 
