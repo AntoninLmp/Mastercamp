@@ -110,6 +110,19 @@ module.exports = {
             console.log(err)
             throw err
         }
+    }, 
+    async addOneOrdoPrescription(dateDelivrance, ville, description, idProfDeSante, idPatient){
+        try {
+            conn = await pool.getConnection()
+            sql = "INSERT INTO ordonnance (id_ordo, date_delivrance, ville_ordo, description, id_professionneldesante, id_patient) VALUES (NULL, ?,?,?,?,?);"
+            const rows = await conn.query(sql, [dateDelivrance, ville, description, idProfDeSante, idPatient]);
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
     }
 
 }

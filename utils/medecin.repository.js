@@ -29,7 +29,7 @@ module.exports = {
       const okPacket = await conn.query(sql,
         [nom_pro, prenom_pro, profession, email]);
       conn.end();
-      console.log(okPacket);
+      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
@@ -86,7 +86,7 @@ module.exports = {
         sql = "DELETE FROM exercer WHERE  id_etablissement= ? AND id_professionneldesante = ? ;";
         const okPacket = await conn.query(sql, [EtabId,MedId]); 
         conn.end();
-        console.log(okPacket);
+        //console.log(okPacket);
         return okPacket.affectedRows;
     }
     catch (error) {
@@ -100,7 +100,7 @@ module.exports = {
       sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email FROM patients pa INNER JOIN ordonnance USING (id_patient) INNER JOIN professionneldesante p USING (id_professionneldesante) WHERE p.email = ? GROUP BY nom_pat;";
       const rows = await conn.query(sql, email);
       conn.end();
-      console.log(rows); 
+      //console.log(rows); 
       return rows
     } catch (err) {
       throw err;
