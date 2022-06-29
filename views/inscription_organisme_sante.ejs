@@ -11,14 +11,14 @@
     <!-- Header -->
     <%- include('header') %>
         <!-- Main -->
-        <main class="d-flex justify-content-center h-100">
+        <main class="d-flex justify-content-center vh-100">
             <article class="align-items-center w-50 bg-blue_green justify-content-center" id="container_medecins">
                 <img src="/static/img/pharmacie-inscription.png" alt="consultant">
             </article>
-            <article class="p-4 text-center mb-5 mt-5 wb65 text-center">
+            <article class="d-flex flex-column justify-content-center align-items-center text-center p-4 mb-5 mt-5 wb65">
                 <div>
                     <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
-                    <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
+                    <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez-vous la vie !</h1>
                 </div>
 
                 <form method="post" action="/inscription/organismesante/add" id="signupFormClient"
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <input type="password" class="form-control" id="floatingpassword2" placeholder="************">
-                        <label for="floatingpassword2">Mot de passe</label>
+                        <label for="floatingpassword2">Confirmation de mot de passe</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <button type="submit" class="btn btn-outline-success">Inscription</button>

@@ -1,19 +1,123 @@
+<!DOCTYPE html>
+
 <html lang="fr">
-
 <head>
-    <%- include("partial_header.ejs"); %>
-
-        <title>Ordo130</title>
+     <%- include("partial_header.ejs"); %>
+      <title>Ordo130</title>
+      <link rel="stylesheet" href="/static/css/index.css">
 
 </head>
 
-<body class="">
-    <!-- HEADER -->
+<body class="CaviarDreams">
     <%- include("header.ejs"); %>
 
+<div>
+    <img  id="photo_1" width="100%" height="20%" src="/static/img/prescription.png" alt="prescription_img_1"/>
+</div>
+<div class="container text-center">
+    <h1 class="mt-3 mb-5 fs-1 CaviarDreamsBold">Comment ça marche ? </h1>
+    <div class=" row mt-4 mb-4 ">
+        <div class="col mb-2">
+            <img class="mt-4" src="/static/img/consultant.png" alt="consultant_img_2" width="35%"/>
+            <p class="text-center mt-3 fs-3"> 1. Consultation chez un professionnel de santé</p>
+        </div>
+        <div class="col mb-2">
+            <img class="mt-4" src="/static/img/prescription-medicale.png" alt="prescription_img_3" width="35%"/>
+            <p class="mt-3 fs-3"> 2. Création de votre ordonnance en ligne</p>
+        </div>
+        <div class="col mb-2">
+            <img  class="mt-4" src="/static/img/navigateur-web.png" alt="navigateur_web_img_4" width="35%"/>
+            <p class="mt-3 fs-3"> 3. Mise en ligne de l’ordonnance visible par tous</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="bg-blue2 text-white text-center">
+    <h1 class=" pt-3 fs-1 CaviarDreamsBold" >Ils ont testé</h1>
+
+    <!-- Carousel -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide"  data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+        </div>
+
+        <div class="carousel-inner mt-4 mx-auto" style="width: 1300px;">
+                <div class="carousel-item active container" >
+                    <div class="row ">
+                        <div class="col ">
+                            <img src="/static/img/Doctor.jpg" class="bd-placeholder-img bd-placeholder-img-lg mt-4 w-100" width="90%" height="70%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#f5f5f5"></rect>
+                        </div>
+                        <div class="col">
+                            <p class="fs-4" >Depuis l’arrivé d’ordo 130, il est beaucoup plus rapide pour moi de faire des ordonnances.
+                                Plus besoin de les imprimer ce qui a un aspect écologique énorme.
+                                Le site est également un gain de temps car les patients ne m’appellent
+                                plus car ils ont perdu leurs ordonnances, ils peuvent tout simplement les récupérer sur l’interface patient</p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                 <div class="carousel-item active container">
+                     <div class="row ">
+                         <div class="col">
+                             <img  class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="/static/img/review_patient.jpg" width="60%" height="80%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                             <title>Placeholder</title>
+                             <rect width="100%" height="100%" fill="#eee"></rect>
+                         </div>
+                         <div class="col">
+                             <p class="fs-4" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Fermentum odio eu feugiat
+                                pretium nibh. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt
+                                lobortis. Egestas egestas fringilla phasellus faucibus scelerisque. Et tortor
+                                at risus viverra adipiscing at in. Suspendisse sed nisi lacus sed.</p>
+
+                        </div>
+                     </div>
+                 </div>
 
 
-        <!-- FOOTER -->
-        <%- include("footer.ejs"); %>
+                <div class="carousel-item container">
+                    <div class="row">
+                        <div class="col">
+                            <img src="/static/img/Doctor.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="90%" height="70%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#e5e5e5"></rect>
+                        </div>
+                        <div class="col">
+                            <p class=" fs-4" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Fermentum odio eu feugiat
+                            pretium nibh. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt
+                            lobortis. Egestas egestas fringilla phasellus faucibus scelerisque. Et tortor
+                            at risus viverra adipiscing at in. Suspendisse sed nisi lacus sed.</p>
 
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    </div>
+
+    <%- include("footer.ejs"); %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+
+
+
+
+

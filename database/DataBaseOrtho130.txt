@@ -4,6 +4,8 @@ use ortho130db;
 
 drop table if exists exercer;
 drop table if exists contenir;
+drop table if exists avoirAllergie;
+drop table if exists Allergie;
 drop table if exists Ordonnance;
 drop table if exists Pharmacie;
 drop table if exists ProfessionnelDeSante;
@@ -12,6 +14,7 @@ drop table if exists Utilisateur;
 drop table if exists ListeDeMedicaments;
 drop table if exists RPPS;
 drop table if exists Etablissement;
+
 
 CREATE TABLE Etablissement(
    id_etablissement INT,
@@ -44,8 +47,15 @@ CREATE TABLE Utilisateur(
    PRIMARY KEY(email)
 );
 
+CREATE TABLE Allergie(
+   id_allergie INT AUTO_INCREMENT,
+   nom_allergie VARCHAR(50) NOT NULL,
+   PRIMARY KEY(id_allergie)
+);
+
+
 CREATE TABLE Patients(
-   id_pat INT AUTO_INCREMENT,
+   id_patient INT AUTO_INCREMENT,
    nom_pat VARCHAR(50),
    prenom_pat VARCHAR(50),
    date_naissance DATE,
@@ -96,10 +106,13 @@ CREATE TABLE contenir(
    id_medic INT,
    id_ordo INT,
    quantité INT,
+   frequence VARCHAR(200),
+   duree VARCHAR(200),
    PRIMARY KEY(id_medic, id_ordo),
    FOREIGN KEY(id_medic) REFERENCES ListeDeMedicaments(id_medic),
    FOREIGN KEY(id_ordo) REFERENCES Ordonnance(id_ordo)
 );
+
 
 CREATE TABLE exercer(
    id_professionneldesante INT,
@@ -107,6 +120,14 @@ CREATE TABLE exercer(
    PRIMARY KEY(id_professionneldesante, id_etablissement),
    FOREIGN KEY(id_professionneldesante) REFERENCES ProfessionnelDeSante(id_professionneldesante),
    FOREIGN KEY(id_etablissement) REFERENCES Etablissement(id_etablissement)
+);
+
+CREATE TABLE avoirAllergie(
+   id_patient INT,
+   id_allergie INT,
+   PRIMARY KEY(id_patient, id_allergie),
+   FOREIGN KEY(id_patient) REFERENCES Patients(id_patient),
+   FOREIGN KEY(id_allergie) REFERENCES Allergie(id_allergie)
 );
 
 
@@ -156,6 +177,29 @@ INSERT INTO Utilisateur VALUES
 	("patient@gmail.com", sha2(concat(now(), 'pa'), 224), now(), "PATIENT"),
     ("medecin@gmail.com", sha2(concat(now(), 'me'), 224), now(), "MEDECIN"),
     ("pharmacie@gmail.com", sha2(concat(now(), 'ph'), 224), now(), "PHARMACIE");
+    
+INSERT INTO Allergie VALUES
+(1,"gluten"),
+(2,"lactose"),
+(3,"peniciline"),
+(4,"pollen"),
+(5,"fruit à coque"),
+(6,"latex"),
+(7,"arachide"),
+(8,"crustacé"),
+(9,"poisson"),
+(10,"lait"),
+(11,"celerie"),
+(12,"moutarde"),
+(13,"graines de sésame"),
+(14,"molusque"),
+(15,"acariens"),
+(16,"anti-inflamatoire"),
+(17,"anti-bactérien"),
+(18,"aspirine"),
+(19,"oeuf"),
+(20,"cortisone");
+
 
 INSERT INTO Patients VALUES
 	(1, "Patient", "Amélie", 2000-09-22, "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "patient@gmail.com");
@@ -172,9 +216,14 @@ INSERT INTO Ordonnance VALUES
    (3, "2021-09-22", "Villejuif", "Doliprane", 1, 1);
     
 INSERT INTO contenir VALUES
-	(1, 1, 3),
-    (7, 1, 2);
+	(1, 1, 3, "1 comprimé matin","1 semaine"),
+    (7, 1, 2,"2 comprimés /jour","3 jours");
     
 INSERT INTO exercer VALUES
 	(1, 1),
     (1, 2);
+    
+INSERT INTO avoirAllergie VALUES
+(1,2),
+(1,3),
+(1,17);
