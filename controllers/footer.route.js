@@ -13,4 +13,10 @@ function contactRootAction(request, response){
     response.render("contact");
 }
 
+router.get('/faq', faqRootAction);
+//http://localhost:9000
+function faqRootAction(request, response){
+    response.render("faq");
+}
+
 module.exports = router;

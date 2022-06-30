@@ -41,3 +41,4 @@ app.use("/inscription", require("./controllers/inscription.route"));
 app.use("/patient", require("./controllers/patient.route"));
 app.use("/medecin", require("./controllers/medecin.route"));
 app.use("/organismesante", require("./controllers/organismesante.route"));
+app.use("/footer", require("./controllers/footer.route"));
