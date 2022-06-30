@@ -16,10 +16,16 @@ router.get("/", auth.checkAuthentication("PATIENT"), async function (request, re
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
     console.log(patient);
+
+    date_patient = patient.date_naissance;
+    let day_patient = ("0" + date_patient.getDate()).slice(-2);
+    let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
+    let year_patient = date_patient.getFullYear();
+
     if (patient == false) {
         response.redirect("/connexion");
     } else {
-        response.render("patient_home.ejs", { "ordonnances": ordonnance, "patient": patient, "flashMessage": flashMessage });
+        response.render("patient_home.ejs", { "ordonnances": ordonnance, "patient": patient, "flashMessage": flashMessage, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
     }
 });
 

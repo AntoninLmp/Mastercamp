@@ -182,10 +182,10 @@
                         <% if ( ptrier.length !=0) { %>
                             <% for (var pat of ptrier) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 ">
-                                    <a href="Medecin/VoirPatient/<%= pat.email %>"
+                                    <a href="/Medecin/VoirPatient/<%= pat.email %>"
                                         class="text-decoration-none text-dark">
                                         <h2 class="f-blue_green">
-                                            <%= pat.nom_pat %>
+                                            <%= pat.nom_pat %> <br>
                                                 <%= pat.prenom_pat %>
                                         </h2>
                                         <p>
