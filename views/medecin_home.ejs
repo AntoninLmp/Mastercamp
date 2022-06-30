@@ -11,7 +11,7 @@
         <main class="container d-flex CaviarDreams p-3 ">
             <!-- vh-100 : sinon le footer ne se place pas bien -->
             <nav
-                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25 sticky-top">
+                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25 sticky-top top-20">
                 <ul class=" list-unstyled">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
@@ -41,7 +41,10 @@
                                     <h2 class="px-3">&#9660</h2>
                                     <h2>Créer ordonnance en ligne</h2>
                                 </div>
-                                <article id="formCO_">         
+                                <article id="formCO_">
+                                    <form action="" method="post" class="text-center">
+
+                                    </form>
                                     <div class="d-flex mt-3">
                                         <hr class="w-40 ">
                                         <h1 class="px-3">Type</h1>
@@ -110,8 +113,8 @@
                                             <div class="form-row d-flex flex-wrap justify-content-around">
                                                 <div class="form-group col-md-5 m-2">
                                                     <label for="inputDatePatient">Date</label>
-                                                    <input name="date" type="date" class="form-control" id="inputDatePatient"
-                                                        placeholder="Date">
+                                                    <input name="date" type="date" class="form-control"
+                                                        id="inputDatePatient" placeholder="Date">
                                                 </div>
                                                 <div class="form-group col-md-5 m-2">
                                                     <label for="inputVille">Ville</label>
@@ -120,13 +123,14 @@
                                                 </div>
                                                 <div class="form-group col-md-5 m-2">
                                                     <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
-                                                    <input name="NumSecu" type="number" class="form-control" id="inputNumSecuSociale"
-                                                        placeholder="1123544645121">
+                                                    <input name="NumSecu" type="number" class="form-control"
+                                                        id="inputNumSecuSociale" placeholder="1123544645121">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group m-2 px-5 resize-h ">
-                                                    <textarea name="prescription" id="inputPrescription" cols="100" rows="5"
+                                                    <textarea name="prescription" id="inputPrescription" cols="100"
+                                                        rows="5"
                                                         placeholder="Radiographie, Séance de kinésithérapeute... "></textarea>
                                                 </div>
                                             </div>
@@ -162,12 +166,12 @@
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
                     <div>
                         <form method="post" action="/medecin/searchPatByNPS" class="input-group rounded w-100">
-                            <input name="nomp" type="text" class="rounded border p-1 w-25 mx-1" value ="" placeholder="Rechercher nom"
-                             aria-label="search" aria-describedby="search-addon" />
-                            <input name="prenomp" type="text" class="rounded border p-1 w-25 mx-1" value ="" placeholder="Rechercher prenom"
-                            aria-label="search" aria-describedby="search-addon" />
-                            <input name="numsecup" type="number" class="rounded border p-1 w-25 mx-1"
-                            value ="" placeholder="Rechercher numéro sécu" aria-label="search"
+                            <input name="nomp" type="text" class="rounded border p-1 w-25 mx-1" value=""
+                                placeholder="Rechercher nom" aria-label="search" aria-describedby="search-addon" />
+                            <input name="prenomp" type="text" class="rounded border p-1 w-25 mx-1" value=""
+                                placeholder="Rechercher prenom" aria-label="search" aria-describedby="search-addon" />
+                            <input name="numsecup" type="number" class="rounded border p-1 w-25 mx-1" value=""
+                                placeholder="Rechercher numéro sécu" aria-label="search"
                                 aria-describedby="search-addon" />
                             <button class="input-group-text border-0 " id="search-addon">
                                 <img src="/static/img/loupe.png" alt="loupe" id="loupe">
@@ -178,7 +182,8 @@
                         <% if ( ptrier.length !=0) { %>
                             <% for (var pat of ptrier) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 ">
-                                    <a href="Medecin/VoirPatient/<%= pat.email %>" class="text-decoration-none text-dark">
+                                    <a href="Medecin/VoirPatient/<%= pat.email %>"
+                                        class="text-decoration-none text-dark">
                                         <h2 class="f-blue_green">
                                             <%= pat.nom_pat %>
                                                 <%= pat.prenom_pat %>
@@ -191,26 +196,27 @@
                                         </h3>
                                     </a>
                                 </div>
-                            <% } %>
-                        <% } else { %>
-                            <% for (var pdm of pdms) { %>
-                                <div class="div_ordo text-center border rounded rounded-4 ">
-                                    <a href="Medecin/VoirPatient/<%= pdm.email %>" class="text-decoration-none text-dark">
-                                        <h2 class="f-blue_green">
-                                            <%= pdm.nom_pat %> <br>
-                                                <%= pdm.prenom_pat %>
-                                        </h2>
-                                        <p>
-                                            <%= pdm.numero_sercurite %>
-                                        </p>
-                                        <h3 class="f-blue2">
-                                            <%= pdm.ville_pat %>
-                                        </h3>
-                                        </a>
+                                <% } %>
+                                    <% } else { %>
+                                        <% for (var pdm of pdms) { %>
+                                            <div class="div_ordo text-center border rounded rounded-4 ">
+                                                <a href="Medecin/VoirPatient/<%= pdm.email %>"
+                                                    class="text-decoration-none text-dark">
+                                                    <h2 class="f-blue_green">
+                                                        <%= pdm.nom_pat %> <br>
+                                                            <%= pdm.prenom_pat %>
+                                                    </h2>
+                                                    <p>
+                                                        <%= pdm.numero_sercurite %>
+                                                    </p>
+                                                    <h3 class="f-blue2">
+                                                        <%= pdm.ville_pat %>
+                                                    </h3>
+                                                </a>
 
-                                </div>
-                            <% } %>
-                        <% } %>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
                     </section>
                 </section>
 

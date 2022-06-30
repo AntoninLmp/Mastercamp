@@ -19,21 +19,21 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier" : patientTrie });
+        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie });
     }
 });
 
 router.post("/searchPatByNPS", auth.checkAuthentication("MEDECIN"), searchPatByNPS)
-async function searchPatByNPS(request, response){
+async function searchPatByNPS(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
-    var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp,request.body.numsecup);
+    var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp, request.body.numsecup);
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier" : patientTrie });
+        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie });
     }
 };
 
@@ -63,7 +63,12 @@ async function voirPatient(request, response) {
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     // get current year
     let year = date_time.getFullYear();
-    response.render("medecin_OnePatient", { "patient": patient, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date });
+    // Patient date
+    date_patient = patient.date_naissance;
+    let day_patient = ("0" + date_patient.getDate()).slice(-2);
+    let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
+    let year_patient = date_patient.getFullYear();
+    response.render("medecin_OnePatient", { "patient": patient, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
 }
 
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("MEDECIN"), voirOrdonnance);
@@ -80,12 +85,12 @@ async function voirOrdonnance(request, response) {
 router.get("/delEtab/:EtabId", auth.checkAuthentication("MEDECIN"), delEtab);
 async function delEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    medecinRepo.delEtabByMed(request.params.EtabId,medecin.id_professionneldesante);
+    medecinRepo.delEtabByMed(request.params.EtabId, medecin.id_professionneldesante);
     response.redirect("/medecin");
 }
 
 router.post("/addPrescriptionMedicale", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
-async function addPrescriptionMedicale(request, response){
+async function addPrescriptionMedicale(request, response) {
     var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     ordonnanceRepository.addOneOrdoPrescription(
