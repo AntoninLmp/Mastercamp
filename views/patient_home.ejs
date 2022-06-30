@@ -10,8 +10,8 @@
     <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams container">
             <nav
-                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top">
-                <ul class="list-unstyled">
+                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+                <ul class=" list-unstyled">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#MO_" class="text-decoration-none text-white">Mes Ordonnances</a>
                     </li>
@@ -105,7 +105,7 @@
                         <div class="form-group m-3 wb40">
                             <label for="floatingDate">Date de naissance</label>
                             <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
-                                value="<%= patient.date_naissance%>" disabled>
+                                value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingAdresse">Adresse</label>
