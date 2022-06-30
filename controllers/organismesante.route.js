@@ -5,6 +5,8 @@ const router = express.Router();
 const auth = require("../utils/users.auth");
 const ordonnanceRepo = require('../utils/ordonnance.repository');
 const pharmaRepo = require('../utils/pharmacie.repository');
+const ordonnanceRepository = require("../utils/ordonnance.repository");
+const patientRepo = require("../utils/patient.repository");
 
 
 router.get("/", auth.checkAuthentication("PHARMACIE"), async function (request, response) {
@@ -33,6 +35,18 @@ async function searchByPatientOrdonnance(request, response) {
     console.log(ordonnances);
     response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
 };
+
+
+router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("PHARMACIE"), voirOrdonnance);
+async function voirOrdonnance(request, response) {
+    var my_ordo = await ordonnanceRepository.getOneOrdonnance(request.params.OrdoId);
+    var medecin = await ordonnanceRepository.getMedecinAboutOrdonnance(my_ordo.id_professionneldesante);
+    var etablissement = await ordonnanceRepository.getEtablissementDuMedecin(medecin.id_professionneldesante);
+    var listeMedicament = await ordonnanceRepository.getListeMedicament(my_ordo.id_ordo);
+    var patient = await patientRepo.getOnePatientById(my_ordo.id_patient);
+    request.session.flashMessage = "";
+    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient });
+}
 
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
 async function updateUser(request, response) {

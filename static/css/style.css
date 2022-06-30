@@ -160,6 +160,10 @@
     color: white;
 }
 
+.link-marine-blue:hover {
+    color: #012030;
+}
+
 /*------------------------------------ BUTTON HOVER COLORS ------------------------------------------*/
 
 .btn-link-turquoise:hover {
@@ -190,6 +194,16 @@
     height: 75px;
 }
 
+#icon{
+    height: 1.5vh;
+    width: auto;
+}
+
+#icon2{
+    height: 2.5vh;
+    width: auto;
+}
+
 #burger {
     width: 40px;
     height: 40px;
@@ -202,7 +216,7 @@
 .div_ordo {
     transition: transform 0.2s ease;
     /* position: relative; */
-    width: calc(33.33333% - 2.5em);
+    width: fit-content;
     box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
     border-radius: 1em;
     border: 0;
