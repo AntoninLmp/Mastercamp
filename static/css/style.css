@@ -189,8 +189,7 @@
 }
 
 #footer-logo,
-#pdf_img,
-#allergie {
+#pdf_img {
     width: 75px;
     height: 75px;
 }
@@ -299,6 +298,10 @@
 
 .w-28 {
     width: 28%;
+}
+
+.w-15 {
+    width: 15%;
 }
 
 .top-20 {
