@@ -11,12 +11,11 @@ const patientRepo = require('../utils/patient.repository');
 
 router.get("/", auth.checkAuthentication("PATIENT"), async function (request, response) {
     console.log(request.user);
-    var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatient(request.user.email);
+    var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc();
     var patient = await patientRepo.getOnePatient(request.user.email);
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
     console.log(patient);
-
     date_patient = patient.date_naissance;
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);

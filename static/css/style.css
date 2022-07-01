@@ -194,12 +194,12 @@
     height: 75px;
 }
 
-#icon{
+#icon {
     height: 1.5vh;
     width: auto;
 }
 
-#icon2{
+#icon2 {
     height: 2.5vh;
     width: auto;
 }
@@ -294,6 +294,10 @@
 
 .w-30 {
     width: 31%;
+}
+
+.w-28 {
+    width: 28%;
 }
 
 .top-20 {

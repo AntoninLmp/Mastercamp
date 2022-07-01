@@ -41,17 +41,23 @@
                             </button>
                         </div>
                     </form>
-                    <section class="d-flex flex-wrap justify-content-center">
+                    <section class="d-flex flex-wrap justify-content-between">
                         <% for (var ord of ordonnances) { %>
-                            <div class="div_ordo text-center border rounded rounded-4 ">
+                            <div class="div_ordo text-center border rounded rounded-4 w-28">
                                 <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
                                     class="text-decoration-none text-dark">
-                                    <h1>Ordonnance</h1>
+                                    <h1 class="f-blue1 fs-4">
+                                        <%= ord.nom_pro %>
+                                            <%= ord.prenom_pro %>
+                                    </h1>
                                     <h2 class="f-blue_green">
                                         <%= ord.ville_ordo %>
+
                                     </h2>
                                     <h3>
-                                        <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                        <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
+                                                (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/<%=
+                                                    ord.date_delivrance.getFullYear()%>
                                     </h3>
                                 </a>
 
