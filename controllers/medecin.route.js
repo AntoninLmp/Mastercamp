@@ -76,6 +76,7 @@ async function voirPatient(request, response) {
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
     let year_patient = date_patient.getFullYear();
+    console.log(patient);
     response.render("medecin_OnePatient", { "patient": patient, "medecin": medecin, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
 }
 
@@ -102,7 +103,7 @@ async function delEtab(request, response) {
     response.redirect("/medecin");
 }
 
-router.post("/addPrescriptionMedicale", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
+router.post("/addPrescriptionMedicale/:boolRedirect", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
 async function addPrescriptionMedicale(request, response) {
     var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
     if (okNumSecu == false) {
@@ -122,7 +123,11 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
             medecin.id_professionneldesante,
             patient.id_patient
         );
-        response.redirect("/medecin");
+        if(request.params.boolRedirect){
+            const route = "/medecin/VoirPatient/" + patient.email;
+            response.redirect(route)
+        }
+        else{response.redirect("/medecin");}
     }
 }
 
