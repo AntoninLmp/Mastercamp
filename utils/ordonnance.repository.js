@@ -30,6 +30,7 @@ module.exports = {
             conn = await pool.getConnection()
             sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE email = ? ORDER BY id_ordo DESC;"
             const rows = await conn.query(sql,email)
+
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
             return rows
@@ -38,6 +39,20 @@ module.exports = {
             throw err
         }
     },
+    async getAllOrdonnanceByPatientWithDoc() {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante);"
+            const rows = await conn.query(sql)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
 
     async getAllOrdonnanceByPatientBySecu(numSecu) {
         try {
@@ -60,10 +75,10 @@ module.exports = {
             const rows = await conn.query(sql, IdOrdo)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
-            if (rows.lenght != 0){
+            if (rows.lenght != 0) {
                 return rows[0]
             }
-            else{
+            else {
                 return [];
             }
         } catch (err) {
@@ -110,8 +125,8 @@ module.exports = {
             console.log(err)
             throw err
         }
-    }, 
-    async addOneOrdoPrescription(dateDelivrance, ville, description, idProfDeSante, idPatient){
+    },
+    async addOneOrdoPrescription(dateDelivrance, ville, description, idProfDeSante, idPatient) {
         try {
             conn = await pool.getConnection()
             sql = "INSERT INTO ordonnance (id_ordo, date_delivrance, ville_ordo, description, id_professionneldesante, id_patient) VALUES (NULL, ?,?,?,?,?);"
