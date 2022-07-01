@@ -181,7 +181,7 @@
                     <section class="d-flex">
                         <% if ( ptrier.length !=0) { %>
                             <% for (var pat of ptrier) { %>
-                                <div class="div_ordo text-center border rounded rounded-4 ">
+                                <div class="div_ordo text-center border rounded rounded-4 w-25">
                                     <a href="/Medecin/VoirPatient/<%= pat.email %>"
                                         class="text-decoration-none text-dark">
                                         <h2 class="f-blue_green">
@@ -199,7 +199,7 @@
                                 <% } %>
                                     <% } else { %>
                                         <% for (var pdm of pdms) { %>
-                                            <div class="div_ordo text-center border rounded rounded-4 ">
+                                            <div class="div_ordo text-center border rounded rounded-4 w-25">
                                                 <a href="Medecin/VoirPatient/<%= pdm.email %>"
                                                     class="text-decoration-none text-dark">
                                                     <h2 class="f-blue_green">
@@ -323,6 +323,6 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-        <script src="/static/js/medecin_home.js"></script>
+            <script src="/static/js/medecin_home.js"></script>
 
 </body>

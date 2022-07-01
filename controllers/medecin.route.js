@@ -56,6 +56,7 @@ router.get("/VoirPatient/:PatientEmail", auth.checkAuthentication("MEDECIN"), vo
 async function voirPatient(request, response) {
     var patient = await patientRepo.getOnePatient(request.params.PatientEmail);
     var ordoPatient = await ordonnanceRepository.getAllOrdonnanceByPatient(request.params.PatientEmail);
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
     // get current date
     var date_time = new Date();
     let date = ("0" + date_time.getDate()).slice(-2);
@@ -68,7 +69,7 @@ async function voirPatient(request, response) {
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
     let year_patient = date_patient.getFullYear();
-    response.render("medecin_OnePatient", { "patient": patient, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
+    response.render("medecin_OnePatient", { "patient": patient, "medecin": medecin, "ordoPatient": ordoPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
 }
 
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("MEDECIN"), voirOrdonnance);
