@@ -14,7 +14,7 @@ module.exports = {
     async getAllOrdonnance() {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT * FROM Ordonnance ;"
+            sql = "SELECT * FROM Ordonnance ORDER BY id_ordo DESC ;"
             const rows = await conn.query(sql)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
@@ -28,8 +28,9 @@ module.exports = {
     async getAllOrdonnanceByPatient(email) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE email = ?;"
-            const rows = await conn.query(sql, email)
+            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE email = ? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql,email)
+
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
             return rows
@@ -56,8 +57,8 @@ module.exports = {
     async getAllOrdonnanceByPatientBySecu(numSecu) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE numero_sercurite = ?;"
-            const rows = await conn.query(sql, numSecu)
+            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE numero_sercurite = ? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql,numSecu)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
             return rows
@@ -137,6 +138,24 @@ module.exports = {
             console.log(err)
             throw err
         }
-    }
+    },
+    async checkNumeroSecurite(NumSecu) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM patients WHERE numero_sercurite = ?;"
+            const rows = await conn.query(sql, NumSecu)
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            if (rows.length == 0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
 
 }

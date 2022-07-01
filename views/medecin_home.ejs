@@ -109,56 +109,38 @@
                                     </div>
                                     <div id="container_prescription">
                                         <h2>Faire une prescription médicale</h2>
-                                        <form action="/medecin/addPrescriptionMedicale" method="post">
+                                        <form action="/medecin/addPrescriptionMedicale/false" method="post">
                                             <div class="form-row d-flex flex-wrap justify-content-around">
                                                 <div class="form-group col-md-5 m-2">
                                                     <label for="inputDatePatient">Date</label>
-                                                    <input name="date" type="date" class="form-control"
-                                                        id="inputDatePatient" placeholder="Date">
+                                                    <input name="date" type="text" class="form-control"
+                                                        id="inputDatePatient" 
+                                                        value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>      
                                                 </div>
                                                 <div class="form-group col-md-5 m-2">
                                                     <label for="inputVille">Ville</label>
                                                     <input name="ville" type="text" class="form-control" id="inputVille"
-                                                        placeholder="Paris">
+                                                        placeholder="Paris" required>
                                                 </div>
                                                 <div class="form-group col-md-5 m-2">
-                                                    <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
+                                                    <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
                                                     <input name="NumSecu" type="number" class="form-control"
-                                                        id="inputNumSecuSociale" placeholder="1123544645121">
+                                                        id="inputNumSecuSociale" placeholder="1123544645121" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group m-2 px-5 resize-h ">
                                                     <textarea name="prescription" id="inputPrescription" cols="100"
                                                         rows="5"
-                                                        placeholder="Radiographie, Séance de kinésithérapeute... "></textarea>
+                                                        placeholder="Radiographie, Séance de kinésithérapeute... " required></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit" class="border rounded m-3">Enregistrer</button>
                                         </form>
                                     </div>
-                                    <!-- <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo"
-                                        id="pdf_img">
-                                    <button type="button"
-                                        class="border rounded m-4 f-blue2 text-uppercase btn-lg">Générer
-                                        PDF</button> -->
                                 </article>
                             </section>
                         </li>
-                        <!-- <li>
-                            <section class="m-3">
-                                <div class="d-flex" id="fleche_ScanOrdo">
-                                    <h2 class="px-3">&#9660</h2>
-                                    <h2>Scanner une ordonnance</h2>
-                                </div>
-                                <article id="scan_ordo">
-                                    <div class="p-5 m-5 w-50 text-center border-dash">
-                                        <h1>+</h1>
-                                        <h5>Ajout d'un document</h5>
-                                    </div>
-                                </article>
-                            </section>
-                        </li> -->
                     </ul>
                 </section>
                 <section>
@@ -212,10 +194,9 @@
                                                         <%= pdm.ville_pat %>
                                                     </h3>
                                                 </a>
-
                                             </div>
-                                            <% } %>
-                                                <% } %>
+                                        <% } %>
+                                    <% } %>
                     </section>
                 </section>
 
@@ -322,6 +303,5 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-            <script src="/static/js/medecin_home.js"></script>
-
+        <script src="/static/js/medecin_home.js"></script>
 </body>
