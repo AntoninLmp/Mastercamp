@@ -45,7 +45,7 @@ async function voirOrdonnance(request, response) {
     var listeMedicament = await ordonnanceRepository.getListeMedicament(my_ordo.id_ordo);
     var patient = await patientRepo.getOnePatientById(my_ordo.id_patient);
     request.session.flashMessage = "";
-    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient });
+    response.render("vue_ordo_pharma", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient });
 }
 
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
