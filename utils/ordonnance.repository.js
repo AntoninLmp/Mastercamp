@@ -38,11 +38,11 @@ module.exports = {
             throw err
         }
     },
-    async getAllOrdonnanceByPatientWithDoc() {
+    async getAllOrdonnanceByPatientWithDoc(email) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT ordonnance.*, nom_pro, prenom_pro FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante);"
-            const rows = await conn.query(sql)
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE patients.email = ?;"
+            const rows = await conn.query(sql, email)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
             return rows
@@ -137,6 +137,73 @@ module.exports = {
             console.log(err)
             throw err
         }
+    },
+    async getAllAllergies() {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM allergie;"
+            const rows = await conn.query(sql);
+            conn.end()
+            // console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async getAllAllergiesWithoutPatient(idPatient) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM allergie left join avoirallergie USING(id_allergie) where id_allergie not in (SELECT id_allergie  FROM allergie left join avoirallergie USING(id_allergie) WHERE id_patient = ?);"
+            const rows = await conn.query(sql, idPatient);
+            conn.end()
+            // console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async getAllAllergiesOfAPatient(idPatient) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM avoirallergie inner join allergie USING(id_allergie) WHERE id_patient = ?;"
+            const rows = await conn.query(sql, idPatient);
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async updateAllergie(idPatient, idAllergie) {
+        try {
+            conn = await pool.getConnection()
+            sql = "insert into avoirallergie (id_patient, id_allergie) VALUES ( ?, ? );"
+            const rows = await conn.query(sql, [idPatient, idAllergie]);
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+    async deleteAllergie(idPatient, idAllergie) {
+        try {
+            conn = await pool.getConnection()
+            sql = " DELETE FROM avoirallergie WHERE avoirallergie.id_patient = ? AND avoirallergie.id_allergie = ?"
+            const rows = await conn.query(sql, [idPatient, idAllergie]);
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
     }
+
+
 
 }
