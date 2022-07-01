@@ -2,7 +2,7 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Accueil - Professionel de Santé</title>
+        <title>Mon espace - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
@@ -10,7 +10,8 @@
     <%- include("medecin_header.ejs"); %>
         <main class="container d-flex CaviarDreams p-3 ">
             <!-- vh-100 : sinon le footer ne se place pas bien -->
-            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25">
+            <nav
+                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25 sticky-top top-20">
                 <ul class=" list-unstyled">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#EO_" class="text-decoration-none text-white">Editer une ordonnance</a>
@@ -21,6 +22,9 @@
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#Mesinformations" class="text-decoration-none text-white">Mes informations</a>
                     </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#ETAB" class="text-decoration-none text-white">Mes établissement</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -29,9 +33,9 @@
 
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2 pt-2" id="EO_">Editer une ordonnance</h1>
-                    <ul class="list-unstyled f-blue_green px-4">
+                    <ul class="list-unstyled ps-0 f-blue_green px-4">
                         <li>
-                            <section class="m-3 text-center">
+                            <section class="mt-3 mb-3 text-center">
 
                                 <div class="d-flex" id="fleche_creeOrdo">
                                     <h2 class="px-3">&#9660</h2>
@@ -39,31 +43,26 @@
                                 </div>
                                 <article id="formCO_">
                                     <form action="" method="post" class="text-center">
-                                        <div class="form-row d-flex flex-wrap justify-content-around">
-                                            <div class="form-group col-md-5 m-2">
-                                                <label for="inputDatePatient">Date</label>
-                                                <input type="date" class="form-control" id="inputDatePatient"
-                                                    placeholder="Date">
-                                            </div>
-                                            <div class="form-group col-md-5 m-2">
-                                                <label for="inputVille">Ville</label>
-                                                <input type="text" class="form-control" id="inputVille"
-                                                    placeholder="Paris">
-                                            </div>
-                                            <div class="form-group col-md-5 m-2">
-                                                <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
-                                                <input type="number" class="form-control" id="inputNumSecuSociale"
-                                                    placeholder="1123544645121">
-                                            </div>
-                                        </div>
-                                        <button type="button" class="border rounded m-3">Enregistrer</button>
+
                                     </form>
                                     <div class="d-flex mt-3">
                                         <hr class="w-40 ">
-                                        <h1 class="px-3">Patient</h1>
+                                        <h1 class="px-3">Type</h1>
                                         <hr class="w-40 ">
                                     </div>
-                                    <div class="d-flex">
+                                    <section>
+                                        <button type="button"
+                                            class="border p-2 mx-4 rounded text-uppercase CaviarDreamsBold"
+                                            id="ajoutMedoc">
+                                            Ordonnance Médicamenteuse
+                                        </button>
+                                        <button type="button"
+                                            class="border p-2 mx-4 rounded text-uppercase CaviarDreamsBold"
+                                            id="ajoutPrescrip">
+                                            Ordonnance Prescriptive
+                                        </button>
+                                    </section>
+                                    <div id="container_Medicament">
                                         <div class="col-6 text-center">
                                             <h1>Ajout médicament</h1>
                                             <form action="" method="post">
@@ -108,12 +107,41 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <div id="container_prescription">
+                                        <h2>Faire une prescription médicale</h2>
+                                        <form action="/medecin/addPrescriptionMedicale" method="post">
+                                            <div class="form-row d-flex flex-wrap justify-content-around">
+                                                <div class="form-group col-md-5 m-2">
+                                                    <label for="inputDatePatient">Date</label>
+                                                    <input name="date" type="date" class="form-control"
+                                                        id="inputDatePatient" placeholder="Date">
+                                                </div>
+                                                <div class="form-group col-md-5 m-2">
+                                                    <label for="inputVille">Ville</label>
+                                                    <input name="ville" type="text" class="form-control" id="inputVille"
+                                                        placeholder="Paris">
+                                                </div>
+                                                <div class="form-group col-md-5 m-2">
+                                                    <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
+                                                    <input name="NumSecu" type="number" class="form-control"
+                                                        id="inputNumSecuSociale" placeholder="1123544645121">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group m-2 px-5 resize-h ">
+                                                    <textarea name="prescription" id="inputPrescription" cols="100"
+                                                        rows="5"
+                                                        placeholder="Radiographie, Séance de kinésithérapeute... "></textarea>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="border rounded m-3">Enregistrer</button>
+                                        </form>
                                     </div>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo"
+                                    <!-- <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf_logo"
                                         id="pdf_img">
                                     <button type="button"
                                         class="border rounded m-4 f-blue2 text-uppercase btn-lg">Générer
-                                        PDF</button>
+                                        PDF</button> -->
                                 </article>
                             </section>
                         </li>
@@ -137,12 +165,12 @@
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
                     <div>
-                        <form action="#MP_" method="get" class="input-group rounded w-100">
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher nom"
-                                aria-label="search" aria-describedby="search-addon" />
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher prenom"
-                                aria-label="search" aria-describedby="search-addon" />
-                            <input type="search" class="rounded border p-1 w-25 mx-1"
+                        <form method="post" action="/medecin/searchPatByNPS" class="input-group rounded w-100">
+                            <input name="nomp" type="text" class="rounded border p-1 w-25 mx-1" value=""
+                                placeholder="Rechercher nom" aria-label="search" aria-describedby="search-addon" />
+                            <input name="prenomp" type="text" class="rounded border p-1 w-25 mx-1" value=""
+                                placeholder="Rechercher prenom" aria-label="search" aria-describedby="search-addon" />
+                            <input name="numsecup" type="number" class="rounded border p-1 w-25 mx-1" value=""
                                 placeholder="Rechercher numéro sécu" aria-label="search"
                                 aria-describedby="search-addon" />
                             <button class="input-group-text border-0 " id="search-addon">
@@ -151,73 +179,146 @@
                         </form>
                     </div>
                     <section class="d-flex">
-                        <div class="div_ordo text-center border rounded rounded-4 ">
-                            <a href="" class="text-decoration-none text-dark">
-                                <h1>Ordonnance</h1>
-                                <h2 class="f-blue_green">
-                                    Paris
-                                </h2>
-                                <p class="text-start display_h">
-                                    Doliprane, 1g 2/jours, 1 semaine
-                                </p>
-                                <h3>
-                                    02/02/2021
-                                </h3>
-                                <button type="button" class="btn_generer_pdf">Générer PDF</button>
-                            </a>
+                        <% if ( ptrier.length !=0) { %>
+                            <% for (var pat of ptrier) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 w-25">
+                                    <a href="/medecin/VoirPatient/<%= pat.email %>"
+                                        class="text-decoration-none text-dark">
+                                        <h2 class="f-blue_green">
+                                            <%= pat.nom_pat %> <br>
+                                                <%= pat.prenom_pat %>
+                                        </h2>
+                                        <p>
+                                            <%= pat.numero_sercurite %>
+                                        </p>
+                                        <h3 class="f-blue2">
+                                            <%= pat.ville_pat %>
+                                        </h3>
+                                    </a>
+                                </div>
+                                <% } %>
+                                    <% } else { %>
+                                        <% for (var pdm of pdms) { %>
+                                            <div class="div_ordo text-center border rounded rounded-4 w-25">
+                                                <a href="/medecin/VoirPatient/<%= pdm.email %>"
+                                                    class="text-decoration-none text-dark">
+                                                    <h2 class="f-blue_green">
+                                                        <%= pdm.nom_pat %> <br>
+                                                            <%= pdm.prenom_pat %>
+                                                    </h2>
+                                                    <p>
+                                                        <%= pdm.numero_sercurite %>
+                                                    </p>
+                                                    <h3 class="f-blue2">
+                                                        <%= pdm.ville_pat %>
+                                                    </h3>
+                                    </a>
 
-                        </div>
+                                </div>
+                            <% } %>
+                        <% } %>
                     </section>
                 </section>
 
                 <section class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="Mesinformations">Mes informations</h1>
-                    <form method="get" action="" id="signupFormClient"
+                    <form method="post" action="/medecin/updateMedecin" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
                         <div class="form-group mb-3 w-50 px-5">
                             <label for=" floatingNom">Nom</label>
-                            <input name="nom" type="text" class="form-control" id="floatingNom" placeholder="Jean">
+                            <input name="nom" type="text" class="form-control" id="floatingNom"
+                                value="<%= medecin.nom_pro %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingPrenom">Prénom</label>
                             <input name="prenom" type="text" class="form-control" id="floatingPrenom"
-                                placeholder="Dupont">
+                                value="<%= medecin.prenom_pro %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingRPPS">Numéro RPPS</label>
-                            <input name="rpps" type="number" class="form-control" id="floatingRPPS" placeholder="*"
-                                max="99999999999" min="11111111111" disabled>
+                            <input name="rpps" type="number" class="form-control" id="floatingRPPS" max="99999999999"
+                                min="11111111111" value="<%= medecin.RPPS %>" disabled>
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingAdeli">Numéro Adeli</label>
                             <input name="adeli" type="number" class="form-control" id="floatingAdeli"
-                                placeholder="123456789" max="999999999" min="111111111" disabled>
+                                value="<%= medecin.adeli %>" max="999999999" min="111111111" disabled>
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingProfession">Profession</label>
-                            <input name="proffesion" type="text" class="form-control" id="floatingProfession"
-                                placeholder="Medecin">
+                            <input name="profession" type="text" class="form-control" id="floatingProfession"
+                                value="<%= medecin.proffession %>">
                         </div>
                         <div class="form-group mb-3 w-50 px-5">
                             <label for="floatingEmail">Adresse email</label>
                             <input name="email" type="email" class="form-control" id="floatingEmail"
-                                placeholder="dupont.jean@gmail.com">
+                                value="<%= medecin.email %>" disabled>
                         </div>
-                        <div class="form-group mb-3 w-50 px-5">
-                            <label for="floatingpassword1">Mot de passe</label>
-                            <input name="mdp" type="password" class="form-control" id="floatingpassword1"
-                                placeholder="************">
-                        </div>
-                        <div class="form-group mb-3 w-50 px-5">
-                            <label for="floatingpassword2">Mot de passe</label>
-                            <input type="password" class="form-control" id="floatingpassword2"
-                                placeholder="************">
-                        </div>
+
                         <div class="form-group mb-3 w-75 text-center">
                             <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 
                         </div>
                     </form>
+                </section>
+                <section class="mt-5">
+                    <h1 class="CaviarDreamsBold f-blue2" id="ETAB">Mes établissements</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom Établissement</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Code postal</th>
+                                <th scope="col">Ville</th>
+                                <th scope="col">Numéro TEL.</th>
+                                <th scope="col">Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var eta of etablissement) { %>
+                                <tr>
+                                    <th scope="row" class="f-blue2">
+                                        <%= eta.nom_etablissement %>
+                                    </th>
+                                    <td>
+                                        <%= eta.adresse_etab %>
+                                    </td>
+                                    <td>
+                                        <%= eta.code_postal_etab %>
+                                    </td>
+                                    <td>
+                                        <%= eta.ville_etab %>
+                                    </td>
+                                    <td>
+                                        <%= eta.numero_telephone_etab %>
+                                    </td>
+                                    <td>
+                                        <a href="/medecin/delEtab/<%= eta.id_etablissement %>">
+                                            <button type="button" class="border rounded m-3">Supprimer</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <form method="post" action="/medecin/updateEtab" id="signupFormClient"
+                            class="d-flex flex-wrap justify-content-center mx-auto">
+                            <div class="form-group mb-3 w-50 px-5">
+                                <label for=" floatingNom">Nom établissement</label>
+                                <select class="form-select" aria-label="Default select example" name="etab">
+                                    <% for (var eta_ajout of etablissementAjout) { %>
+                                        <option value="<%= eta_ajout.id_etablissement %>">
+                                            <%= eta_ajout.nom_etablissement %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <button type="submit" class="border rounded m-0 f-blue2" id="add_eta_btn">
+                                Ajout un établissement
+                            </button>
+                        </form>
+                    </div>
                 </section>
             </article>
         </main>

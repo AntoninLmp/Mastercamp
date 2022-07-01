@@ -1,0 +1,230 @@
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+        <title>Accueil - Professionel de Santé</title>
+        <link rel="stylesheet" href="/static/css/inscription.css">
+</head>
+
+<body>
+    <%- include("medecin_header.ejs"); %>
+        <main class="p-2">
+            <!-- <button class="border btn bg-green">
+                <a href="" class="text-decoration-none text-dark">Retour</a>
+            </button> -->
+            <section class=" d-flex">
+                <section class="p-4 w-50 h-100">
+                    <div class="text-center">
+                        <img src="/static/img/user_.png" alt="userlogo" class="w-25">
+                        <h1 class="CaviarDreamsBold f-blue2 text-center" id="ETAB">
+                            <%=patient.nom_pat %>
+                                <%=patient.prenom_pat %>
+                        </h1>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Nom du Patient
+                                </td>
+                                <td>
+                                    <%=patient.nom_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Prénom du Patient
+                                </td>
+                                <td>
+                                    <%=patient.prenom_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Date de naissance
+                                </td>
+                                <td>
+                                    <%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Adresse
+                                </td>
+                                <td>
+                                    <%=patient.adresse_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Code Postal
+                                </td>
+                                <td>
+                                    <%=patient.code_postal_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Ville
+                                </td>
+                                <td>
+                                    <%=patient.ville_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Numéro de téléphone
+                                </td>
+                                <td>
+                                    <%=patient.numero_telephone_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Numéro de sécurité sociale
+                                </td>
+                                <td>
+                                    <%=patient.numero_sercurite %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Email
+                                </td>
+                                <td>
+                                    <%=patient.email %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="w-100 p-3">
+                    <section class="mb-5">
+                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">
+                            Créer une ordonnance
+                        </h1>
+                        <form action="" method="post" class="text-center">
+                            <div class="form-row justify-content-around d-flex flex-wrap">
+                                <div class="form-group m-2 w-30">
+                                    <label for="inputDatePatient">Date</label>
+                                    <input type="text" class="form-control" id="inputDatePatient"
+                                        value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                </div>
+                                <div class="form-group m-2 w-30">
+                                    <label for="inputVille">Ville</label>
+                                    <input type="text" class="form-control" id="inputVille" placeholder="Paris">
+                                </div>
+                                <div class="form-group m-2 w-30">
+                                    <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
+                                    <input type="text" class="form-control" id="inputNumSecuSociale"
+                                        value=" <%=patient.numero_sercurite %>" disabled>
+                                </div>
+                            </div>
+                            <button type="button" class="border rounded m-3">Enregistrer</button>
+                        </form>
+                        <section class="text-center">
+                            <button type="button"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
+                                id="ajoutMedoc2">
+                                Ajouter des médicaments
+                            </button>
+                            <button type="button"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
+                                id="ajoutPrescrip2">
+                                Ajouter une présciption
+                            </button>
+                        </section>
+                        <div id="container_Medicament2">
+                            <div class="col-6 text-center">
+                                <h1>Ajout médicament</h1>
+                                <form action="" method="post">
+                                    <div class="form-row">
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputMedicament">Medicament</label>
+                                            <input type="text" class="form-control" id="inputMedicament"
+                                                placeholder="Doliprane 1g">
+                                        </div>
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputFrequence">Fréquence</label>
+                                            <input type="text" class="form-control" id="inputFrequence"
+                                                placeholder="2 fois par jour">
+                                        </div>
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputDuree">Durée de la prise</label>
+                                            <input type="text" class="form-control" id="inputDuree"
+                                                placeholder="7 jours">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="border rounded m-3">Ajouter</button>
+                                </form>
+                            </div>
+                            <div class="w-100">
+                                <h1>Liste </h1>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nom Médicament</th>
+                                            <th scope="col">Fréquence</th>
+                                            <th scope="col">Durée de la prise</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Doliprane 1g</th>
+                                            <td>2 fois par jour (matin et soir)</td>
+                                            <td>2 semaines</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="container_prescription2" class="p-3">
+                            <h2 class="f-blue2">Prescription médicale</h2>
+                            <form action="" method="post" class="text-center">
+                                <div class="form-row">
+                                    <div class="form-group m-2 px-5 resize-h ">
+                                        <textarea name="" id="inputPrescription" cols="100" rows="5"
+                                            placeholder="Radiographie, Séance de kinésithérapeute... "></textarea>
+
+                                    </div>
+                                </div>
+                                <button type="button" class="text-uppercase p-2 border rounded m-3">Ajouter</button>
+                            </form>
+                        </div>
+                    </section>
+                    <section class="flex-wrap CaviarDreams">
+                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">
+                            Ordonnance de
+                            <span class="f-blue_green fst-italic">
+                                <%=patient.nom_pat %>
+                                    <%=patient.prenom_pat %>
+                            </span>
+                        </h1>
+                        <div class="d-flex">
+                            <% for (var ord of ordoPatient) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 ">
+                                    <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
+                                        class="text-decoration-none text-dark">
+                                        <h1 class="f-blue1">Ordonnance</h1>
+                                        <h2 class="f-blue_green">
+                                            <%= ord.ville_ordo %>
+                                        </h2>
+                                        <h3 class="f-blue1">
+                                            <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                        </h3>
+                                    </a>
+
+                                </div>
+                                <% } %>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </main>
+
+        <%- include("footer.ejs"); %>
+            <script src="/static/js/medecin_onepatient.js"></script>
+
+
+</body>

@@ -38,6 +38,21 @@ module.exports = {
             throw err
         }
     },
+
+    async getAllOrdonnanceByPatientBySecu(numSecu) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE numero_sercurite = ?;"
+            const rows = await conn.query(sql,numSecu)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
     async getOneOrdonnance(IdOrdo) {
         try {
             conn = await pool.getConnection()
@@ -45,7 +60,12 @@ module.exports = {
             const rows = await conn.query(sql, IdOrdo)
             conn.end()
             console.log("ROWS FETCHED: " + rows.length)
-            return rows[0]
+            if (rows.lenght != 0){
+                return rows[0]
+            }
+            else{
+                return [];
+            }
         } catch (err) {
             console.log(err)
             throw err
@@ -83,6 +103,19 @@ module.exports = {
             conn = await pool.getConnection()
             sql = "SELECT * FROM contenir INNER join listedemedicaments USING(id_medic) where id_ordo = ?;"
             const rows = await conn.query(sql, IdOrdo)
+            conn.end()
+            console.log("ROWS FETCHED : " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    }, 
+    async addOneOrdoPrescription(dateDelivrance, ville, description, idProfDeSante, idPatient){
+        try {
+            conn = await pool.getConnection()
+            sql = "INSERT INTO ordonnance (id_ordo, date_delivrance, ville_ordo, description, id_professionneldesante, id_patient) VALUES (NULL, ?,?,?,?,?);"
+            const rows = await conn.query(sql, [dateDelivrance, ville, description, idProfDeSante, idPatient]);
             conn.end()
             console.log("ROWS FETCHED : " + rows.length)
             return rows
