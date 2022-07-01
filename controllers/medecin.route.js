@@ -7,6 +7,7 @@ const auth = require("../utils/users.auth");
 const medecinRepo = require("../utils/medecin.repository");
 const patientRepo = require('../utils/patient.repository');
 const ordonnanceRepository = require("../utils/ordonnance.repository");
+const { spawnSync } = require('child_process');
 
 router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
@@ -15,11 +16,17 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     var patientTrie = [];
-
+    // get current date
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    // get current month
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    // get current year
+    let year = date_time.getFullYear();
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie });
+        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date });
     }
 });
 
@@ -97,16 +104,26 @@ async function delEtab(request, response) {
 
 router.post("/addPrescriptionMedicale", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
 async function addPrescriptionMedicale(request, response) {
-    var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
-    var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    ordonnanceRepository.addOneOrdoPrescription(
-        request.body.date,
-        request.body.ville,
-        request.body.prescription,
-        medecin.id_professionneldesante,
-        patient.id_patient
-    );
-    response.redirect("/medecin");
+    var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
+    if (okNumSecu == false) {
+        spawnSync("powershell.exe", [`
+Add-Type -AssemblyName PresentationCore,PresentationFramework;
+[System.Windows.MessageBox]::Show('Le numéro de sécurité social est incorrect');
+`]);
+    }
+    else{
+        var date_time = new Date();
+        var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
+        var medecin = await medecinRepo.getOneMedecin(request.user.email);
+        ordonnanceRepository.addOneOrdoPrescription(
+            date_time,
+            request.body.ville,
+            request.body.prescription,
+            medecin.id_professionneldesante,
+            patient.id_patient
+        );
+        response.redirect("/medecin");
+    }
 }
 
 module.exports = router;
