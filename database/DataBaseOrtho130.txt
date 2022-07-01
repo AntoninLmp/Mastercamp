@@ -202,7 +202,7 @@ INSERT INTO Allergie VALUES
 
 
 INSERT INTO Patients VALUES
-	(1, "Patient", "Amélie", 2000-09-22, "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "patient@gmail.com");
+	(1, "Patient", "Amélie", "2000-09-22", "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "patient@gmail.com");
 
 INSERT INTO ProfessionnelDeSante VALUES 
 	(1, "Médecin", "Antonin", 12345678909, 951703248, "Généraliste", "medecin@gmail.com");

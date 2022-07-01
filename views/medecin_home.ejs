@@ -182,7 +182,7 @@
                         <% if ( ptrier.length !=0) { %>
                             <% for (var pat of ptrier) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 w-25">
-                                    <a href="/Medecin/VoirPatient/<%= pat.email %>"
+                                    <a href="/medecin/VoirPatient/<%= pat.email %>"
                                         class="text-decoration-none text-dark">
                                         <h2 class="f-blue_green">
                                             <%= pat.nom_pat %> <br>
@@ -200,7 +200,7 @@
                                     <% } else { %>
                                         <% for (var pdm of pdms) { %>
                                             <div class="div_ordo text-center border rounded rounded-4 w-25">
-                                                <a href="Medecin/VoirPatient/<%= pdm.email %>"
+                                                <a href="/medecin/VoirPatient/<%= pdm.email %>"
                                                     class="text-decoration-none text-dark">
                                                     <h2 class="f-blue_green">
                                                         <%= pdm.nom_pat %> <br>
@@ -212,11 +212,11 @@
                                                     <h3 class="f-blue2">
                                                         <%= pdm.ville_pat %>
                                                     </h3>
-                                                </a>
+                                    </a>
 
-                                            </div>
-                                            <% } %>
-                                                <% } %>
+                                </div>
+                            <% } %>
+                        <% } %>
                     </section>
                 </section>
 
