@@ -45,7 +45,12 @@ async function voirOrdonnance(request, response) {
     var listeMedicament = await ordonnanceRepository.getListeMedicament(my_ordo.id_ordo);
     var patient = await patientRepo.getOnePatientById(my_ordo.id_patient);
     request.session.flashMessage = "";
-    response.render("vue_ordo_pharma", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient });
+    // Date patient
+    date_ordo = my_ordo.date_delivrance;
+    let day_ordo = ("0" + date_ordo.getDate()).slice(-2);
+    let month_ordo = ("0" + (date_ordo.getMonth() + 1)).slice(-2);
+    let year_ordo = date_ordo.getFullYear();
+    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
