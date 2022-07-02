@@ -131,4 +131,19 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
     }
 }
 
+router.get("/ordonnanceMedicamenteuse", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
+async function ordonnanceMedicamenteuse(request, response) {
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    //var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
+    //var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    let year = date_time.getFullYear();
+
+    var listeMedicament = await ordonnanceRepository.getAllMedicaments();
+    response.render("ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament /*, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin*/});
+}
+
 module.exports = router;
