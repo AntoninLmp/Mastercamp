@@ -2,16 +2,13 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Accueil - Professionel de Santé</title>
-        <link rel="stylesheet" href="/static/css/inscription.css">
+    <title>Accueil - Professionel de Santé</title>
+    <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body>
     <%- include("medecin_header.ejs"); %>
         <main class="p-2">
-            <!-- <button class="border btn bg-green">
-                <a href="" class="text-decoration-none text-dark">Retour</a>
-            </button> -->
             <section class=" d-flex">
                 <section class="p-4 w-50 h-100">
                     <div class="text-center">
@@ -118,43 +115,22 @@
                     </section>
 
                     <section class="mb-5">
-                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">
-                            Créer une ordonnance
-                        </h1>
-                        <form action="" method="post" class="text-center">
-                            <div class="form-row justify-content-around d-flex flex-wrap">
-                                <div class="form-group m-2 w-30">
-                                    <label for="inputDatePatient">Date</label>
-                                    <input type="text" class="form-control" id="inputDatePatient"
-                                        value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
-                                </div>
-                                <div class="form-group m-2 w-30">
-                                    <label for="inputVille">Ville</label>
-                                    <input type="text" class="form-control" id="inputVille" placeholder="Paris">
-                                </div>
-                                <div class="form-group m-2 w-30">
-                                    <label for="inputNumSecuSociale">Numéro Sécurité de Sociale</label>
-                                    <input type="text" class="form-control" id="inputNumSecuSociale"
-                                        value=" <%=patient.numero_sercurite %>" disabled>
-                                </div>
-                            </div>
-                            <button type="button" class="border rounded m-3">Enregistrer</button>
-                        </form>
+                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">Créer une ordonnance</h1>
                         <section class="text-center">
                             <button type="button"
                                 class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
                                 id="ajoutMedoc2">
-                                Ajouter des médicaments
+                                Ordonnance médicamenteuse
                             </button>
                             <button type="button"
                                 class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
                                 id="ajoutPrescrip2">
-                                Ajouter une présciption
+                                Ordonnance prescriptive
                             </button>
                         </section>
                         <div id="container_Medicament2">
                             <div class="col-6 text-center">
-                                <h1>Ajout médicament</h1>
+                                <h1>Ordonnance médicamenteuse</h1>
                                 <form action="" method="post">
                                     <div class="form-row">
                                         <div class="form-group m-2 px-5">
@@ -199,21 +175,34 @@
                         </div>
                         <div id="container_prescription2" class="p-3">
                             <h2 class="f-blue2">Prescription médicale</h2>
-                            <form action="" method="post" class="text-center">
-                                <div class="form-row">
-                                    <div class="form-group m-2 px-5 resize-h ">
-                                        <textarea name="" id="inputPrescription" cols="100" rows="5"
-                                            placeholder="Radiographie, Séance de kinésithérapeute... "></textarea>
-
+                            <form action="/medecin/addPrescriptionMedicale/true" method="post">
+                                <div class="form-row justify-content-around d-flex flex-wrap">
+                                    <div class="form-group m-2 w-30">
+                                        <label for="inputDatePatient">Date</label>
+                                        <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                            value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                    </div>
+                                    <div class="form-group m-2 w-30">
+                                        <label for="inputVille">Ville</label>
+                                        <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Paris" required>
+                                    </div>
+                                    <div class="form-group m-2 w-30">
+                                        <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
+                                        <input name="NumSecu" type="number" class="form-control"
+                                            id="inputNumSecuSociale"  value="<%=patient.numero_sercurite %>" required>
                                     </div>
                                 </div>
-                                <button type="button" class="text-uppercase p-2 border rounded m-3">Ajouter</button>
+                                <div class="form-group m-2 px-5 resize-h ">
+                                    <textarea name="prescription" id="inputPrescription" cols="100" rows="5"
+                                        placeholder="Radiographie, Séance de kinésithérapeute... " required></textarea>
+                                </div>
+                                <button type="submit" class="border rounded m-3">Enregistrer</button>
                             </form>
                         </div>
                     </section>
                     <section class="flex-wrap CaviarDreams">
                         <h1 class="CaviarDreamsBold f-blue2" id="MP_">
-                            Ordonnance de
+                            Ordonnance(s) de
                             <span class="f-blue_green fst-italic">
                                 <%=patient.nom_pat %>
                                     <%=patient.prenom_pat %>
