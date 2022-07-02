@@ -76,6 +76,7 @@ async function voirPatient(request, response) {
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
     let year_patient = date_patient.getFullYear();
     console.log(patient);
+    response.render("medecin_OnePatient", { "patient": patient, "medecin": medecin, "ordoPatient": ordoPatient, "allergies": allergiesOfAPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
 
 }
 
@@ -111,7 +112,7 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
 [System.Windows.MessageBox]::Show('Le numéro de sécurité social est incorrect');
 `]);
     }
-    else{
+    else {
         var date_time = new Date();
         var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
         var medecin = await medecinRepo.getOneMedecin(request.user.email);
@@ -122,11 +123,11 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
             medecin.id_professionneldesante,
             patient.id_patient
         );
-        if(request.params.boolRedirect){
+        if (request.params.boolRedirect) {
             const route = "/medecin/VoirPatient/" + patient.email;
             response.redirect(route)
         }
-        else{response.redirect("/medecin");}
+        else { response.redirect("/medecin"); }
     }
 }
 
