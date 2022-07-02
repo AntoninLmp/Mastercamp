@@ -11,9 +11,11 @@ const patientRepo = require('../utils/patient.repository');
 
 router.get("/", auth.checkAuthentication("PATIENT"), async function (request, response) {
     console.log(request.user);
-    var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc();
     var patient = await patientRepo.getOnePatient(request.user.email);
+    var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc(request.user.email);
     var flashMessage = request.session.flashMessage;
+    var allergies = await ordonnanceRepo.getAllAllergiesWithoutPatient(patient.id_patient);
+    var allergiesOfAPatient = await ordonnanceRepo.getAllAllergiesOfAPatient(patient.id_patient);
     request.session.flashMessage = "";
     console.log(patient);
     date_patient = patient.date_naissance;
@@ -24,7 +26,7 @@ router.get("/", auth.checkAuthentication("PATIENT"), async function (request, re
     if (patient == false) {
         response.redirect("/connexion");
     } else {
-        response.render("patient_home.ejs", { "ordonnances": ordonnance, "patient": patient, "flashMessage": flashMessage, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
+        response.render("patient_home.ejs", { "ordonnances": ordonnance, "patient": patient, "flashMessage": flashMessage, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient, "allergies": allergies, "allergiesOfAPatient": allergiesOfAPatient });
     }
 });
 
@@ -53,5 +55,19 @@ async function voirOrdonnance(request, response) {
     response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
+router.post("/updateAllergie", auth.checkAuthentication("PATIENT"), updateAllergies);
+async function updateAllergies(request, response) {
+    var patient = await patientRepo.getOnePatient(request.user.email);
+    ordonnanceRepo.updateAllergie(patient.id_patient, request.body.allergie);
+    response.redirect("/patient");
+}
+
+router.get("/delAllergie/:AllID", auth.checkAuthentication("PATIENT"), delAllerg);
+async function delAllerg(request, response) {
+    console.log("OK 1")
+    var patient = await patientRepo.getOnePatient(request.user.email);
+    ordonnanceRepo.deleteAllergie(patient.id_patient, request.params.AllID);
+    response.redirect("/patient");
+}
 
 module.exports = router;

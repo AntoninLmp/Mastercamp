@@ -22,6 +22,9 @@
                         <a href="#PH" class="text-decoration-none text-white">Mes pharmaciens</a>
                     </li>
                     <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#ALL" class="text-decoration-none text-white">Mes Allergies</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#infos" class="text-decoration-none text-white">Mes informations</a>
                     </li>
                 </ul>
@@ -41,120 +44,182 @@
                             </button>
                         </div>
                     </form>
-                    <section class="d-flex flex-wrap justify-content-between">
-                        <% for (var ord of ordonnances) { %>
-                            <div class="div_ordo text-center border rounded rounded-4 w-28">
-                                <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
-                                    class="text-decoration-none text-dark">
-                                    <h1 class="f-blue1 fs-4">
-                                        <%= ord.nom_pro %>
-                                            <%= ord.prenom_pro %>
-                                    </h1>
-                                    <h2 class="f-blue_green">
-                                        <%= ord.ville_ordo %>
+                    <% if (allergiesOfAPatient.length==0) {%>
+                        <section class="d-flex flex-wrap justify-content-center m-5 p-5">
+                            <p>Aucune ordonnance disponible pour le moment.</p>
+                            <%} else { %>
+                                <section class="d-flex flex-wrap justify-content-between">
+                                    <% for (var ord of ordonnances) { %>
+                                        <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                            <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                                class="text-decoration-none text-dark">
+                                                <h1 class="f-blue1 fs-4">
+                                                    <%= ord.nom_pro %>
+                                                        <%= ord.prenom_pro %>
+                                                </h1>
+                                                <h2 class="f-blue_green">
+                                                    <%= ord.ville_ordo %>
 
-                                    </h2>
-                                    <h3>
-                                        <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
-                                                (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/<%=
-                                                    ord.date_delivrance.getFullYear()%>
-                                    </h3>
-                                </a>
+                                                </h2>
+                                                <h3 class="fs-5">
+                                                    <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
+                                                            (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/<%=
+                                                                ord.date_delivrance.getFullYear()%>
+                                                </h3>
+                                            </a>
 
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                </section>
+                        </section>
+
+                        <section class="mt-3" id="UTIL">
+                            <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
+                            <section class="border rounded p-3">
+                                <p class="fs-4">
+                                    Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de vos différents
+                                    <span class="f-blue_green">papiers de santé</span>.
+                                    Grâce à Ordo130, toutes vos ordonnances sont regroupées et directement accessibles
+                                    depuis
+                                    cet espace, que ce soit par vous,
+                                    vos professionnels de santé ou encore les pharmacies. Ordo130 permet de regrouper,
+                                    dématérialiser et de télétransmettre vos
+                                    ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
+                                </p>
+                                <ul class="fs-5">
+                                    <li>Consulter vos ordonnances (Médecin, kinésithérapeute, podologue...)</li>
+                                    <li>Consulter vos feuilles de soin.</li>
+                                    <li>Trouver une pharmacie.</li>
+                                </ul>
+
+                            </section>
+                        </section>
+
+                        <section class="mt-5" id="PH">
+                            <h1 class="CaviarDreamsBold f-blue2">Mes pharmaciens</h1>
+                            <div id="map">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5257.036226222494!2d2.364675612577518!3d48.79108938623863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673e39a9dbbb3%3A0x15086347c0e355d0!2sPharmacie%20Villejuif%20Aragon!5e0!3m2!1sfr!2sfr!4v1656084413250!5m2!1sfr!2sfr"
+                                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
-                            <% } %>
-                    </section>
-                </section>
+                        </section>
+                        <section class="mt-5 mb-5">
+                            <h1 class="CaviarDreamsBold f-blue2" id="ALL">Mes Allergies</h1>
+                            <article class="bg-grey p-4 rounded d-flex align-items-center">
+                                <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
+                                <div class="w-100 text-center">
+                                    <% if (allergiesOfAPatient.length==0) {%>
+                                        <p>Aucune allergie</p>
+                                        <%} else { %>
+                                            <% for (var al of allergiesOfAPatient) { %>
+                                                <div class="d-flex justify-content-center">
+                                                    <p class="f-blue1 fs-4 text-capitalize f">
+                                                        <%= al.nom_allergie %>
+                                                    </p>
+                                                    <a href="/patient/delAllergie/<%= al.id_allergie %>">
+                                                        <button type="button" class="btn-close"
+                                                            aria-label="Close"></button>
+                                                    </a>
+                                                </div>
+                                                <% } %>
 
-                <section class="mt-3" id="UTIL">
-                    <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded p-3">
-                        <p class="fs-4">
-                            Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de vos différents
-                            <span class="f-blue_green">papiers de santé</span>.
-                            Grâce à Ordo130, toutes vos ordonnances sont regroupées et directement accessibles depuis
-                            cet espace, que ce soit par vous,
-                            vos professionnels de santé ou encore les pharmacies. Ordo130 permet de regrouper,
-                            dématérialiser et de télétransmettre vos
-                            ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
-                        </p>
-                        <ul class="fs-5">
-                            <li>Consulter vos ordonnances (Médecin, kinésithérapeute, podologue...)</li>
-                            <li>Consulter vos feuilles de soin.</li>
-                            <li>Trouver une pharmacie.</li>
-                        </ul>
+                                                    <% } %>
+                                                        <div>
+                                                            <button type="button"
+                                                                class="btn border rounded m-3 bg-blue2 text-white"
+                                                                id="btn_ajout_allergie">
+                                                                Ajouter une allergie
+                                                            </button>
+                                                            <div id="form_allergie">
+                                                                <form method="post" action="/patient/updateAllergie"
+                                                                    id="AllergiesUpdate" class="text-center mx-auto">
+                                                                    <div class="form-group mx-5 mb-3 px-5">
+                                                                        <label for=" floatingNom">Ajouter une
+                                                                            allergie</label>
+                                                                        <select class="form-select"
+                                                                            aria-label="Default select example"
+                                                                            name="allergie">
+                                                                            <% for (var all of allergies) { %>
+                                                                                <option value="<%= all.id_allergie %>">
+                                                                                    <%= all.nom_allergie %>
+                                                                                </option>
+                                                                                <% } %>
+                                                                        </select>
+                                                                    </div>
+                                                                    <button type="submit"
+                                                                        class="border rounded m-0 f-blue2"
+                                                                        id="add_all_btn">
+                                                                        Enregistrer
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="mt-5">
+                            <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
+                            <form method="post" action="/patient/updatePatient" id="signupFormClient"
+                                class="d-flex flex-wrap justify-content-center mx-auto">
+                                <div class="form-group m-3 wb40">
+                                    <label for=" floatingNom">Nom</label>
+                                    <input name="nom" type="text" class="form-control" id="floatingNom"
+                                        value="<%= patient.nom_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingPrenom">Prénom</label>
+                                    <input name="prenom" type="text" class="form-control" id="floatingPrenom"
+                                        value="<%= patient.prenom_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingDate">Date de naissance</label>
+                                    <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
+                                        value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingAdresse">Adresse</label>
+                                    <input name="adresse" type="text" class="form-control" id="floatingAdresse"
+                                        value="<%= patient.adresse_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingCodePostal">Code Postal</label>
+                                    <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
+                                        max="99999" min="11111" value="<%= patient.code_postal_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingVille">Ville</label>
+                                    <input name="ville" type="text" class="form-control" id="floatingVille"
+                                        value="<%= patient.ville_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingNumTel">N° Téléphone</label>
+                                    <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
+                                        value="<%= patient.numero_telephone_pat %>">
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingSecuSocial">N° Sécurité Sociale</label>
+                                    <input name="numeroSecurite" type="number" class="form-control"
+                                        id="floatingSecuSocial" value="<%= patient.numero_sercurite %>" disabled>
+                                </div>
+                                <div class="form-group m-3 wb40">
+                                    <label for="floatingEmail">Adresse email</label>
+                                    <input name="email" type="email" class="form-control" id="floatingEmail"
+                                        value="<%= patient.email %>" disabled>
+                                </div>
 
-                    </section>
-                </section>
+                                <div class="form-group mb-3 w-75 text-center">
+                                    <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 
-                <section class="mt-5" id="PH">
-                    <h1 class="CaviarDreamsBold f-blue2">Mes pharmaciens</h1>
-                    <div id="map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5257.036226222494!2d2.364675612577518!3d48.79108938623863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673e39a9dbbb3%3A0x15086347c0e355d0!2sPharmacie%20Villejuif%20Aragon!5e0!3m2!1sfr!2sfr!4v1656084413250!5m2!1sfr!2sfr"
-                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </section>
+                                </div>
+                            </form>
+                        </section>
 
-                <section class="mt-5">
-                    <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
-                    <form method="post" action="/patient/updatePatient" id="signupFormClient"
-                        class="d-flex flex-wrap justify-content-center mx-auto">
-                        <div class="form-group m-3 wb40">
-                            <label for=" floatingNom">Nom</label>
-                            <input name="nom" type="text" class="form-control" id="floatingNom"
-                                value="<%= patient.nom_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingPrenom">Prénom</label>
-                            <input name="prenom" type="text" class="form-control" id="floatingPrenom"
-                                value="<%= patient.prenom_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingDate">Date de naissance</label>
-                            <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
-                                value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingAdresse">Adresse</label>
-                            <input name="adresse" type="text" class="form-control" id="floatingAdresse"
-                                value="<%= patient.adresse_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingCodePostal">Code Postal</label>
-                            <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
-                                max="99999" min="11111" value="<%= patient.code_postal_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingVille">Ville</label>
-                            <input name="ville" type="text" class="form-control" id="floatingVille"
-                                value="<%= patient.ville_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingNumTel">N° Téléphone</label>
-                            <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
-                                value="<%= patient.numero_telephone_pat %>">
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingSecuSocial">N° Sécurité Sociale</label>
-                            <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
-                                value="<%= patient.numero_sercurite %>" disabled>
-                        </div>
-                        <div class="form-group m-3 wb40">
-                            <label for="floatingEmail">Adresse email</label>
-                            <input name="email" type="email" class="form-control" id="floatingEmail"
-                                value="<%= patient.email %>" disabled>
-                        </div>
 
-                        <div class="form-group mb-3 w-75 text-center">
-                            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
-
-                        </div>
-                    </form>
-                </section>
             </article>
         </main>
         <%- include("footer.ejs"); %>
+            <script src="/static/js/allergie.js"></script>
 
 </body>
