@@ -8,11 +8,11 @@ const medecinRepo = require("../utils/medecin.repository");
 const patientRepo = require('../utils/patient.repository');
 const ordonnanceRepository = require("../utils/ordonnance.repository");
 const { spawnSync } = require('child_process');
+const { Console } = require("console");
 
 router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
-    //console.log(patientDuMedecin);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     var patientTrie = [];
@@ -35,12 +35,16 @@ async function searchPatByNPS(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
-    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); 
     var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp, request.body.numsecup);
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    let year = date_time.getFullYear();
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie });
+        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date });
     }
 };
 
@@ -53,7 +57,6 @@ async function updateUser(request, response) {
 
 router.post("/updateEtab", auth.checkAuthentication("MEDECIN"), updateEtab);
 async function updateEtab(request, response) {
-    //console.log(request.body.etab);
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     medecinRepo.updateEtab(medecin.id_professionneldesante, request.body.etab);
     response.redirect("/medecin");
@@ -75,7 +78,6 @@ async function voirPatient(request, response) {
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
     let year_patient = date_patient.getFullYear();
-    console.log(patient);
     response.render("medecin_OnePatient", { "patient": patient, "medecin": medecin, "ordoPatient": ordoPatient, "allergies": allergiesOfAPatient, "annee": year, "mois": month, "jour": date, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient });
 
 }
@@ -131,19 +133,28 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
     }
 }
 
-router.get("/ordonnanceMedicamenteuse", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
-async function ordonnanceMedicamenteuse(request, response) {
+router.get("/ordonnanceMedicamenteuseSsPatient", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuseSsPatient);
+async function ordonnanceMedicamenteuseSsPatient(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
-    //var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
-    //var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); console.log(request.user.email);
     var date_time = new Date();
     let date = ("0" + date_time.getDate()).slice(-2);
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     let year = date_time.getFullYear();
-
     var listeMedicament = await ordonnanceRepository.getAllMedicaments();
-    response.render("ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament /*, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin*/});
+    var patient = null;
+    response.render("vue_ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament , "patient": patient});
+}
+
+router.get("/ordonnanceMedicamenteuse/:numSecu", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
+async function ordonnanceMedicamenteuse(request, response) {
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    let year = date_time.getFullYear();
+    var listeMedicament = await ordonnanceRepository.getAllMedicaments();
+    var patient = await patientRepo.getOnePatientByNumSecu(request.params.numSecu);
+    response.render("vue_ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament , "patient": patient});
 }
 
 module.exports = router;

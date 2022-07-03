@@ -10,7 +10,7 @@ module.exports = {
       sql = "SELECT * FROM Pharmacie INNER JOIN utilisateur USING (email) WHERE email = ?;"
       const rows = await conn.query(sql, email)
       conn.end()
-      console.log("ROWS FETCHED: " + rows.length)
+      //console.log("ROWS FETCHED: " + rows.length)
       if (rows.length == 1) {
         return rows[0]
       } else {
@@ -28,7 +28,7 @@ module.exports = {
       sql = "UPDATE Pharmacie SET nom_pharmacie=?, numero_telephone=? WHERE email=?;";
       const okPacket = await conn.query(sql,[nom_pharmacie, numero_telephone, email]);
       conn.end();
-      console.log(okPacket);
+      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
