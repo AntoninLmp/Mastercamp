@@ -17,7 +17,7 @@ module.exports = {
             sql = "SELECT * FROM Ordonnance ORDER BY id_ordo DESC ;"
             const rows = await conn.query(sql)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -30,9 +30,8 @@ module.exports = {
             conn = await pool.getConnection()
             sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE email = ? ORDER BY id_ordo DESC;"
             const rows = await conn.query(sql,email)
-
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -45,7 +44,7 @@ module.exports = {
             sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE patients.email = ?;"
             const rows = await conn.query(sql, email)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -60,7 +59,7 @@ module.exports = {
             sql = "SELECT * FROM ordonnance INNER JOIN patients USING (id_patient) WHERE numero_sercurite = ? ORDER BY id_ordo DESC;"
             const rows = await conn.query(sql,numSecu)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -74,7 +73,7 @@ module.exports = {
             sql = "SELECT * FROM Ordonnance WHERE id_ordo=?;"
             const rows = await conn.query(sql, IdOrdo)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             if (rows.lenght != 0) {
                 return rows[0]
             }
@@ -92,7 +91,7 @@ module.exports = {
             sql = "SELECT * FROM professionneldesante WHERE id_professionneldesante=?;"
             const rows = await conn.query(sql, IdMedecin)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows[0]
         } catch (err) {
             console.log(err)
@@ -106,7 +105,7 @@ module.exports = {
             sql = "SELECT * FROM exercer inner join etablissement USING(id_etablissement) where id_professionneldesante = ?;"
             const rows = await conn.query(sql, IdMedecin)
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -119,7 +118,7 @@ module.exports = {
             sql = "SELECT * FROM contenir INNER join listedemedicaments USING(id_medic) where id_ordo = ?;"
             const rows = await conn.query(sql, IdOrdo)
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -132,7 +131,7 @@ module.exports = {
             sql = "INSERT INTO ordonnance (id_ordo, date_delivrance, ville_ordo, description, id_professionneldesante, id_patient) VALUES (NULL, ?,?,?,?,?);"
             const rows = await conn.query(sql, [dateDelivrance, ville, description, idProfDeSante, idPatient]);
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -172,7 +171,7 @@ module.exports = {
             sql = "SELECT * FROM avoirallergie inner join allergie USING(id_allergie) WHERE id_patient = ?;"
             const rows = await conn.query(sql, idPatient);
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
          } catch (err) {
             console.log(err)
@@ -185,7 +184,7 @@ module.exports = {
             sql = "SELECT * FROM patients WHERE numero_sercurite = ?;"
             const rows = await conn.query(sql, NumSecu)
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             if (rows.length == 0){
                 return false;
             }
@@ -203,7 +202,7 @@ module.exports = {
             sql = "insert into avoirallergie (id_patient, id_allergie) VALUES ( ?, ? );"
             const rows = await conn.query(sql, [idPatient, idAllergie]);
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -216,7 +215,7 @@ module.exports = {
             sql = " DELETE FROM avoirallergie WHERE avoirallergie.id_patient = ? AND avoirallergie.id_allergie = ?"
             const rows = await conn.query(sql, [idPatient, idAllergie]);
             conn.end()
-            console.log("ROWS FETCHED : " + rows.length)
+            //console.log("ROWS FETCHED : " + rows.length)
             return rows
         } catch (err) {
             console.log(err)
@@ -229,7 +228,7 @@ module.exports = {
             sql = "SELECT * FROM ListeDeMedicaments;"
             const rows = await conn.query(sql)
             conn.end()
-            console.log("ROWS FETCHED: " + rows.length)
+            //console.log("ROWS FETCHED: " + rows.length)
             return rows
         } catch (err) {
             console.log(err)

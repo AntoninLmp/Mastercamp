@@ -96,7 +96,7 @@ module.exports = {
           conn = await pool.getConnection();
           sql = "SELECT * FROM utilisateur WHERE email = ?";
           const rows = await conn.query(sql, email);
-          console.log("USERS FETCHED: "+rows.length);
+          //console.log("USERS FETCHED: "+rows.length);
           if (rows.length == 0){
             return true;
           }
@@ -114,7 +114,7 @@ module.exports = {
           conn = await pool.getConnection();
           sql = "SELECT * FROM rpps WHERE num_rpps = ? AND Utiliser = 0";
           const rows = await conn.query(sql, rpps);
-          console.log("rpps FETCHED: "+rows.length);
+          //console.log("rpps FETCHED: "+rows.length);
           if (rows.length == 1){
               sql = "UPDATE rpps SET Utiliser=1 WHERE num_rpps = ?";
               const rows = await conn.query(sql, rpps);
