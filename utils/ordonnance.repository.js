@@ -222,9 +222,19 @@ module.exports = {
             console.log(err)
             throw err
         }
-    }
-
-
-
+    },
+    async getAllMedicaments() {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM ListeDeMedicaments;"
+            const rows = await conn.query(sql)
+            conn.end()
+            console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
 
 }
