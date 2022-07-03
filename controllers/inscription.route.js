@@ -39,14 +39,13 @@ async function addMedecin(request, response) {
         response.render("inscription_sante", { "content": myContent });
     }
     else {
-        bool2 = await utilisateurRepo.GestionRpps(request.body.rpps);
-        if (bool2 != true) {
-            var myContent = [];
-            myContent.push({ "category": "ERREUR", "message": "Ce numéro RPPS n'est pas valide." });
-            response.render("inscription_sante", { "content": myContent });
-        } else if (request.body.mdp != request.body.mdp2) {
+        if (request.body.mdp != request.body.mdp2) {
             var myContent = [];
             myContent.push({ "category": "ERREUR", "message": "Les deux mots de passe sont différents." });
+            response.render("inscription_sante", { "content": myContent });
+        } else if ((await utilisateurRepo.GestionRpps(request.body.rpps)) != true) {
+            var myContent = [];
+            myContent.push({ "category": "ERREUR", "message": "Ce numéro RPPS n'est pas valide." });
             response.render("inscription_sante", { "content": myContent });
         } else {
             var inserer = await utilisateurRepo.addOneMedecin(
@@ -67,17 +66,16 @@ async function addMedecin(request, response) {
 
 //Route inscription pour les patients
 async function addPatient(request, response) {
-    bool = await utilisateurRepo.VerifExiste(request.body.email);
-    if (bool != true) {
-        var myContent = [];
-        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
-        response.render("inscription_patient", { "content": myContent });
-    } else if (request.body.mdp != request.body.mdp2) {
+    // bool = await utilisateurRepo.VerifExiste(request.body.email);
+    if (request.body.mdp != request.body.mdp2) {
         var myContent = [];
         myContent.push({ "category": "ERREUR", "message": "Les deux mots de passe sont différents." });
         response.render("inscription_patient", { "content": myContent });
-    }
-    else {
+    } else if (await utilisateurRepo.VerifExiste(request.body.email) != true) {
+        var myContent = [];
+        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
+        response.render("inscription_patient", { "content": myContent });
+    } else {
         var inserer = await utilisateurRepo.addOnePatient(
             request.body.email,
             request.body.mdp,
@@ -99,13 +97,13 @@ async function addPatient(request, response) {
 async function addOrganismeSante(request, response) {
     bool = await utilisateurRepo.VerifExiste(request.body.email);
     console.log(request.body.mdp, request.body.mdp2);
-    if (bool != true) {
-        var myContent = [];
-        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
-        response.render("inscription_organisme_sante", { "content": myContent });
-    } else if (request.body.mdp != request.body.mdp2) {
+    if (request.body.mdp != request.body.mdp2) {
         var myContent = [];
         myContent.push({ "category": "ERREUR", "message": "Les deux mots de passe sont différents." });
+        response.render("inscription_organisme_sante", { "content": myContent });
+    } else if (await utilisateurRepo.VerifExiste(request.body.email) != true) {
+        var myContent = [];
+        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
         response.render("inscription_organisme_sante", { "content": myContent });
     } else {
         var inserer = await utilisateurRepo.addOneOrganismeSante(
