@@ -8,88 +8,106 @@
 
 <body class="">
     <%- include("medecin_header.ejs"); %>
-    <main class="container CaviarDreams p-3 ">
-        <h1>Créer une ordonnance médicamenteuse</h1>
-        <form action="/medecin/addPrescriptionMedicale/false" method="post">
-            <div class="form-row d-flex flex-wrap justify-content-around">
-                <div class="form-group m-2 w-30">
-                    <label for="inputDatePatient">Date</label>
-                    <input name="date" type="text" class="form-control"
-                        id="inputDatePatient" 
-                        value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>      
-                </div>
-                <div class="form-group m-2 w-30">
-                    <label for="inputVille">Ville</label>
-                    <input name="ville" type="text" class="form-control" id="inputVille"
-                        placeholder="Paris" required>
-                </div>
-                <div class="form-group m-2 w-30">
-                    <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
-                    <% if (patient == null) {%>
-                        <input name="NumSecu" type="number" class="form-control"
-                            id="inputNumSecuSociale" placeholder="1123544645121" required>
-                    <% } else {%>
-                        <input name="NumSecu" type="number" class="form-control"
-                        id="inputNumSecuSociale"  value="<%=patient.numero_sercurite %>" required>
-                    <% } %>
-                </div>
-            </div>
-            <div id="container_Medicament">
-                <div class="col-6 text-center">
-                    <h1>Ajout médicament</h1>
-                    <form action="" method="post">
-                        <div class="form-row">
-                            <div class="form-group m-2 px-5">
-                                <label for="inputMedicament">Medicament</label>
-                                <!--
-                                <input type="text" class="form-control" id="inputMedicament"
-                                    placeholder="Doliprane 1g">-->
-                                <select name='medicaments'>
-                                    <% for (var lm of listeMedicament) { %>
-                                        <option value='<%= lm.id_medic %>'> 
-                                            <%= lm.id_medic %> <%= lm.nom_medicament %>
-                                        </option>                    
-                                    <% } %>
-                                </select>
+        <main class="container CaviarDreams p-3 ">
+            <% if (patient!=null) {%>
+                <h1 class="CaviarDreamsBold f-blue2" id="ALL">Allergies du Patient</h1>
+                <article class="bg-grey p-4 rounded d-flex align-items-center">
+                    <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
+                    <div class="w-100 text-center">
+                        <% for (var al of allergies) { %>
+                            <div class="d-flex justify-content-center">
+                                <p class="f-blue1 fs-4 text-capitalize f">
+                                    <%= al.nom_allergie %>
+                                </p>
                             </div>
-                            <div class="form-group m-2 px-5">
-                                <label for="inputFrequence">Fréquence</label>
-                                <input type="text" class="form-control" id="inputFrequence"
-                                    placeholder="2 fois par jour">
+                            <% } %>
+                    </div>
+                </article>
+                <% } %>
+
+                    <h1 class="CaviarDreamsBold f-blue2 pt-2">Créer une ordonnance médicamenteuse</h1>
+                    <form action="/medecin/addPrescriptionMedicale/false" method="post" class="text-center">
+                        <div class="form-row d-flex flex-wrap justify-content-around">
+                            <div class="form-group m-2 w-30">
+                                <label for="inputDatePatient">Date</label>
+                                <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                    value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
                             </div>
-                            <div class="form-group m-2 px-5">
-                                <label for="inputDuree">Durée de la prise</label>
-                                <input type="text" class="form-control" id="inputDuree"
-                                    placeholder="7 jours">
+                            <div class="form-group m-2 w-30">
+                                <label for="inputVille">Ville</label>
+                                <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Paris"
+                                    required>
+                            </div>
+                            <div class="form-group m-2 w-30">
+                                <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
+                                <% if (patient==null) {%>
+                                    <input name="NumSecu" type="number" class="form-control" id="inputNumSecuSociale"
+                                        placeholder="1123544645121" required>
+                                    <% } else {%>
+                                        <input name="NumSecu" type="number" class="form-control"
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" required>
+                                        <% } %>
                             </div>
                         </div>
-                        <button type="button" class="border rounded m-3">Ajouter</button>
-                    </form>
-                </div>
-                <div class="w-100">
-                    <h1>Liste </h1>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nom Médicament</th>
-                                <th scope="col">Fréquence</th>
-                                <th scope="col">Durée de la prise</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Doliprane 1g</th>
-                                <td>2 fois par jour (matin et soir)</td>
-                                <td>2 semaines</td>
-                            </tr>
+                        <div id="container_Medicament">
+                            <div class="text-center mx-20 mt-5 border">
+                                <h1 class="CaviarDreams f-blue_green pt-2">Ajout médicament</h1>
+                                <form action="" method="post">
+                                    <div class="form-row">
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputMedicament">Medicament</label>
+                                            <!--
+                                <input type="text" class="form-control" id="inputMedicament"
+                                    placeholder="Doliprane 1g">-->
+                                            <select name='medicaments' class="p-2 border btn">
+                                                <% for (var lm of listeMedicament) { %>
+                                                    <option value='<%= lm.id_medic %>'>
+                                                        <%= lm.id_medic %>
+                                                            <%= lm.nom_medicament %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputFrequence">Fréquence</label>
+                                            <input type="text" class="form-control" id="inputFrequence"
+                                                placeholder="2 fois par jour">
+                                        </div>
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputDuree">Durée de la prise</label>
+                                            <input type="text" class="form-control id=" inputDuree"
+                                                placeholder="7 jours">
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Ajouter</button>
+                                </form>
+                            </div>
+                            <div class="w-100">
+                                <h1 class="CaviarDreamsBold f-blue2 pt-2">Liste </h1>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nom Médicament</th>
+                                            <th scope="col">Fréquence</th>
+                                            <th scope="col">Durée de la prise</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Doliprane 1g</th>
+                                            <td>2 fois par jour (matin et soir)</td>
+                                            <td>2 semaines</td>
+                                        </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        <button type="submit" class="border rounded m-3">Enregistrer</button>
-        </form>
-    </main>
-    <%- include("footer.ejs"); %>
-    <script src="/static/js/medecin_home.js"></script>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                    </form>
+        </main>
+        <%- include("footer.ejs"); %>
+            <script src="/static/js/medecin_home.js"></script>
 </body>

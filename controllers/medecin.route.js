@@ -35,7 +35,7 @@ async function searchPatByNPS(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
-    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante); 
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp, request.body.numsecup);
     var date_time = new Date();
     let date = ("0" + date_time.getDate()).slice(-2);
@@ -142,7 +142,7 @@ async function ordonnanceMedicamenteuseSsPatient(request, response) {
     let year = date_time.getFullYear();
     var listeMedicament = await ordonnanceRepository.getAllMedicaments();
     var patient = null;
-    response.render("vue_ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament , "patient": patient});
+    response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient });
 }
 
 router.get("/ordonnanceMedicamenteuse/:numSecu", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
@@ -154,7 +154,13 @@ async function ordonnanceMedicamenteuse(request, response) {
     let year = date_time.getFullYear();
     var listeMedicament = await ordonnanceRepository.getAllMedicaments();
     var patient = await patientRepo.getOnePatientByNumSecu(request.params.numSecu);
-    response.render("vue_ordo_medicamenteuse", { "medecin": medecin,  "annee": year, "mois": month, "jour": date, "listeMedicament" : listeMedicament , "patient": patient});
+    if (patient == null) {
+        response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient });
+    } else {
+        var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
+        response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient });
+
+    }
 }
 
 module.exports = router;

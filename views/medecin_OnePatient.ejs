@@ -2,8 +2,8 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-    <title>Accueil - Professionel de Santé</title>
-    <link rel="stylesheet" href="/static/css/inscription.css">
+        <title>Accueil - Professionel de Santé</title>
+        <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body>
@@ -116,16 +116,17 @@
 
                     <section class="mb-5">
                         <h1 class="CaviarDreamsBold f-blue2" id="MP_">Créer une ordonnance</h1>
-                        <section class="text-center">
-                            <a href="/medecin/ordonnanceMedicamenteuse/<%= patient.numero_sercurite %>">
-                            <button type="button"
-                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
-                                id="ajoutMedoc2">
-                                Ordonnance médicamenteuse
-                            </button>
+                        <section class="text-center m-4">
+                            <a href="/medecin/ordonnanceMedicamenteuse/<%= patient.numero_sercurite %>"
+                                class="text-decoration-none">
+                                <button type="button"
+                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                    id="ajoutMedoc2">
+                                    Ordonnance médicamenteuse
+                                </button>
                             </a>
                             <button type="button"
-                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
                                 id="ajoutPrescrip2">
                                 Ordonnance prescriptive
                             </button>
@@ -135,28 +136,35 @@
                         </div>
                         <div id="container_prescription2" class="p-3">
                             <h2 class="f-blue2">Prescription médicale</h2>
-                            <form action="/medecin/addPrescriptionMedicale/true" method="post">
-                                <div class="form-row justify-content-around d-flex flex-wrap">
-                                    <div class="form-group m-2 w-30">
-                                        <label for="inputDatePatient">Date</label>
+                            <form action="/medecin/addPrescriptionMedicale/true" method="post" class="text-center">
+                                <div class="form-row">
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
                                         <input name="date" type="text" class="form-control" id="inputDatePatient"
                                             value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
                                     </div>
-                                    <div class="form-group m-2 w-30">
-                                        <label for="inputVille">Ville</label>
-                                        <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Paris" required>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputVille">Ville</label>
+                                        <input name="ville" type="text" class="form-control" id="inputVille"
+                                            placeholder="Paris" required>
                                     </div>
-                                    <div class="form-group m-2 w-30">
-                                        <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputNumSecuSociale">Numéro de
+                                            Sécurité
+                                            Sociale</label>
                                         <input name="NumSecu" type="number" class="form-control"
-                                            id="inputNumSecuSociale"  value="<%=patient.numero_sercurite %>" required>
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" required>
                                     </div>
                                 </div>
-                                <div class="form-group m-2 px-5 resize-h ">
-                                    <textarea name="prescription" id="inputPrescription" cols="100" rows="5"
-                                        placeholder="Radiographie, Séance de kinésithérapeute... " required></textarea>
+                                <div class="form-group m-2 px-5 resize-h">
+                                    <label for="prescription" class="m-4 w-40 fs-3 f-blue_green">Description de
+                                        l'ordonnance</label>
+                                    <textarea name="prescription" id="inputPrescription" rows="5"
+                                        placeholder="Radiographie, Séance de kinésithérapeute... " class="w-100"
+                                        required></textarea>
                                 </div>
-                                <button type="submit" class="border rounded m-3">Enregistrer</button>
+                                <button type="submit"
+                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
                             </form>
                         </div>
                     </section>
@@ -173,11 +181,11 @@
                                 <div class="div_ordo text-center border rounded rounded-4 w-28">
                                     <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
                                         class="text-decoration-none text-dark">
-                                        <h1 class="f-blue1">Ordonnance</h1>
-                                        <h2 class="f-blue_green">
+                                        <h1 class="f-blue1 fs-4">Ordonnance</h1>
+                                        <h2 class="f-blue_green fs-3">
                                             <%= ord.ville_ordo %>
                                         </h2>
-                                        <h3 class="f-blue1">
+                                        <h3 class="f-blue1 fs-4">
                                             <%= ord.date_delivrance.toISOString().slice(0, 10) %>
                                         </h3>
                                     </a>
