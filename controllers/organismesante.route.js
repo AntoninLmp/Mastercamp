@@ -13,7 +13,7 @@ router.get("/", auth.checkAuthentication("PHARMACIE"), async function (request, 
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnances = [];
     var ordonnance = [];
-    console.log(ordonnance.length);
+    //console.log(ordonnance.length);
     response.render("orgasante_home.ejs", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
 });
 
@@ -22,7 +22,7 @@ async function SearchByIdOrdonnance(request, response) {
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnances = [];
     var ordonnance = await ordonnanceRepo.getOneOrdonnance(request.body.numeroOrdo);
-    console.log(ordonnance);
+    //console.log(ordonnance);
     response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
 };
 
@@ -32,7 +32,7 @@ async function searchByPatientOrdonnance(request, response) {
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnance = [];
     var ordonnances = await ordonnanceRepo.getAllOrdonnanceByPatientBySecu(request.body.numeroSecu);
-    console.log(ordonnances);
+    //console.log(ordonnances);
     response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
 };
 
