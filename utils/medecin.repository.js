@@ -10,7 +10,7 @@ module.exports = {
       sql = "SELECT * FROM ProfessionnelDeSante INNER JOIN utilisateur USING (email) WHERE email = ?;"
       const rows = await conn.query(sql, email)
       conn.end()
-      console.log("ROWS FETCHED: " + rows.length)
+      //console.log("ROWS FETCHED: " + rows.length)
       if (rows.length == 1) {
         return rows[0]
       } else {
@@ -43,7 +43,7 @@ module.exports = {
       const okPacket = await conn.query(sql,
         [idMedecin, idEtab]);
       conn.end();
-      console.log(okPacket);
+      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
@@ -56,7 +56,7 @@ module.exports = {
       sql = "SELECT * FROM exercer inner join etablissement USING(id_etablissement) where id_professionneldesante = ?;"
       const rows = await conn.query(sql, IdMedecin)
       conn.end()
-      console.log("ROWS FETCHED : " + rows.length)
+      //console.log("ROWS FETCHED : " + rows.length)
       return rows
     } catch (err) {
       console.log(err)
@@ -71,7 +71,7 @@ module.exports = {
       sql = "SELECT * FROM etablissement left join exercer USING(id_etablissement) where id_etablissement not in (SELECT id_etablissement FROM etablissement left join exercer USING(id_etablissement) WHERE id_professionneldesante = ?);"
       const rows = await conn.query(sql, IdMedecin)
       conn.end()
-      console.log("ROWS FETCHED : " + rows.length)
+      //console.log("ROWS FETCHED : " + rows.length)
       return rows
     } catch (err) {
       console.log(err)
@@ -150,7 +150,7 @@ module.exports = {
         rows = await conn.query(sql,[email, prenomp]);
       }
       conn.end()
-      console.log("ROWS FETCHED: " + rows.length)
+      //console.log("ROWS FETCHED: " + rows.length)
       return rows;
     } catch (err) {
       console.log(err);

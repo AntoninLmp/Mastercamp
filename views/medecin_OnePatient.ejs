@@ -117,11 +117,13 @@
                     <section class="mb-5">
                         <h1 class="CaviarDreamsBold f-blue2" id="MP_">Créer une ordonnance</h1>
                         <section class="text-center">
+                            <a href="/medecin/ordonnanceMedicamenteuse/<%= patient.numero_sercurite %>">
                             <button type="button"
                                 class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
                                 id="ajoutMedoc2">
                                 Ordonnance médicamenteuse
                             </button>
+                            </a>
                             <button type="button"
                                 class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white"
                                 id="ajoutPrescrip2">
@@ -129,49 +131,7 @@
                             </button>
                         </section>
                         <div id="container_Medicament2">
-                            <div class="col-6 text-center">
-                                <h1>Ordonnance médicamenteuse</h1>
-                                <form action="" method="post">
-                                    <div class="form-row">
-                                        <div class="form-group m-2 px-5">
-                                            <label for="inputMedicament">Medicament</label>
-                                            <input type="text" class="form-control" id="inputMedicament"
-                                                placeholder="Doliprane 1g">
-                                        </div>
-                                        <div class="form-group m-2 px-5">
-                                            <label for="inputFrequence">Fréquence</label>
-                                            <input type="text" class="form-control" id="inputFrequence"
-                                                placeholder="2 fois par jour">
-                                        </div>
-                                        <div class="form-group m-2 px-5">
-                                            <label for="inputDuree">Durée de la prise</label>
-                                            <input type="text" class="form-control" id="inputDuree"
-                                                placeholder="7 jours">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="border rounded m-3">Ajouter</button>
-                                </form>
-                            </div>
-                            <div class="w-100">
-                                <h1>Liste </h1>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nom Médicament</th>
-                                            <th scope="col">Fréquence</th>
-                                            <th scope="col">Durée de la prise</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Doliprane 1g</th>
-                                            <td>2 fois par jour (matin et soir)</td>
-                                            <td>2 semaines</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            <!--USEFULL-->
                         </div>
                         <div id="container_prescription2" class="p-3">
                             <h2 class="f-blue2">Prescription médicale</h2>

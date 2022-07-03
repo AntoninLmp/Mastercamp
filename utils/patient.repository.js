@@ -10,7 +10,7 @@ module.exports = {
         sql = "SELECT * FROM patients INNER JOIN utilisateur USING (email) WHERE email = ?;"
         const rows = await conn.query(sql,email)
         conn.end()
-        console.log("ROWS FETCHED: " + rows.length)
+        //console.log("ROWS FETCHED: " + rows.length)
         if (rows.length == 1){
           return rows[0]
         }else{
@@ -28,7 +28,7 @@ module.exports = {
       sql = "SELECT * FROM patients INNER JOIN utilisateur USING (email) WHERE id_patient = ?;"
       const rows = await conn.query(sql,IdPatient)
       conn.end()
-      console.log("ROWS FETCHED: " + rows.length)
+      //console.log("ROWS FETCHED: " + rows.length)
       if (rows.length == 1){
         return rows[0]
       }else{
@@ -46,7 +46,7 @@ async getOnePatientByNumSecu(NumSecu) {
     sql = "SELECT * FROM patients INNER JOIN utilisateur USING (email) WHERE numero_sercurite = ?;"
     const rows = await conn.query(sql,NumSecu)
     conn.end()
-    console.log("ROWS FETCHED: " + rows.length)
+    //console.log("ROWS FETCHED: " + rows.length)
     if (rows.length == 1){
       return rows[0]
     }else{

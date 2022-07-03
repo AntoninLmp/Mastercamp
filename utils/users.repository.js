@@ -99,33 +99,32 @@ module.exports = {
       console.log("USERS FETCHED: " + rows.length);
       if (rows.length == 0) {
         return true;
-      }
-      else
+      } else
         return false;
-    }
+      }
     catch (error) {
       throw error;
     }
   },
 
-  //Vérifier le RPPS
-  async GestionRpps(rpps) {
-    try {
-      conn = await pool.getConnection();
-      sql = "SELECT * FROM rpps WHERE num_rpps = ? AND Utiliser = 0";
-      const rows = await conn.query(sql, rpps);
-      console.log("rpps FETCHED: " + rows.length);
-      if (rows.length == 1) {
-        sql = "UPDATE rpps SET Utiliser=1 WHERE num_rpps = ?";
-        const rows = await conn.query(sql, rpps);
-        return true;
+  //Vérifier l'addresse mail unique
+  async GestionRpps(rpps){
+      try{
+          conn = await pool.getConnection();
+          sql = "SELECT * FROM rpps WHERE num_rpps = ? AND Utiliser = 0";
+          const rows = await conn.query(sql, rpps);
+          //console.log("rpps FETCHED: "+rows.length);
+          if (rows.length == 1){
+              sql = "UPDATE rpps SET Utiliser=1 WHERE num_rpps = ?";
+              const rows = await conn.query(sql, rpps);
+              return true;
+          }
+          else
+              return false;
       }
-      else
-        return false;
-    }
-    catch (error) {
-      throw error;
-    }
+      catch(error){
+          throw error;
+      }
   }
 
 }; 
