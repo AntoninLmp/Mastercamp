@@ -316,4 +316,23 @@ module.exports = {
         }
     },
 
+    async checkNumeroSecurite(NumSecu) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT * FROM patients WHERE numero_sercurite = ?;"
+            const rows = await conn.query(sql, NumSecu)
+            conn.end()
+            //console.log("ROWS FETCHED : " + rows.length)
+            if (rows.length == 0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    }
+
 }
