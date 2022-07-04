@@ -64,6 +64,10 @@
     min-width: fit-content;
 }
 
+.max-width-content {
+    max-width: fit-content;
+}
+
 /*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
 
 /*---PRIMARY---*/
@@ -114,6 +118,16 @@
 
 .bg-grey {
     background-color: rgb(250, 250, 250);
+}
+
+.bg-light-grey {
+    background: lightgray;
+}
+
+/*------------------------------------ FONTS JUSTIFICATION -----------------------------------*/
+
+.text-justify{
+    text-align: justify;
 }
 
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
@@ -175,13 +189,17 @@
     border-color: #0E9BA1;
 }
 
-/*------------------------------------ BORDER RADIUS PROPERTIES ------------------------------------------*/
-
-.rounded-4 {
-    border-radius: 10%;
+.btn-link-grey:hover {
+    background: dimgray;
 }
 
-/*------------------------------------ IMG ------------------------------------------*/
+/*------------------------------------ BORDER RADIUS PROPERTIES -------------------------------------*/
+
+.rounded-4 {
+    border-radius: 1vw;
+}
+
+/*--------------------------------------------- IMG -------------------------------------------------*/
 #header-logo,
 .img_logo {
     width: 200px;
@@ -208,6 +226,13 @@
     width: 40px;
     height: 40px;
 }
+
+#allergie {
+    width: 15%;
+    height: auto;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
 
 .nav-container input[type="checkbox"]:checked~.logo {
     display: none;
