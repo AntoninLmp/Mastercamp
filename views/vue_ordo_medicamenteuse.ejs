@@ -102,6 +102,11 @@
                                                     <td><%= m.frequence %></td>
                                                     <td><%= m.duree %></td>
                                                     <td><%= m.quantité %></td>
+                                                    <td>
+                                                        <a href="/medecin/delMedicament/<%= m.id_medic %>/<%= m.id_ordo %>">
+                                                            <button type="button" class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold">Supprimer</button>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             <% } %>
                                         <% } %>
@@ -111,7 +116,10 @@
                         </div>
                         
                         <button type="button"
-                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
+                        
+                        <button type="button"
+                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Annuler</button>
                     
         </main>
         <%- include("footer.ejs"); %>
