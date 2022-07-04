@@ -316,6 +316,20 @@ module.exports = {
         }
     },
 
+    async getMedicamentSansCeuxQuiADeja(IdOrdo) {
+        try {
+          conn = await pool.getConnection()
+          sql = "SELECT * FROM listedemedicaments where id_medic not in (SELECT id_medic FROM contenir WHERE id_ordo = ?);"
+          const rows = await conn.query(sql, IdOrdo)
+          conn.end()
+          //console.log("ROWS FETCHED : " + rows.length)
+          return rows
+        } catch (err) {
+          console.log(err)
+          throw err
+        }
+      },
+
     async checkNumeroSecurite(NumSecu) {
         try {
             conn = await pool.getConnection()
