@@ -147,7 +147,6 @@ module.exports = {
             sql2 = "SELECT * FROM Ordonnance WHERE id_ordo = (SELECT MAX(id_ordo) FROM Ordonnance);"
             const rows2 = await conn.query(sql2)
             conn.end()
-            console.log("ROWS FETCHED : " + rows2.length)
             return rows2[0]
         } catch (err) {
             console.log(err)
