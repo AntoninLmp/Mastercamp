@@ -52,14 +52,14 @@ router.post("/updateMedecin", auth.checkAuthentication("MEDECIN"), updateUser);
 async function updateUser(request, response) {
     medecinRepo.updateMedecin(request.user.email, request.body.nom, request.body.prenom,
         request.body.profession);
-    response.redirect("/medecin");
+    response.redirect("/medecin#Mesinformations");
 }
 
 router.post("/updateEtab", auth.checkAuthentication("MEDECIN"), updateEtab);
 async function updateEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     medecinRepo.updateEtab(medecin.id_professionneldesante, request.body.etab);
-    response.redirect("/medecin");
+    response.redirect("/medecin#ETAB");
 }
 
 router.get("/VoirPatient/:PatientEmail", auth.checkAuthentication("MEDECIN"), voirPatient);
@@ -102,7 +102,7 @@ router.get("/delEtab/:EtabId", auth.checkAuthentication("MEDECIN"), delEtab);
 async function delEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     medecinRepo.delEtabByMed(request.params.EtabId, medecin.id_professionneldesante);
-    response.redirect("/medecin");
+    response.redirect("/medecin#ETAB");
 }
 
 router.post("/addPrescriptionMedicale/:boolRedirect", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
