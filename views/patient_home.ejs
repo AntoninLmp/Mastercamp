@@ -2,15 +2,16 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Patient</title>
+        <title>Mon espace - Patient</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
 <body class="">
     <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams container">
-            <nav class="border rounded-4 m-3 p-4 bg-green opacity-50 height_ftcont  min-width-content vw-25 vh-25">
-                <ul class="list-unstyled">
+            <nav
+                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+                <ul class=" list-unstyled">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#MO_" class="text-decoration-none text-white">Mes Ordonnances</a>
                     </li>
@@ -21,8 +22,7 @@
                         <a href="#PH" class="text-decoration-none text-white">Mes pharmaciens</a>
                     </li>
                     <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#infos" class="text-decoration-none text-white"></a>
-                        Mes informations
+                        <a href="#infos" class="text-decoration-none text-white">Mes informations</a>
                     </li>
                 </ul>
             </nav>
@@ -32,18 +32,19 @@
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
                     <form action="/patient/ordonnances" method="get">
                         <div class="input-group rounded d-flex">
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher ville"
-                                aria-label="search" aria-describedby="search-addon" />
+                            <input type="search" class="rounded border p-1 w-25 mx-1"
+                                placeholder="Rechercher une ville. Ex : Paris" aria-label="search"
+                                aria-describedby="search-addon" />
                             <input type="date" class="rounded border p-1 w-25 mx-1" />
                             <button type="submit" class="input-group-text border-0 " id="search-addon">
                                 <img src="/static/img/loupe.png" alt="loupe" id="loupe">
                             </button>
                         </div>
                     </form>
-                    <section class="d-flex flex-wrap">
+                    <section class="d-flex flex-wrap justify-content-center">
                         <% for (var ord of ordonnances) { %>
                             <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
                                     class="text-decoration-none text-dark">
                                     <h1>Ordonnance</h1>
                                     <h2 class="f-blue_green">
@@ -58,34 +59,40 @@
                             <% } %>
                     </section>
                 </section>
+
                 <section class="mt-3" id="UTIL">
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded mx-5 p-3">
+                    <section class="border rounded p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes
-                            <span class="f-blue_green">ordonnances</span>.
-                            Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
-                            ainsi que par votre pharmacien.
+                            Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de vos différents
+                            <span class="f-blue_green">papiers de santé</span>.
+                            Grâce à Ordo130, toutes vos ordonnances sont regroupées et directement accessibles depuis
+                            cet espace, que ce soit par vous,
+                            vos professionnels de santé ou encore les pharmacies. Ordo130 permet de regrouper,
+                            dématérialiser et de télétransmettre vos
+                            ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
                         </p>
-                        <ul>
-                            <li>Toutes vos ordonnances de votre medecin, kinésithérapeute, podologue...</li>
-                            <li>Vos médicaments avec leur dosage</li>
+                        <ul class="fs-5">
+                            <li>Consulter vos ordonnances (Médecin, kinésithérapeute, podologue...)</li>
+                            <li>Consulter vos feuilles de soin.</li>
+                            <li>Trouver une pharmacie.</li>
                         </ul>
 
                     </section>
                 </section>
-                <section class="mt-3" id="PH">
+
+                <section class="mt-5" id="PH">
                     <h1 class="CaviarDreamsBold f-blue2">Mes pharmaciens</h1>
                     <div id="map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5257.036226222494!2d2.364675612577518!3d48.79108938623863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673e39a9dbbb3%3A0x15086347c0e355d0!2sPharmacie%20Villejuif%20Aragon!5e0!3m2!1sfr!2sfr!4v1656084413250!5m2!1sfr!2sfr"
-                            width="95%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-
                 </section>
-                <section class="mt-3" id="infos">
-                    <h1 class="CaviarDreamsBold f-blue2">Mes informations</h1>
+
+                <section class="mt-5">
+                    <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
                     <form method="post" action="/patient/updatePatient" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
                         <div class="form-group m-3 wb40">
@@ -101,7 +108,7 @@
                         <div class="form-group m-3 wb40">
                             <label for="floatingDate">Date de naissance</label>
                             <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
-                                value="<%= patient.date_naissance%>" disabled>
+                                value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingAdresse">Adresse</label>
@@ -124,7 +131,7 @@
                                 value="<%= patient.numero_telephone_pat %>">
                         </div>
                         <div class="form-group m-3 wb40">
-                            <label for="floatingSecuSocial">N° Securité sociale</label>
+                            <label for="floatingSecuSocial">N° Sécurité Sociale</label>
                             <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
                                 value="<%= patient.numero_sercurite %>" disabled>
                         </div>

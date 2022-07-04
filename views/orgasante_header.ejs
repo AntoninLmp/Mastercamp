@@ -2,13 +2,17 @@
 
     <!-- LOGO -->
     <div>
-        <a class="ms-3" href="/">
+        <a class="ms-3" href="/organismesante">
             <img src="/static/img/logo/HelloDoc Blue-05.PNG" alt="illustration" id="header-logo">
         </a>
     </div>
 
     <!-- ACCOUNT -->
-    <div class="me-3">
+    <div class="me-3 d-flex flex-row align-items-center">
+        <div class="me-2">
+            <img id="icon2" src="/static/img/utilisateur.png">
+            <%= pharma.nom_pharmacie %>
+        </div>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link f-turquoise link-turquoise btn btn-outline-light" href="/connexion/Deconnexion">Deconnexion</a>

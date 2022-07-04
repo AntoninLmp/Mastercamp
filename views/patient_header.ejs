@@ -2,14 +2,18 @@
 
     <!-- LOGO -->
     <div>
-        <a class="ms-3" href="/">
+        <a class="ms-3" href="/patient">
             <img src="/static/img/logo/HelloDoc Blue-05.PNG" alt="illustration" id="header-logo">
         </a>
     </div>
 
     <!-- ACCOUNT -->
-    <div class="me-3">
-        <ul class="navbar-nav">
+    <div class="me-3 d-flex flex-row align-items-center">
+        <div class="me-2">
+            <img id="icon2" src="/static/img/utilisateur.png">
+            <%= patient.prenom_pat %>
+        </div>
+        <ul class="navbar-nav ms-2">
             <li class="nav-item">
                 <a class="nav-link f-turquoise link-turquoise btn btn-outline-light" href="/connexion/Deconnexion">Deconnexion</a>
             </li>
