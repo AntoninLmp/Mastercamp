@@ -24,31 +24,8 @@
                     </div>
                 </article>
                 <% } %>
-
                     <h1 class="CaviarDreamsBold f-blue2 pt-2">Créer une ordonnance médicamenteuse</h1>
                     <form action="/medecin/addPrescriptionMedicale/false" method="post" class="text-center">
-                        <div class="form-row d-flex flex-wrap justify-content-around">
-                            <div class="form-group m-2 w-30">
-                                <label for="inputDatePatient">Date</label>
-                                <input name="date" type="text" class="form-control" id="inputDatePatient"
-                                    value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
-                            </div>
-                            <div class="form-group m-2 w-30">
-                                <label for="inputVille">Ville</label>
-                                <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Paris"
-                                    required>
-                            </div>
-                            <div class="form-group m-2 w-30">
-                                <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
-                                <% if (patient==null) {%>
-                                    <input name="NumSecu" type="number" class="form-control" id="inputNumSecuSociale"
-                                        placeholder="1123544645121" required>
-                                    <% } else {%>
-                                        <input name="NumSecu" type="number" class="form-control"
-                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" required>
-                                        <% } %>
-                            </div>
-                        </div>
                         <div id="container_Medicament">
                             <div class="text-center mx-20 mt-5 border">
                                 <h1 class="CaviarDreams f-blue_green pt-2">Ajout médicament</h1>
@@ -104,8 +81,8 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit"
-                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                        <!-- <button type="submit"
+                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button> -->
                     </form>
         </main>
         <%- include("footer.ejs"); %>
