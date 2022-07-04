@@ -49,16 +49,17 @@
                                         <h1 class="px-3">Type</h1>
                                         <hr class="w-40 ">
                                     </div>
-
+                                    
                                     <section class="d-flex flex-row align-items-center justify-content-center">
-                                        <a href="/medecin/ordonnanceMedicamenteuseSsPatient"
-                                            class="text-decoration-none">
-                                            <button type="button"
-                                                class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
-                                                id="ajoutMedoc">
-                                                Ordonnance Médicamenteuse
-                                            </button>
-                                        </a>
+                                        <!-- <a href="/medecin/ordonnanceMedicamenteuseSsPatient"
+                                            class="text-decoration-none"> -->
+                                        <button type="button"
+                                            class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
+                                            id="ajoutMedoc">
+                                            Ordonnance Médicamenteuse
+                                        </button>
+                                        <!-- </a> -->
+                                        
                                         <button type="button"
                                             class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
                                             id="ajoutPrescrip">
@@ -66,7 +67,30 @@
                                         </button>
                                     </section>
                                     <div id="container_Medicament">
-                                        <!--Utile-->
+                                        <form action="/medecin/ordonnanceMedicamenteuseSsPatient" method="get">
+                                            <div class="form-row mb-3">
+                                                <div class="form-group m-2 text-center">
+                                                    <label for="inputDatePatient">Date</label>
+                                                    <input name="date" type="text" class="form-control"
+                                                        id="inputDatePatient"
+                                                        value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                                </div>
+                                                <div class="form-group m-2 text-center">
+                                                    <label for="inputVille">Ville</label>
+                                                    <input name="ville" type="text" class="form-control" id="inputVille"
+                                                        placeholder="Paris" required>
+                                                </div>
+                                                <div class="form-group m-2 text-center">
+                                                    <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
+                                                    <input name="NumSecu" type="number" class="form-control"
+                                                        id="inputNumSecuSociale" placeholder="1123544645121" required>
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">
+                                                Ajouter Médicament(s)
+                                            </button>
+                                        </form>
                                     </div>
                                     <div id="container_prescription">
                                         <h2>Faire une prescription médicale</h2>

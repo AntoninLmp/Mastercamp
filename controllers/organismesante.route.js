@@ -50,13 +50,22 @@ async function voirOrdonnance(request, response) {
     let day_ordo = ("0" + date_ordo.getDate()).slice(-2);
     let month_ordo = ("0" + (date_ordo.getMonth() + 1)).slice(-2);
     let year_ordo = date_ordo.getFullYear();
-    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
+    response.render("vue_ordo_pharma", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
 async function updateUser(request, response) {
     pharmaRepo.updatePharmacie(request.user.email, request.body.nom, request.body.numtel);
     response.redirect("/organismesante");
+}
+
+router.post("/updateOrdoPh/:idMedic/:idOrdo", auth.checkAuthentication("PHARMACIE"), updateOrdoPh);
+async function updateOrdoPh(request, response) {
+    console.log(request.body.qt);
+    console.log(request.params.idMedic);
+    console.log(request.params.idOrdo);
+    pharmaRepo.updateOrdonnancePh(request.body.qt, request.params.idMedic, request.params.idOrdo);
+    response.redirect("/organismesante/VoirOrdonnance/" + request.params.idOrdo);
 }
 
 module.exports = router;
