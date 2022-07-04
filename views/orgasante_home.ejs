@@ -15,13 +15,21 @@
 
             <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
                 <ul class="list-unstyled h5">
-                    <li class="text-white p-2 CaviarDreamsBold">Historique des traitements</li>
-                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#HDT" class="text-decoration-none text-white">
+                            Historique des traitements
+                        </a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#infos" class="text-decoration-none text-white">
+                            Mes informations
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
             <div class="d-flex flex-column">
-                <section class="pt-3 ms-3">
+                <section id="#HDT" class="pt-3 ms-3">
                     <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace !</h1>
                     <div class="d-flex text-center">
                         <form method="post" action="/organismesante/searchByIdOrdonnance">
@@ -97,13 +105,13 @@
                                 </section>
                                 <!---->
                     <% } else { %>
-                        <section class="d-flex flex-wrap justify-content-center m-5 p-5">
-                            <p>Aucune ordonnance disponible.</p>
+                        <section class="d-flex flex-wrap justify-content-center m-5">
+                            Aucune ordonnance disponible.
                         </section>
                         <% } %>
                 </section>
 
-                <section class="mt-5">
+                <section id="#infos" class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2 mb-3" id="Mesinformations">Mes informations</h1>
                     <form method="post" action="/organismesante/updatePharmacie" id="signupFormClient"
                         class="d-flex flex-column flex-wrap mx-auto">
