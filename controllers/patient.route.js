@@ -59,14 +59,45 @@ router.post("/updateAllergie", auth.checkAuthentication("PATIENT"), updateAllerg
 async function updateAllergies(request, response) {
     var patient = await patientRepo.getOnePatient(request.user.email);
     ordonnanceRepo.updateAllergie(patient.id_patient, request.body.allergie);
-    response.redirect("/patient");
+    response.redirect("/patient#ALL");
 }
 
 router.get("/delAllergie/:AllID", auth.checkAuthentication("PATIENT"), delAllerg);
 async function delAllerg(request, response) {
     var patient = await patientRepo.getOnePatient(request.user.email);
     ordonnanceRepo.deleteAllergie(patient.id_patient, request.params.AllID);
-    response.redirect("/patient");
+    response.redirect("/patient#ALL");
 }
+
+router.post("/searchOrdo", auth.checkAuthentication("PATIENT"), async function (request, response) {
+    //console.log(request.user);
+    var patient = await patientRepo.getOnePatient(request.user.email);
+    var ordonnance = [];
+    if ((request.body.ville != []) && (request.body.medecin != [])){
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVilleAndNomMedecin(request.body.medecin, request.body.ville);
+    }
+    else if (request.body.ville != []){
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVille(request.body.ville);
+    }
+    else if (request.body.medecin != []){
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByNomMedecin(request.body.medecin);
+    }
+    //var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc(request.user.email);
+    var flashMessage = request.session.flashMessage;
+    var allergies = await ordonnanceRepo.getAllAllergiesWithoutPatient(patient.id_patient);
+    var allergiesOfAPatient = await ordonnanceRepo.getAllAllergiesOfAPatient(patient.id_patient);
+    request.session.flashMessage = "";
+    //console.log(patient);
+    date_patient = patient.date_naissance;
+    let day_patient = ("0" + date_patient.getDate()).slice(-2);
+    let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
+    let year_patient = date_patient.getFullYear();
+
+    if (patient == false) {
+        response.redirect("/connexion");
+    } else {
+        response.render("patient_home.ejs", { "ordonnances": ordonnance, "patient": patient, "flashMessage": flashMessage, "annee_pat": year_patient, "mois_pat": month_patient, "jour_pat": day_patient, "allergies": allergies, "allergiesOfAPatient": allergiesOfAPatient });
+    }
+});
 
 module.exports = router;

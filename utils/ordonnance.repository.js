@@ -67,6 +67,48 @@ module.exports = {
         }
     },
 
+    async getAllOrdonnanceByVille(Ville) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE ville_ordo=?  ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql,Ville)
+            conn.end()
+            //console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
+    async getAllOrdonnanceByNomMedecin(nomMedecin) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE nom_pro = ? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql,nomMedecin)
+            conn.end()
+            //console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
+    async getAllOrdonnanceByVilleAndNomMedecin(nomMedecin, Ville) {
+        try {
+            conn = await pool.getConnection()
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE nom_pro = ? AND ville_ordo=? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql, [nomMedecin, Ville])
+            conn.end()
+            //console.log("ROWS FETCHED: " + rows.length)
+            return rows
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    },
+
     async getOneOrdonnance(IdOrdo) {
         try {
             conn = await pool.getConnection()
