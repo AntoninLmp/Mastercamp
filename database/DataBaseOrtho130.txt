@@ -108,6 +108,7 @@ CREATE TABLE contenir(
    quantité INT,
    frequence VARCHAR(200),
    duree VARCHAR(200),
+   quantiteDonner INT, 
    PRIMARY KEY(id_medic, id_ordo),
    FOREIGN KEY(id_medic) REFERENCES ListeDeMedicaments(id_medic),
    FOREIGN KEY(id_ordo) REFERENCES Ordonnance(id_ordo)
@@ -211,13 +212,13 @@ INSERT INTO Pharmacie VALUES
 	(1, "PHARMACIE", "0000000000", "pharmacie@gmail.com");
 
 INSERT INTO Ordonnance VALUES
-	(1, "2021-09-22", "Villejuif", "1 comprimé par jour le matin", 1, 1),
+	(1, "2021-09-22", "Villejuif", NULL, 1, 1),
    (2, "2020-05-22", "Paris", "1 comprimé par jour le soir", 1, 1),
    (3, "2021-09-22", "Villejuif", "Doliprane", 1, 1);
     
 INSERT INTO contenir VALUES
-	(1, 1, 3, "1 comprimé matin","1 semaine"),
-    (7, 1, 2,"2 comprimés /jour","3 jours");
+	(1, 1, 3, "1 comprimé matin","1 semaine", 0),
+    (7, 1, 2,"2 comprimés /jour","3 jours", 0);
     
 INSERT INTO exercer VALUES
 	(1, 1),

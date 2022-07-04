@@ -1,1 +1,207 @@
-COUCOU je suis la vue ordo pharma
+<!--/views/vue_ordonnance-->
+
+<html lang="fr">
+
+<head>
+    <%- include("partial_header.ejs"); %>
+        <title>Ordonnance</title>
+        <link rel="stylesheet" href="/static/css/inscription.css">
+</head>
+
+<body class="">
+    <%- include("vue_ordo_header.ejs"); %>
+        <main class="m-5">
+            <section class="text-center">
+                <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">
+                    Votre ordonnance :
+                </h1>
+            </section>
+            <section>
+                <section class="CaviarDreams p-4">
+                    <article class="text-center">
+                        <h3 class="f-blue_green">
+                            Numéro de l'ordonnance :
+                            <span class="f-blue1 CaviarDreamsBold">
+                                <%= my_ordo.id_ordo %>
+                            </span>|
+                            Numéro de Sécurité Sociale :
+                            <span class="f-blue1 CaviarDreamsBold">
+                                <%= patient.numero_sercurite %>
+                            </span>
+                        </h3>
+                    </article>
+                </section>
+                <div class="d-flex justify-content-center">
+                    <section id="ordonnance" class="border bg-grey p-4 w-75">
+                        <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
+                            <% for (var eta of etablissement) { %>
+                                <p class="text-uppercase">
+                                    <span class="text-decoration-underline">
+                                        <%= eta.nom_etablissement %><br>
+                                    </span>
+                                    <%= eta.adresse_etab %>, <%= eta.code_postal_etab %>
+                                            <%= eta.ville_etab %> <br>
+                                                TEL.<%= eta.numero_telephone_etab %> <br>
+                                                    FINESS <%= eta.FINESS %>
+                                </p>
+                                <% } %>
+                        </div>
+                        <div class="CaviarDreamsBold f-blue2">
+                            <p>
+                                DOCTEUR
+                                <span class="text-uppercase">
+                                    <%=medecin.nom_pro %>
+                                        <%=medecin.prenom_pro %>
+                                </span><br>
+                                <%=medecin.proffession %> <br>
+                                    <span class="CaviarDreams">
+                                        N° RPPS : <br>
+                                        <%=medecin.RPPS %> <br>
+                                            N° ADELI : <br>
+                                            <%=medecin.adeli %> <br>
+                                    </span>
+                            </p>
+                        </div>
+                        <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
+                            <p class="text-uppercase ">
+                                <u>
+                                    M./Mme. <%= patient.nom_pat %>, <%= patient.prenom_pat %>
+                                </u>
+                            </p>
+                        </div>
+                        <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
+                            <p>
+                                <%= my_ordo.ville_ordo %>, le <%=jour_ordo%>/<%=mois_ordo %>/<%=annee_ordo %>
+                            </p>
+                        </div>
+                        <div id="prescription">
+                            <% if (my_ordo.description!=null) {%>
+                                <p class="text-uppercase dt fw-semibold">
+                                    <%= my_ordo.description %>
+                                </p>
+                                <% } else { %>
+                                    <table class="text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Médicament</th>
+                                                <th>Fréquence</th>
+                                                <th>Durée de la prise</th>
+                                                <th>Quantité</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (var medoc of listeMedicament) { %>
+                                                <tr class="m-3">
+                                                    <td class="w-25 p-2">
+                                                        <%= medoc.nom_medicament%>
+                                                    </td>
+                                                    <td class="w-25 p-2">
+                                                        <%= medoc.frequence%>
+                                                    </td>
+                                                    <td class="w-25 p-2">
+                                                        <%= medoc.duree%>
+                                                    </td>
+                                                    <td class="w-25 p-2">
+                                                        <%= medoc.quantité%>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                    <% } %>
+                        </div>
+                        <div class="CaviarDreamsBold f-blue2 d-flex justify-content-end">
+                            <p>Signature :<br>
+                                <span class="text-uppercase">
+                                    <%=medecin.nom_pro %>
+                                        <%=medecin.prenom_pro %>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <img src="/static/img/HelloDoc Blue-04.png" alt="logo_site" class="img_logo">
+                            <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
+                        </div>
+                    </section>
+                    <% if (my_ordo.description==null) {%>
+                        <section class="w-50 p-4 text-center CaviarDreams f-blue2">
+                            <h1 class="CaviarDreamsBold f-blue_green pb-5 border-bottom fs-4">
+                                Liste de médicaments
+                            </h1>
+                            <table class="">
+                                <thead>
+                                    <tr>
+                                        <th class="w-70">Médicament préscris</th>
+                                        <th class="w-100">Quantité déjà donnée</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (var medoc of listeMedicament) { %>
+                                        <form
+                                            action="/organismesante/updateOrdoPh/<%= medoc.id_medic%>/<%= medoc.id_ordo%>"
+                                            method="post">
+                                            <tr class="m-3">
+                                                <td class="w-25 p-2">
+                                                    <div class="m-3">
+                                                        <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
+                                                            <select name="qt" id="quantiteMedoc"
+                                                                class="p-2 border rounded" disabled>
+                                                                <option value="0">0</option>
+                                                            </select>
+                                                            <label for="medoc" class="text-decoration-line-through">
+                                                                <%= medoc.nom_medicament%>
+                                                            </label>
+                                                            <% } else { %>
+                                                                <select name="qt" id="quantiteMedoc"
+                                                                    class="p-2 border rounded">
+                                                                    <% var nb=medoc.quantité - medoc.quantiteDonner; for
+                                                                        (var md=0; md <=nb; md++) { %>
+                                                                        <option value="<%= md %>">
+                                                                            <%= md %>
+                                                                        </option>
+                                                                        <% } %>
+                                                                </select>
+                                                                <label for="medoc">
+                                                                    <%= medoc.nom_medicament%>
+                                                                </label>
+                                                                <% } %>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <%= medoc.quantiteDonner%> / <%= medoc.quantité%>
+                                                </td>
+                                                <td>
+                                                    <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
+                                                        <button type="submit" id="btn_pdf"
+                                                            class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                            disabled>
+                                                            Enregistrer
+                                                        </button>
+                                                        <% } else { %>
+                                                            <button type="submit" id="btn_pdf"
+                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
+                                                                Enregistrer
+                                                            </button>
+                                                            <% } %>
+                                                </td>
+                                            </tr>
+                                        </form>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+                        <% } %>
+                </div>
+
+            </section>
+
+        </main>
+        <%- include("footer.ejs"); %>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+                integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="/static/js/pdf.js"></script>
+
+</body>
+
+</html>
