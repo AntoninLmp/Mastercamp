@@ -31,7 +31,7 @@
                         </h3>
                     </article>
                 </section>
-                <div class="d-flex">
+                <div class="d-flex justify-content-center">
                     <section id="ordonnance" class="border bg-grey p-4 w-75">
                         <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
                             <% for (var eta of etablissement) { %>
@@ -124,7 +124,7 @@
                         </div>
                     </section>
                     <% if (my_ordo.description==null) {%>
-                        <section class="w-50 p-4 text-center">
+                        <section class="w-50 p-4 text-center CaviarDreams f-blue2">
                             <h1 class="CaviarDreamsBold f-blue_green pb-5 border-bottom fs-4">
                                 Liste de médicaments
                             </h1>
@@ -132,7 +132,7 @@
                                 <thead>
                                     <tr>
                                         <th class="w-70">Médicament préscris</th>
-                                        <th class="w-100">Quantité déjà donner</th>
+                                        <th class="w-100">Quantité déjà donnée</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -143,26 +143,46 @@
                                             <tr class="m-3">
                                                 <td class="w-25 p-2">
                                                     <div class="m-3">
-                                                        <select name="qt" id="quantiteMedoc" class="p-2 border rounded">
-                                                            <% var nb=medoc.quantité; for (var md=0; md <=nb; md++) { %>
-                                                                <option value="<%= md %>">
-                                                                    <%= md %>
-                                                                </option>
+                                                        <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
+                                                            <select name="qt" id="quantiteMedoc"
+                                                                class="p-2 border rounded" disabled>
+                                                                <option value="0">0</option>
+                                                            </select>
+                                                            <label for="medoc" class="text-decoration-line-through">
+                                                                <%= medoc.nom_medicament%>
+                                                            </label>
+                                                            <% } else { %>
+                                                                <select name="qt" id="quantiteMedoc"
+                                                                    class="p-2 border rounded">
+                                                                    <% var nb=medoc.quantité - medoc.quantiteDonner; for
+                                                                        (var md=0; md <=nb; md++) { %>
+                                                                        <option value="<%= md %>">
+                                                                            <%= md %>
+                                                                        </option>
+                                                                        <% } %>
+                                                                </select>
+                                                                <label for="medoc">
+                                                                    <%= medoc.nom_medicament%>
+                                                                </label>
                                                                 <% } %>
-                                                        </select>
-                                                        <label for="medoc">
-                                                            <%= medoc.nom_medicament%>
-                                                        </label>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <%= medoc.quantiteDonner%>
+                                                    <%= medoc.quantiteDonner%> / <%= medoc.quantité%>
                                                 </td>
                                                 <td>
-                                                    <button type="submit" id="btn_pdf"
-                                                        class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
-                                                        Enregistrer
-                                                    </button>
+                                                    <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
+                                                        <button type="submit" id="btn_pdf"
+                                                            class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                            disabled>
+                                                            Enregistrer
+                                                        </button>
+                                                        <% } else { %>
+                                                            <button type="submit" id="btn_pdf"
+                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
+                                                                Enregistrer
+                                                            </button>
+                                                            <% } %>
                                                 </td>
                                             </tr>
                                         </form>

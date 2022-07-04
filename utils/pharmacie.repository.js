@@ -36,7 +36,7 @@ module.exports = {
   async updateOrdonnancePh(quantiteDonner, idmedoc, id_ordo) {
     try {
       conn = await pool.getConnection();
-      sql = "UPDATE contenir SET quantiteDonner = ? WHERE contenir.id_medic = ? AND contenir.id_ordo = ?;";
+      sql = "UPDATE contenir SET quantiteDonner = quantiteDonner + ? WHERE contenir.id_medic = ? AND contenir.id_ordo = ?;";
       const okPacket = await conn.query(sql, [quantiteDonner, idmedoc, id_ordo]);
       conn.end();
       //console.log(okPacket);

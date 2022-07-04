@@ -65,7 +65,7 @@ async function updateOrdoPh(request, response) {
     console.log(request.params.idMedic);
     console.log(request.params.idOrdo);
     pharmaRepo.updateOrdonnancePh(request.body.qt, request.params.idMedic, request.params.idOrdo);
-    response.redirect("/organismesante");
+    response.redirect("/organismesante/VoirOrdonnance/" + request.params.idOrdo);
 }
 
 module.exports = router;
