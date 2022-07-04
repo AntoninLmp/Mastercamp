@@ -77,27 +77,31 @@
                                 </a>
                             </div>
                         </section>
-                        <% } %>
-                            <!--END -->
-                            <!---->
-                            <section class="d-flex flex-wrap">
-                                <% for (var ord of ordonnances) { %>
-                                    <div class="div_ordo text-center border rounded rounded-4">
-                                        <a href="/organismesante/VoirOrdonnance/<%= ord.id_ordo %>"
-                                            class="text-decoration-none text-dark">
-                                            <h1>Ordonnance</h1>
-                                            <h2 class="f-blue_green">
-                                                <%= ord.ville_ordo %>
-                                            </h2>
-                                            <h3>
-                                                <%= ord.date_delivrance.toISOString().slice(0, 10) %>
-                                            </h3>
-                                        </a>
-
-                                    </div>
-                                    <% } %>
+                        <% } else { %>
+                            <section class="d-flex flex-wrap justify-content-center m-5 p-5">
+                                <p>Aucune ordonnance disponible.</p>
                             </section>
-                            <!---->
+                            <% } %>
+                                <!--END -->
+                                <!---->
+                                <section class="d-flex flex-wrap">
+                                    <% for (var ord of ordonnances) { %>
+                                        <div class="div_ordo text-center border rounded rounded-4">
+                                            <a href="/organismesante/VoirOrdonnance/<%= ord.id_ordo %>"
+                                                class="text-decoration-none text-dark">
+                                                <h1>Ordonnance</h1>
+                                                <h2 class="f-blue_green">
+                                                    <%= ord.ville_ordo %>
+                                                </h2>
+                                                <h3>
+                                                    <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                                </h3>
+                                            </a>
+
+                                        </div>
+                                        <% } %>
+                                </section>
+                                <!---->
                 </section>
 
                 <section class="mt-5">
