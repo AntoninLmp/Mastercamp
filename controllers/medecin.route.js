@@ -107,41 +107,59 @@ async function delEtab(request, response) {
 
 router.post("/addPrescriptionMedicale/:boolRedirect", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
 async function addPrescriptionMedicale(request, response) {
-    var date_time = new Date();
-    var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
-    var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    ordonnanceRepository.addOneOrdoPrescription(
-        date_time,
-        request.body.ville,
-        request.body.prescription,
-        medecin.id_professionneldesante,
-        patient.id_patient
-    );
-    if (request.params.boolRedirect) {
-        const route = "/medecin/VoirPatient/" + patient.email;
-        response.redirect(route)
+    var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
+    if (okNumSecu == false) {
+        spawnSync("powershell.exe", [`
+Add-Type -AssemblyName PresentationCore,PresentationFramework;
+[System.Windows.MessageBox]::Show('Le numéro de sécurité social est incorrect');
+`]);
     }
-    else { response.redirect("/medecin"); }
-    
+    else {
+        var date_time = new Date();
+        var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
+        var medecin = await medecinRepo.getOneMedecin(request.user.email);
+        ordonnanceRepository.addOneOrdoPrescription(
+            date_time,
+            request.body.ville,
+            request.body.prescription,
+            medecin.id_professionneldesante,
+            patient.id_patient
+        );
+        if (request.params.boolRedirect) {
+            const route = "/medecin/VoirPatient/" + patient.email;
+            response.redirect(route)
+        }
+        else { response.redirect("/medecin"); }
+    }
 }
+
 
 router.post("/ordonnanceMedicamenteuseSsPatient", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuseSsPatient);
 async function ordonnanceMedicamenteuseSsPatient(request, response) {
-    var date_time = new Date();
-    var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
-    var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    var ordonnance = await ordonnanceRepository.addOrdoMedimanteuse(date_time,
-        request.body.ville,
-        medecin.id_professionneldesante,
-        patient.id_patient);
-    var date_time = new Date();
-    let date = ("0" + date_time.getDate()).slice(-2);
-    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-    let year = date_time.getFullYear();
-    var listeMedicament = await ordonnanceRepository.getAllMedicaments();
-    var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
-    var medicamentOrdo = [];
-    response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
+    var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
+    if (okNumSecu == false) {
+        spawnSync("powershell.exe", [`
+Add-Type -AssemblyName PresentationCore,PresentationFramework;
+[System.Windows.MessageBox]::Show('Le numéro de sécurité social est incorrect');
+`]);
+    }
+    else {
+        var date_time = new Date();
+        var patient = await patientRepo.getOnePatientByNumSecu(request.body.NumSecu);
+        var medecin = await medecinRepo.getOneMedecin(request.user.email);
+        var ordonnance = await ordonnanceRepository.addOrdoMedimanteuse(date_time,
+            request.body.ville,
+            medecin.id_professionneldesante,
+            patient.id_patient);
+        var date_time = new Date();
+        let date = ("0" + date_time.getDate()).slice(-2);
+        let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+        let year = date_time.getFullYear();
+        var listeMedicament = await ordonnanceRepository.getAllMedicaments();
+        var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
+        var medicamentOrdo = [];
+        response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
+    }
 }
 
 router.post("/ordonnanceMedicamenteuse/:numSecu", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
