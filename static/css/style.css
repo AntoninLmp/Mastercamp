@@ -351,3 +351,10 @@
     width: 50%;
     align-items: center;
 }
+
+#validcontainer_ph {
+    background-color: rgb(99, 162, 99);
+    padding: 1em;
+    align-items: center;
+    margin: 0 1em;
+}
