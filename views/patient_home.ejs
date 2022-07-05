@@ -35,16 +35,16 @@
                 <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
                     <a href="/patient" class="btn rounded m-3 bg-blue2 text-white">
-                            Toutes les ordonnances
+                        Toutes les ordonnances
                     </a>
                     <form action="/patient/searchOrdo" method="post">
                         <div class="input-group rounded d-flex">
                             <input name="ville" type="search" class="rounded border p-1 w-25 mx-1"
                                 placeholder="Rechercher une ville. Ex : Paris" aria-label="search"
                                 aria-describedby="search-addon" />
-                            <input name="medecin" type="text" class="rounded border p-1 w-25 mx-1" 
+                            <input name="medecin" type="text" class="rounded border p-1 w-25 mx-1"
                                 placeholder="Rechercher un nom de médecin" aria-label="search"
-                                    aria-describedby="search-addon"/>
+                                aria-describedby="search-addon" />
                             <button type="submit" class="input-group-text border-0 " id="search-addon">
                                 <img src="/static/img/loupe.png" alt="loupe" id="loupe">
                             </button>
@@ -60,8 +60,7 @@
                                             <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
                                                 class="text-decoration-none text-dark">
                                                 <h1 class="f-blue1 fs-4">
-                                                    <%= ord.nom_pro %>
-                                                        <%= ord.prenom_pro %>
+                                                    Dr. <%= ord.nom_pro %>
                                                 </h1>
                                                 <h2 class="f-blue_green">
                                                     <%= ord.ville_ordo %>
@@ -75,7 +74,7 @@
                                             </a>
                                         </div>
                                         <% } %>
-                                    <% } %>
+                                            <% } %>
                                 </section>
                         </section>
 
@@ -113,54 +112,55 @@
                         </section>
                         <section class="mt-5 mb-5">
                             <h1 class="CaviarDreamsBold f-blue2" id="ALL">Mes Allergies</h1>
-                            <article class="bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
+                            <article
+                                class="bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
                                 <img src="/static/img/allergies.png" alt="Allergies" class="" id="allergie">
                                 <div class="text-center">
                                     <% if (allergiesOfAPatient.length==0) {%>
                                         <p>Aucune allergie</p>
-                                    <%} else { %>
-                                        <% for (var al of allergiesOfAPatient) { %>
-                                            <div class="d-flex justify-content-center">
-                                                <p class="f-blue1 fs-4 text-capitalize f">
-                                                    <%= al.nom_allergie %>
-                                                </p>
-                                                <a href="/patient/delAllergie/<%= al.id_allergie %>">
-                                                    <button type="button" class="ms-2 btn-close"
-                                                        aria-label="Close"></button>
-                                                </a>
-                                            </div>
-                                        <% } %>
-                                    <% } %>
-                                    <div>
-                                        <button type="button"
-                                            class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green"
-                                            id="btn_ajout_allergie">
-                                            Ajouter une allergie
-                                        </button>
-                                        <div id="form_allergie">
-                                            <form method="post" action="/patient/updateAllergie"
-                                                id="AllergiesUpdate" class="text-center mx-auto">
-                                                <div class="form-group mx-5 mb-3 px-5">
-                                                    <label for=" floatingNom">Ajouter une
-                                                        allergie</label>
-                                                    <select class="form-select"
-                                                        aria-label="Default select example"
-                                                        name="allergie">
-                                                        <% for (var all of allergies) { %>
-                                                            <option value="<%= all.id_allergie %>">
-                                                                <%= all.nom_allergie %>
-                                                            </option>
-                                                            <% } %>
-                                                    </select>
+                                        <%} else { %>
+                                            <% for (var al of allergiesOfAPatient) { %>
+                                                <div class="d-flex justify-content-center">
+                                                    <p class="f-blue1 fs-4 text-capitalize f">
+                                                        <%= al.nom_allergie %>
+                                                    </p>
+                                                    <a href="/patient/delAllergie/<%= al.id_allergie %>">
+                                                        <button type="button" class="ms-2 btn-close"
+                                                            aria-label="Close"></button>
+                                                    </a>
                                                 </div>
-                                                <button type="submit"
-                                                    class="border rounded m-0 f-blue2"
-                                                    id="add_all_btn">
-                                                    Enregistrer
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
+                                                <% } %>
+                                                    <% } %>
+                                                        <div>
+                                                            <button type="button"
+                                                                class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green"
+                                                                id="btn_ajout_allergie">
+                                                                Ajouter une allergie
+                                                            </button>
+                                                            <div id="form_allergie">
+                                                                <form method="post" action="/patient/updateAllergie"
+                                                                    id="AllergiesUpdate" class="text-center mx-auto">
+                                                                    <div class="form-group mx-5 mb-3 px-5">
+                                                                        <label for=" floatingNom">Ajouter une
+                                                                            allergie</label>
+                                                                        <select class="form-select"
+                                                                            aria-label="Default select example"
+                                                                            name="allergie">
+                                                                            <% for (var all of allergies) { %>
+                                                                                <option value="<%= all.id_allergie %>">
+                                                                                    <%= all.nom_allergie %>
+                                                                                </option>
+                                                                                <% } %>
+                                                                        </select>
+                                                                    </div>
+                                                                    <button type="submit"
+                                                                        class="border rounded m-0 f-blue2"
+                                                                        id="add_all_btn">
+                                                                        Enregistrer
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                 </div>
                             </article>
                         </section>
@@ -218,8 +218,8 @@
                                     <button type="submit" class="btn btn-outline-success">Enregistrer</button>
 
                                 </div>
-                        </form>
-                    </section>
+                            </form>
+                        </section>
             </article>
         </main>
         <%- include("footer.ejs"); %>
