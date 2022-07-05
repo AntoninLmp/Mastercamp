@@ -114,11 +114,17 @@
                                 </table>
                             </div>
                         </div>
-                        
-                        <a href="/Medecin/VoirOrdonnance/<%= ordonnance.id_ordo %>">
-                            <button type="button"
-                                class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
-                        </a>  
+                        <% if ( medicamentOrdo.length !=0) { %>
+                            <a href="/Medecin/VoirOrdonnance/<%= ordonnance.id_ordo %>">
+                                <button type="button"
+                                    class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
+                            </a>
+                        <% } else { %>  
+                            <a href="/medecin/annulerOrdo/<%= ordonnance.id_ordo %>">
+                                <button type="button"
+                                    class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
+                            </a>
+                        <% } %>
                         <a href="/medecin/annulerOrdo/<%= ordonnance.id_ordo %>">
                             <button type="button"
                                 class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Annuler</button>

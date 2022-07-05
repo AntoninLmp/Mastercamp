@@ -213,7 +213,7 @@ async function delMedicament(request, response) {
     let date = ("0" + date_time.getDate()).slice(-2);
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     let year = date_time.getFullYear();
-    var listeMedicament = await ordonnanceRepository.getAllMedicaments();
+    var listeMedicament = await ordonnanceRepository.getMedicamentSansCeuxQuiADeja(request.params.id_ordo);
     var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
     var medicamentOrdo = await ordonnanceRepository.getListeMedicament(ordonnance.id_ordo);
     response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
