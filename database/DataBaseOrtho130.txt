@@ -199,7 +199,17 @@ INSERT INTO Allergie VALUES
 (17,"anti-bactérien"),
 (18,"aspirine"),
 (19,"oeuf"),
-(20,"cortisone");
+(20,"cortisone"),
+(21, "hyménoptères"),
+(22, "citronellal"),
+(23, "lavande"),
+(24, "citronnelle"),
+(25, "methylisothiazolinone"),
+(26, "Aspergillus"),
+(27, "Alternaria "),
+(28, "Penicillium "),
+(29, "Cladosporium "),
+(30, "moustiques");
 
 
 INSERT INTO Patients VALUES
