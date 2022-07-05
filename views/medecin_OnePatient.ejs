@@ -5,59 +5,223 @@
         <title>Accueil - Professionel de Santé</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
-<body class="">
+
+<body>
     <%- include("medecin_header.ejs"); %>
+        <main class="p-2">
+            <section class=" d-flex">
+                <section class="p-4 w-50 h-100">
+                    <div class="text-center">
+                        <img src="/static/img/user_.png" alt="userlogo" class="w-25">
+                        <h1 class="CaviarDreamsBold f-blue2 text-center" id="ETAB">
+                            <%=patient.nom_pat %>
+                                <%=patient.prenom_pat %>
+                        </h1>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Nom du Patient
+                                </td>
+                                <td>
+                                    <%=patient.nom_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Prénom du Patient
+                                </td>
+                                <td>
+                                    <%=patient.prenom_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Date de naissance
+                                </td>
+                                <td>
+                                    <%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Adresse
+                                </td>
+                                <td>
+                                    <%=patient.adresse_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Code Postal
+                                </td>
+                                <td>
+                                    <%=patient.code_postal_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Ville
+                                </td>
+                                <td>
+                                    <%=patient.ville_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Numéro de téléphone
+                                </td>
+                                <td>
+                                    <%=patient.numero_telephone_pat %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Numéro de sécurité sociale
+                                </td>
+                                <td>
+                                    <%=patient.numero_sercurite %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-blue_green CaviarDreamsBold">
+                                    Email
+                                </td>
+                                <td>
+                                    <%=patient.email %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="w-100 p-3">
+                    <section class="mt-5 mb-5">
+                        <% if (allergies.length> 0) {%>
+                            <h1 class="CaviarDreamsBold f-blue2" id="ALL">Allergies du Patient</h1>
+                            <article class="bg-grey p-4 rounded d-flex align-items-center">
+                                <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
+                                <div class="w-100 text-center">
+                                    <% for (var al of allergies) { %>
+                                        <div class="d-flex justify-content-center">
+                                            <p class="f-blue1 fs-4 text-capitalize f">
+                                                <%= al.nom_allergie %>
+                                            </p>
+                                        </div>
+                                        <% } %>
+                                </div>
+                            </article>
+                            <% } %>
+                    </section>
 
-    <h1 class="CaviarDreamsBold f-blue2" id="ETAB"><%=patient.nom_pat %> <%=patient.prenom_pat %></h1>
+                    <section class="mb-5">
+                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">Créer une ordonnance</h1>
+                        <section class="text-center m-4">
+                            
+                            <button type="button"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                id="ajoutMedoc2">
+                                Ordonnance médicamenteuse
+                            </button>
+                            
+                            <button type="button"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                id="ajoutPrescrip2">
+                                Ordonnance prescriptive
+                            </button>
+                        </section>
+                        <div id="container_Medicament2">
+                            <form action="/medecin/ordonnanceMedicamenteusePatient" method="post" class="text-center">
+                                <div class="form-row">
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
+                                        <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                            value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputVille">Ville</label>
+                                        <input name="ville" type="text" class="form-control" id="inputVille"
+                                            placeholder="Paris" required>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputNumSecuSociale">Numéro de
+                                            Sécurité
+                                            Sociale</label>
+                                        <input name="NumSecu" type="number" class="form-control"
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" readonly>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                            </form>
+                        </div>
+                        <div id="container_prescription2" class="p-3">
+                            <h2 class="f-blue2">Prescription médicale</h2>
+                            <form action="/medecin/addPrescriptionMedicale/true" method="post" class="text-center">
+                                <div class="form-row">
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
+                                        <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                            value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputVille">Ville</label>
+                                        <input name="ville" type="text" class="form-control" id="inputVille"
+                                            placeholder="Paris" required>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputNumSecuSociale">Numéro de
+                                            Sécurité
+                                            Sociale</label>
+                                        <input name="NumSecu" type="number" class="form-control"
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group m-2 px-5 resize-h">
+                                    <label for="prescription" class="m-4 w-40 fs-3 f-blue_green">
+                                        Description de l ordonnance
+                                    </label>
+                                    <textarea name="prescription" id="inputPrescription" rows="5"
+                                        placeholder="Radiographie, Séance de kinésithérapeute... " class="w-100"
+                                        required></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                            </form>
+                        </div>
+                    </section>
+                    <section class="flex-wrap CaviarDreams">
+                        <h1 class="CaviarDreamsBold f-blue2" id="MP_">
+                            Ordonnance(s) de
+                            <span class="f-blue_green fst-italic">
+                                <%=patient.nom_pat %>
+                                    <%=patient.prenom_pat %>
+                            </span>
+                        </h1>
+                        <div class="d-flex flex-wrap">
+                            <% for (var ord of ordoPatient) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 w-28">
+                                    <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
+                                        class="text-decoration-none text-dark">
+                                        <h1 class="f-blue1 fs-4">Ordonnance</h1>
+                                        <h2 class="f-blue_green fs-3">
+                                            <%= ord.ville_ordo %>
+                                        </h2>
+                                        <h3 class="f-blue1 fs-4">
+                                            <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                        </h3>
+                                    </a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nom du Patient</th>
-                <th scope="col">Prénom du Patient</th>
-                <th scope="col">Date de naissance</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Code Postal</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Numéro de téléphone</th>
-                <th scope="col">Numéro de sécurité sociale</th>
-                <th scope="col">Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row" class="f-blue2"><%=patient.nom_pat %></th>
-                <td><%=patient.prenom_pat %></td>
-                <td><%=patient.date_naissance %></td>
-                <td><%=patient.adresse_pat %></td>
-                <td><%=patient.code_postal_pat %></td> 
-                <td><%=patient.ville_pat %></td>
-                <td><%=patient.numero_telephone_pat %></td>
-                <td><%=patient.numero_sercurite %></td>
-                <td><%=patient.email %></td>
-            </tr>
-        </tbody>
-    </table>
+                                </div>
+                                <% } %>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </main>
 
-    <section class="d-flex flex-wrap">
-        <% for (var ord of ordoPatient) { %>
-            <div class="div_ordo text-center border rounded rounded-4 ">
-                <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
-                    class="text-decoration-none text-dark">
-                    <h1>Ordonnance</h1>
-                    <h2 class="f-blue_green">
-                        <%= ord.ville_ordo %>
-                    </h2>
-                    <h3>
-                        <%= ord.date_delivrance.toISOString().slice(0, 10) %>
-                    </h3>
-                </a>
+        <%- include("footer.ejs"); %>
+            <script src="/static/js/medecin_onepatient.js"></script>
 
-            </div>
-            <% } %>
-    </section>
-
-    <%- include("footer.ejs"); %>
-    <script src="/static/js/medecin_home.js"></script>
 
 </body>

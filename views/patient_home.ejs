@@ -2,7 +2,7 @@
 
 <head>
     <%- include("partial_header.ejs"); %>
-        <title>Patient</title>
+        <title>Mon espace - Patient</title>
         <link rel="stylesheet" href="/static/css/inscription.css">
 </head>
 
@@ -10,10 +10,10 @@
     <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams container">
             <nav
-                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top">
-                <ul class="list-unstyled">
+                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+                <ul class=" list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">
-                        <a href="#MO_" class="text-decoration-none text-white">Mes Ordonnances</a>
+                        <a href="#MO_" class="text-decoration-none text-white">Mes ordonnances</a>
                     </li>
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#UTIL" class="text-decoration-none text-white">Utilisation</a>
@@ -22,69 +22,197 @@
                         <a href="#PH" class="text-decoration-none text-white">Mes pharmaciens</a>
                     </li>
                     <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#ALL" class="text-decoration-none text-white">Mes allergies</a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#infos" class="text-decoration-none text-white">Mes informations</a>
                     </li>
                 </ul>
             </nav>
-            <article>
+
+            <article class="m-3">
                 <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
                 <section id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
-                    <form action="/patient/ordonnances" method="get">
+                    <a href="/patient" class="btn rounded m-3 bg-blue2 text-white">
+                        Toutes les ordonnances
+                    </a>
+                    <form action="/patient/searchOrdo" method="post">
                         <div class="input-group rounded d-flex">
-                            <input type="search" class="rounded border p-1 w-25 mx-1" placeholder="Rechercher ville"
-                                aria-label="search" aria-describedby="search-addon" />
-                            <input type="date" class="rounded border p-1 w-25 mx-1" />
+                            <input name="ville" type="search" class="rounded border p-1 w-25 mx-1"
+                                placeholder="Rechercher une ville. Ex : Paris" aria-label="search"
+                                aria-describedby="search-addon" />
+                            <input name="medecin" type="text" class="rounded border p-1 w-25 mx-1"
+                                placeholder="Rechercher un nom de médecin" aria-label="search"
+                                aria-describedby="search-addon" />
                             <button type="submit" class="input-group-text border-0 " id="search-addon">
                                 <img src="/static/img/loupe.png" alt="loupe" id="loupe">
                             </button>
                         </div>
                     </form>
-                    <section class="d-flex flex-wrap">
-                        <% for (var ord of ordonnances) { %>
-                            <div class="div_ordo text-center border rounded rounded-4 ">
-                                <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
-                                    class="text-decoration-none text-dark">
-                                    <h1>Ordonnance</h1>
-                                    <h2 class="f-blue_green">
-                                        <%= ord.ville_ordo %>
-                                    </h2>
-                                    <h3>
-                                        <%= ord.date_delivrance.toISOString().slice(0, 10) %>
-                                    </h3>
-                                </a>
-
-                            </div>
-                            <% } %>
-                    </section>
+                    <% if (ordonnances.length==0) {%>
+                        <section class="d-flex flex-wrap justify-content-center m-5 p-5">
+                            <p>Aucune ordonnance disponible pour le moment.</p>
+                        </section>
+                        <%} else { %>
+                            <% if (ordonnances.length> 6) {%>
+                                <section class="d-flex flex-wrap justify-content-around">
+                                    <% for (let i=0; i < 6 ; i++) { %>
+                                        <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                            <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
+                                                class="text-decoration-none text-dark">
+                                                <h1 class="f-blue1 fs-4">
+                                                    Dr. <%= ordonnances[i].nom_pro %>
+                                                </h1>
+                                                <h2 class="f-blue_green">
+                                                    <%= ordonnances[i].ville_ordo %>
+                                                </h2>
+                                                <h3 class="fs-5">
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
+                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
+                                                            1)).slice(-2)%>/<%=
+                                                                ordonnances[i].date_delivrance.getFullYear()%>
+                                                </h3>
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                </section>
+                                <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40">
+                                    Afficher la suite
+                                </button>
+                                <section id="ordosuivantes" class=" flex-wrap justify-content-around">
+                                    <% for (let i=6; i < ordonnances.length ; i++) { %>
+                                        <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                            <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
+                                                class="text-decoration-none text-dark">
+                                                <h1 class="f-blue1 fs-4">
+                                                    Dr. <%= ordonnances[i].nom_pro %>
+                                                </h1>
+                                                <h2 class="f-blue_green">
+                                                    <%= ordonnances[i].ville_ordo %>
+                                                </h2>
+                                                <h3 class="fs-5">
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
+                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
+                                                            1)).slice(-2)%>/<%=
+                                                                ordonnances[i].date_delivrance.getFullYear()%>
+                                                </h3>
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                </section>
+                                <% } else { %>
+                                    <section class="d-flex flex-wrap justify-content-around">
+                                        <% for (var ord of ordonnances) { %>
+                                            <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                                <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                                    class="text-decoration-none text-dark">
+                                                    <h1 class="f-blue1 fs-4">
+                                                        Dr. <%= ord.nom_pro %>
+                                                    </h1>
+                                                    <h2 class="f-blue_green">
+                                                        <%= ord.ville_ordo %>
+                                                    </h2>
+                                                    <h3 class="fs-5">
+                                                        <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
+                                                                (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/
+                                                                <%= ord.date_delivrance.getFullYear()%>
+                                                    </h3>
+                                                </a>
+                                            </div>
+                                            <% } %>
+                                    </section>
+                                    <% } %>
+                                        <% } %>
                 </section>
                 <section class="mt-3" id="UTIL">
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded mx-5 p-3">
+                    <section class="border rounded p-3">
                         <p class="fs-4">
-                            Voici votre espace qui regroupe vos différentes
-                            <span class="f-blue_green">ordonnances</span>.
-                            Vous pourrez y avoir accès à tout moment, elles sont également disponibles par votre médecin
-                            ainsi que par votre pharmacien.
+                            Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de
+                            vos différents
+                            <span class="f-blue_green">papiers de santé</span>.
+                            Grâce à Ordo130, toutes vos ordonnances sont regroupées et
+                            directement accessibles
+                            depuis
+                            cet espace, que ce soit par vous,
+                            vos professionnels de santé ou encore les pharmacies. Ordo130 permet
+                            de regrouper,
+                            dématérialiser et de télétransmettre vos
+                            ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
                         </p>
-                        <ul>
-                            <li>Toutes vos ordonnances de votre medecin, kinésithérapeute, podologue...</li>
-                            <li>Vos médicaments avec leur dosage</li>
+                        <ul class="fs-5">
+                            <li>Consulter vos ordonnances (Médecin, kinésithérapeute,
+                                podologue...)</li>
+                            <li>Consulter vos feuilles de soin.</li>
+                            <li>Trouver une pharmacie.</li>
+                            <li>Déclarer des allergies.</li>
                         </ul>
 
                     </section>
                 </section>
-                <section class="mt-3" id="PH">
+
+                <section class="mt-5" id="PH">
                     <h1 class="CaviarDreamsBold f-blue2">Mes pharmaciens</h1>
                     <div id="map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5257.036226222494!2d2.364675612577518!3d48.79108938623863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673e39a9dbbb3%3A0x15086347c0e355d0!2sPharmacie%20Villejuif%20Aragon!5e0!3m2!1sfr!2sfr!4v1656084413250!5m2!1sfr!2sfr"
-                            width="95%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-
                 </section>
-                <section class="mt-3">
+                <section class="mt-5 mb-5">
+                    <h1 class="CaviarDreamsBold f-blue2" id="ALL">Mes Allergies</h1>
+                    <article class="bg-grey p-4 rounded d-flex align-items-center">
+                        <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
+                        <div class="w-100 text-center">
+                            <% if (allergiesOfAPatient.length==0) {%>
+                                <p>Aucune allergie</p>
+                                <%} else { %>
+                                    <% for (var al of allergiesOfAPatient) { %>
+                                        <div class="d-flex justify-content-center">
+                                            <p class="f-blue1 fs-4 text-capitalize f">
+                                                <%= al.nom_allergie %>
+                                            </p>
+                                            <a href="/patient/delAllergie/<%= al.id_allergie %>">
+                                                <button type="button" class="btn-close" aria-label="Close"></button>
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <div>
+                                                    <button type="button"
+                                                        class="btn border rounded m-3 bg-blue2 text-white"
+                                                        id="btn_ajout_allergie">
+                                                        Ajouter une allergie
+                                                    </button>
+                                                    <div id="form_allergie">
+                                                        <form method="post" action="/patient/updateAllergie"
+                                                            id="AllergiesUpdate" class="text-center mx-auto">
+                                                            <div class="form-group mx-5 mb-3 px-5">
+                                                                <label for=" floatingNom">Ajouter
+                                                                    une
+                                                                    allergie</label>
+                                                                <select class="form-select"
+                                                                    aria-label="Default select example" name="allergie">
+                                                                    <% for (var all of allergies) { %>
+                                                                        <option value="<%= all.id_allergie %>">
+                                                                            <%= all.nom_allergie %>
+                                                                        </option>
+                                                                        <% } %>
+                                                                </select>
+                                                            </div>
+                                                            <button type="submit" class="border rounded m-0 f-blue2"
+                                                                id="add_all_btn">
+                                                                Enregistrer
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                        </div>
+                    </article>
+                </section>
+                <section class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
                     <form method="post" action="/patient/updatePatient" id="signupFormClient"
                         class="d-flex flex-wrap justify-content-center mx-auto">
@@ -101,7 +229,7 @@
                         <div class="form-group m-3 wb40">
                             <label for="floatingDate">Date de naissance</label>
                             <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
-                                value="<%= patient.date_naissance%>" disabled>
+                                value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
                         </div>
                         <div class="form-group m-3 wb40">
                             <label for="floatingAdresse">Adresse</label>
@@ -124,7 +252,7 @@
                                 value="<%= patient.numero_telephone_pat %>">
                         </div>
                         <div class="form-group m-3 wb40">
-                            <label for="floatingSecuSocial">N° Securité sociale</label>
+                            <label for="floatingSecuSocial">N° Sécurité Sociale</label>
                             <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
                                 value="<%= patient.numero_sercurite %>" disabled>
                         </div>
@@ -143,5 +271,6 @@
             </article>
         </main>
         <%- include("footer.ejs"); %>
-
+            <script src="/static/js/allergie.js"></script>
+            <script src="/static/js/ordonnances.js"></script>
 </body>

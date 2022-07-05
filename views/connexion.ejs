@@ -24,7 +24,7 @@
                 <img src="/static/img/medecins.png" alt="medecins">
             </article>
 
-            <article class="p-4 text-center mb-5 mt-5 wb65">
+            <article class="p-4 d-flex flex-column flex-wrap align-items-center text-center mb-5 mt-5 wb65">
                 <div>
                     <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 text">Se connecter</h1>
@@ -33,14 +33,14 @@
                 <div style="color:red">
                     <% if (content.length) { %>
                         <% for (var c of content) { %>
-                            <p>
-                                <%= c.category %>:
-                                    <strong>
-                                        <%= c.message %>
-                                    </strong>
-                            </p>
-                            <% }%>
-                                <% } %>
+                        <p>
+                            <%= c.category %>:
+                                <strong>
+                                    <%= c.message %>
+                                </strong>
+                        </p>
+                        <% }%>
+                    <% } %>
                 </div>
 
                 <form method="post" action="../../connexion/connexion" id="loginFormClient"

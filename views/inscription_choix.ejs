@@ -9,39 +9,38 @@
 
 <body>
     <%- include('header') %>
-        <main class="text-center CaviarDreams vh-100">
-            <article>
+        <main class="text-center CaviarDreams">
+            <article class="container">
                 <div class="m-4">
-                    <h1 class="m-3 pb-4 CaviarDreamsBold border-bottom">Créer votre compte</h1>
-                    <h2>Vous en avez marre des tonnes de papiers <br> qui s'entassent et qui
-                        s'égarent ?</h2>
-                    <h2 class="f-blue_green">Simplifiez-vous la vie !</h2>
+                    <h1 class="m-3 pb-4 CaviarDreamsBold border-bottom f-blue2">Créer votre compte</h1>
+                    <p class="h3">Vous en avez marre des centaines de papiers médicaux qui s'entassent et qui
+                        s'égarent dans votre maison ? Vous en avez marre d'oublier vos ordonnances avant une consultation ?</p>
+                    <blockquote class="f-blue_green CaviarDreamsBold h2 mt-5 mb-5">Simplifiez-vous la vie et laissez Ordo130 centraliser le tout pour vous !</blockquote>
                 </div>
             </article>
-            <article class="d-flex justify-content-around mt-2 text-white" id="container_inscrip">
-                <div class="border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
-                    <a href="/inscription/medecin" class="text-decoration-none text-white">
-                        <img src="/static/img/387628.png" alt="logo" class="wb40">
-                        <h3 class="mt-3">Professionel de santé</h3>
-                        <p class="p_art">Médecin, chirurgien-dentiste, <br> pédicure-podologue...</p>
-                    </a>
-                </div>
+            <h3 class="CaviarDreamsBold f-blue2 mt-2 text-left">Je suis un :</h3>
+            <article class="d-flex justify-content-around text-white" id="container_inscrip">
+                <a href="/inscription/medecin" class="text-decoration-none w-50 text-white border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
+                    <img src="/static/img/387628.png" alt="logo" class="wb40">
+                    <h3 class="mt-3">Professionel de santé</h3>
+                    <p class="p_art">Médecin, chirurgien-dentiste, <br> pédicure-podologue...</p>
+                </a>
 
-                <div class="border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
-                    <a href="/inscription/patient" class="text-decoration-none w-50 text-white">
-                        <img src="/static/img/387553.png" alt="logo" class="wb40">
-                        <h3 class="mt-3">Patient</h3>
-                        <p class="p_art">Particulier.</p>
-                    </a>
-                </div>
+                <a href="/inscription/patient" class="text-decoration-none w-50 text-white border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
+                    <img src="/static/img/387553.png" alt="logo" class="wb40">
+                    <h3 class="mt-3">Patient</h3>
+                    <p class="p_art">Particulier.</p>
+                </a>
 
-                <div class="border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
-                    <a href="/inscription/organismesante" class="text-decoration-none w-50 text-white">
-                        <img src="/static/img/387558.png" alt="logo" class="wb40">
-                        <h3 class="mt-3">Organisme médical</h3>
-                        <p class="p_art">Pharmacien.</p>
-                    </a>
-                </div>
+                <a href="/inscription/organismesante" class="text-decoration-none w-50 text-white border rounded-pill p-4 m-5 bg-blue2 choix_inscription">
+                    <img src="/static/img/387558.png" alt="logo" class="wb40">
+                    <h3 class="mt-3">Organisme médical</h3>
+                    <p class="p_art">Pharmacien.</p>
+                </a>
+            </article>
+            <article class="d-flex flex-row justify-content-center h5">
+                <p class="me-2">Vous possédez déjà un compte ?</p>
+                <a href="/connexion" class="f-blue2 link-turquoise text-decoration-none CaviarDreamsBold">Connectez-vous.</a>
             </article>
         </main>
 
