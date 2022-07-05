@@ -199,7 +199,7 @@ module.exports = {
     async addOneMedicToOrdo(id_medic, id_ordo, quantité, frequence, duree) {
         try {
             conn = await pool.getConnection()
-            sql = "INSERT INTO contenir (id_medic, id_ordo, quantité, frequence, duree) VALUES ( ?,?,?,?,?);"
+            sql = "INSERT INTO contenir (id_medic, id_ordo, quantité, frequence, duree, quantiteDonner) VALUES ( ?,?,?,?,?,0);"
             const rows = await conn.query(sql, [id_medic, id_ordo, quantité, frequence, duree])
             conn.end()
             return rows
