@@ -73,13 +73,13 @@ module.exports = {
   },
 
   //Ajouter un organisme de santé
-  async addOneOrganismeSante(email, mdp, nomPharmacie, telPharmacie) {
+  async addOneOrganismeSante(email, mdp, nomPharmacie, rpps, telPharmacie) {
     try {
       conn = await pool.getConnection();
       sql = "INSERT INTO utilisateur (email, mdp, date_creation, Role) VALUES (?, sha2(concat(now(), ?), 224), now() , 'PHARMACIE');  ";
       const okPacket1 = await conn.query(sql, [email, mdp]);
-      sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, numero_telephone, email) VALUES (NULL, ?, ?, ?)";
-      const okPacket2 = await conn.query(sql, [nomPharmacie, telPharmacie, email]);
+      sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, rpps, numero_telephone, email) VALUES (NULL, ?, ?, ?, ?)";
+      const okPacket2 = await conn.query(sql, [nomPharmacie,rpps, telPharmacie, email]);
       conn.end();
       //console.log(okPacket1);
       //console.log(okPacket2);
