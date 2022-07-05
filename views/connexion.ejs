@@ -33,14 +33,14 @@
                 <div style="color:red">
                     <% if (content.length) { %>
                         <% for (var c of content) { %>
-                            <p>
-                                <%= c.category %>:
-                                    <strong>
-                                        <%= c.message %>
-                                    </strong>
-                            </p>
-                            <% }%>
-                                <% } %>
+                        <p>
+                            <%= c.category %>:
+                                <strong>
+                                    <%= c.message %>
+                                </strong>
+                        </p>
+                        <% }%>
+                    <% } %>
                 </div>
 
                 <form method="post" action="../../connexion/connexion" id="loginFormClient"

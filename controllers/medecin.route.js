@@ -12,7 +12,8 @@ const { Console } = require("console");
 
 router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    var patientDuMedecin = [];
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     var patientTrie = [];
@@ -23,17 +24,19 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     // get current year
     let year = date_time.getFullYear();
+    var myContent=[];
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date });
+        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date, "content": myContent  });
     }
 });
 
 router.post("/searchPatByNPS", auth.checkAuthentication("MEDECIN"), searchPatByNPS)
 async function searchPatByNPS(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    var patientDuMedecin = [];
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
     var patientTrie = await medecinRepo.getPatientByNPS(request.user.email, request.body.nomp, request.body.prenomp, request.body.numsecup);
@@ -41,12 +44,34 @@ async function searchPatByNPS(request, response) {
     let date = ("0" + date_time.getDate()).slice(-2);
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     let year = date_time.getFullYear();
+    if (patientTrie.length == 0){
+        var myContent=[];
+        myContent.push({ "category": "ERREUR",  "message": "Aucun patient ne correspond à votre recherche" });
+    }
     if (medecin == false) {
         response.redirect("/connexion");
     } else {
-        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date });
+        response.render("medecin_home", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date, "content": myContent });
     }
 };
+
+router.get("/AllPatient", auth.checkAuthentication("MEDECIN"), async function (request, response) {
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
+    var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
+    var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
+    var patientTrie = [];
+    var date_time = new Date();
+    let date = ("0" + date_time.getDate()).slice(-2);
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    let year = date_time.getFullYear();
+    var myContent=[];
+    if (medecin == false) {
+        response.redirect("/connexion");
+    } else {
+        response.render("medecin_home.ejs", { "medecin": medecin, "etablissement": etablissement, "etablissementAjout": etablissementAjout, "pdms": patientDuMedecin, "ptrier": patientTrie, "annee": year, "mois": month, "jour": date, "content": myContent  });
+    }
+});
 
 router.post("/updateMedecin", auth.checkAuthentication("MEDECIN"), updateUser);
 async function updateUser(request, response) {

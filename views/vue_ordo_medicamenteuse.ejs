@@ -14,13 +14,17 @@
                 <article class="bg-grey p-4 rounded d-flex align-items-center">
                     <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
                     <div class="w-100 text-center">
-                        <% for (var al of allergies) { %>
-                            <div class="d-flex justify-content-center">
-                                <p class="f-blue1 fs-4 text-capitalize f">
-                                    <%= al.nom_allergie %>
-                                </p>
-                            </div>
+                        <% if (allergies.length != 0) {%>
+                            <% for (var al of allergies) { %>
+                                <div class="d-flex justify-content-center">
+                                    <p class="f-blue1 fs-4 text-capitalize f">
+                                        <%= al.nom_allergie %>
+                                    </p>
+                                </div>
                             <% } %>
+                        <% } else { %>
+                            Le patient n'as pas d'allergie détéctées.
+                        <% } %>
                     </div>
                 </article>
                 <% } %>
