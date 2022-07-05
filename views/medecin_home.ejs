@@ -135,6 +135,11 @@
                 </section>
                 <section>
                     <h1 class="CaviarDreamsBold f-blue2" id="MP_">Mes patients</h1>
+
+                    <a href="/medecin/AllPatient" class="btn rounded m-3 bg-blue2 text-white">
+                        Afficher tous les patients
+                    </a>
+
                     <div>
                         <label class="col-form-label">Rechercher : </label>
                         <form method="post" action="/medecin/searchPatByNPS" class="input-group rounded w-100">
@@ -168,26 +173,39 @@
                                         </h3>
                                     </a>
                                 </div>
+                            <% } %>
+                        <% } else if (pdms.length !=0) { %>
+                            <% for (var pdm of pdms) { %>
+                                <div class="div_ordo text-center border rounded rounded-4 w-25">
+                                    <a href="/medecin/VoirPatient/<%= pdm.email %>"
+                                        class="text-decoration-none text-dark">
+                                        <h2 class="f-blue_green">
+                                            <%= pdm.nom_pat %> <br>
+                                                <%= pdm.prenom_pat %>
+                                        </h2>
+                                        <p>
+                                            <%= pdm.numero_sercurite %>
+                                        </p>
+                                        <h3 class="f-blue2">
+                                            <%= pdm.ville_pat %>
+                                        </h3>
+                                    </a>
+                                 </div>
+                            <% } %>
+                        <% } else if (content.length != 0) {%>
+                            <div style="color:red">
+                                <% if (content.length) { %>
+                                    <% for (var c of content) { %>
+                                    <p>
+                                        <%= c.category %>:
+                                            <strong>
+                                                <%= c.message %>
+                                            </strong>
+                                    </p>
+                                    <% }%>
                                 <% } %>
-                                    <% } else { %>
-                                        <% for (var pdm of pdms) { %>
-                                            <div class="div_ordo text-center border rounded rounded-4 w-25">
-                                                <a href="/medecin/VoirPatient/<%= pdm.email %>"
-                                                    class="text-decoration-none text-dark">
-                                                    <h2 class="f-blue_green">
-                                                        <%= pdm.nom_pat %> <br>
-                                                            <%= pdm.prenom_pat %>
-                                                    </h2>
-                                                    <p>
-                                                        <%= pdm.numero_sercurite %>
-                                                    </p>
-                                                    <h3 class="f-blue2">
-                                                        <%= pdm.ville_pat %>
-                                                    </h3>
-                                                </a>
-                                            </div>
-                                            <% } %>
-                                                <% } %>
+                            </div>
+                        <% } %>
                     </section>
                 </section>
 
