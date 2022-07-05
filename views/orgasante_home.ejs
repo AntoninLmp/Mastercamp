@@ -106,9 +106,20 @@
                                 <!---->
                     <% } else { %>
                         <section class="d-flex flex-wrap justify-content-center m-5">
-                            Aucune ordonnance disponible.
+                            <div>
+                                <% if (content != null) { %>
+                                    <% for (var c of content) { %>
+                                    <p>
+                                        <%= c.category %>:
+                                            <strong>
+                                                <%= c.message %>
+                                            </strong>
+                                    </p>
+                                    <% }%>
+                                <% } %>
+                            </div>
                         </section>
-                        <% } %>
+                    <% } %>
                 </section>
 
                 <section id="#infos" class="mt-5">
