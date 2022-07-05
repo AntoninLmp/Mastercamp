@@ -35,7 +35,7 @@ async function addMedecin(request, response) {
     bool = await utilisateurRepo.VerifExiste(request.body.email);
     if (bool != true) {
         var myContent = [];
-        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
+        myContent.push({ "category": "ERREUR", "message": "Cette adresse email est déjà utilisée." });
         response.render("inscription_sante", { "content": myContent });
     }
     else {
@@ -73,7 +73,7 @@ async function addPatient(request, response) {
         response.render("inscription_patient", { "content": myContent });
     } else if (await utilisateurRepo.VerifExiste(request.body.email) != true) {
         var myContent = [];
-        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
+        myContent.push({ "category": "ERREUR", "message": "Cette adresse email est déjà utilisée." });
         response.render("inscription_patient", { "content": myContent });
     } else {
         var inserer = await utilisateurRepo.addOnePatient(
@@ -94,7 +94,7 @@ async function addPatient(request, response) {
 }
 
 //Route inscription pour les organismes de sante
-async function addOrganismeSante(request, response) {
+async function addOrganismeSante(request, response) {   
     bool = await utilisateurRepo.VerifExiste(request.body.email);
     console.log(request.body.mdp, request.body.mdp2);
     if (request.body.mdp != request.body.mdp2) {
@@ -103,13 +103,18 @@ async function addOrganismeSante(request, response) {
         response.render("inscription_organisme_sante", { "content": myContent });
     } else if (await utilisateurRepo.VerifExiste(request.body.email) != true) {
         var myContent = [];
-        myContent.push({ "category": "ERREUR", "message": "Cette addresse email est déjà utilisée." });
+        myContent.push({ "category": "ERREUR", "message": "Cette adresse email est déjà utilisée." });
+        response.render("inscription_organisme_sante", { "content": myContent });
+    } else if ((await utilisateurRepo.GestionRpps(request.body.rpps)) != true) {
+        var myContent = [];
+        myContent.push({ "category": "ERREUR", "message": "Ce numéro RPPS n'est pas valide." });
         response.render("inscription_organisme_sante", { "content": myContent });
     } else {
         var inserer = await utilisateurRepo.addOneOrganismeSante(
             request.body.email,
             request.body.mdp,
             request.body.nom,
+            request.body.rpps,
             request.body.numero ,
         )
         request.session.flashMessage = "NEW USER: " + request.body.email;

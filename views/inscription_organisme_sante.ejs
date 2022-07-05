@@ -29,19 +29,14 @@
                         <label for=" floatingNom">Nom consultant</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
+                        <input name="rpps" type="number" class="form-control" id="floatingRPPS" placeholder="*"
+                            max="99999999999" min="11111111111">
+                        <label for="floatingRPPS">Numéro RPPS</label>
+                    </div>
+                    <div class="form-floating mb-3 w-75">
                         <input name="numero" type="number" class="form-control" id="floatingAdeli"
                             placeholder="0601020304" max="9999999999" min="011111111">
                         <label for="floatingAdeli">N° Téléphone</label>
-                    </div>
-                    <div style="color:red">
-                        <% if (content.length) { %>
-                            <% for (var c of content) { %>
-                                <p>
-                                    <%= c.category %>:
-                                        <%= c.message %>
-                                </p>
-                                <% }%>
-                                    <% } %>
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <input name="email" type="email" class="form-control" id="floatingEmail"
@@ -57,6 +52,16 @@
                         <input name="mdp2" type="password" class="form-control" id="floatingpassword2"
                             placeholder="************">
                         <label for="floatingpassword2">Confirmation de mot de passe</label>
+                    </div>
+                    <div style="color:red">
+                        <% if (content.length) { %>
+                            <% for (var c of content) { %>
+                                <p>
+                                    <%= c.category %>:
+                                        <%= c.message %>
+                                </p>
+                                <% }%>
+                                    <% } %>
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <button type="submit" class="btn btn-outline-success">Inscription</button>
