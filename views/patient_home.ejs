@@ -62,7 +62,8 @@
                                             <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
                                                 class="text-decoration-none text-dark">
                                                 <h1 class="f-blue1 fs-4">
-                                                    Dr. <%= ordonnances[i].nom_pro %>
+                                                    <%= ordonnances[i].nom_pro %>
+                                                        <%= ordonnances[i].prenom_pro %>
                                                 </h1>
                                                 <h2 class="f-blue_green">
                                                     <%= ordonnances[i].ville_ordo %>
@@ -76,25 +77,76 @@
                                             </a>
                                         </div>
                                         <% } %>
-                                            <% } %>
                                 </section>
+                                <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40">
+                                    Afficher la suite
+                                </button>
+                                <section id="ordosuivantes" class=" flex-wrap justify-content-between">
+                                    <% for (let i=6; i < ordonnances.length ; i++) { %>
+                                        <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                            <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
+                                                class="text-decoration-none text-dark">
+                                                <h1 class="f-blue1 fs-4">
+                                                    <%= ordonnances[i].nom_pro %>
+                                                        <%= ordonnances[i].prenom_pro %>
+                                                </h1>
+                                                <h2 class="f-blue_green">
+                                                    <%= ordonnances[i].ville_ordo %>
+                                                </h2>
+                                                <h3 class="fs-5">
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
+                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
+                                                            1)).slice(-2)%>/<%=
+                                                                ordonnances[i].date_delivrance.getFullYear()%>
+                                                </h3>
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                </section>
+                                <% } else { %>
+                                    <section class="d-flex flex-wrap justify-content-between">
+                                        <% for (var ord of ordonnances) { %>
+                                            <div class="div_ordo text-center border rounded rounded-4 w-28 ">
+                                                <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                                    class="text-decoration-none text-dark">
+                                                    <h1 class="f-blue1 fs-4">
+                                                        <%= ord.nom_pro %>
+                                                            <%= ord.prenom_pro %>
+                                                    </h1>
+                                                    <h2 class="f-blue_green">
+                                                        <%= ord.ville_ordo %>
+                                                    </h2>
+                                                    <h3 class="fs-5">
+                                                        <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
+                                                                (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/
+                                                                <%= ord.date_delivrance.getFullYear()%>
+                                                    </h3>
+                                                </a>
+                                            </div>
+                                            <% } %>
+                                    </section>
+                                    <% } %>
+                                        <% } %>
                 </section>
-
                 <section class="mt-3" id="UTIL">
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
                     <section class="border rounded p-3">
-                        <p class="fs-4 text-justify">
-                            Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de vos différents
+                        <p class="fs-4">
+                            Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de
+                            vos différents
                             <span class="f-blue_green">papiers de santé</span>.
-                            Grâce à Ordo130, toutes vos ordonnances sont regroupées et directement accessibles
+                            Grâce à Ordo130, toutes vos ordonnances sont regroupées et
+                            directement accessibles
                             depuis
                             cet espace, que ce soit par vous,
-                            vos professionnels de santé ou encore les pharmacies. Ordo130 permet de regrouper,
+                            vos professionnels de santé ou encore les pharmacies. Ordo130 permet
+                            de regrouper,
                             dématérialiser et de télétransmettre vos
                             ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
                         </p>
-                        <ul class="fs-5 ms-5">
-                            <li>Consulter vos ordonnances (Médecin, kinésithérapeute, podologue...)</li>
+                        <ul class="fs-5">
+                            <li>Consulter vos ordonnances (Médecin, kinésithérapeute,
+                                podologue...)</li>
                             <li>Consulter vos feuilles de soin.</li>
                             <li>Trouver une pharmacie.</li>
                             <li>Déclarer des allergies.</li>
@@ -114,9 +166,9 @@
                 </section>
                 <section class="mt-5 mb-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="ALL">Mes Allergies</h1>
-                    <article class="bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
-                        <img src="/static/img/allergies.png" alt="Allergies" class="" id="allergie">
-                        <div class="text-center">
+                    <article class="bg-grey p-4 rounded d-flex align-items-center">
+                        <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
+                        <div class="w-100 text-center">
                             <% if (allergiesOfAPatient.length==0) {%>
                                 <p>Aucune allergie</p>
                                 <%} else { %>
@@ -126,15 +178,14 @@
                                                 <%= al.nom_allergie %>
                                             </p>
                                             <a href="/patient/delAllergie/<%= al.id_allergie %>">
-                                                <button type="button" class="ms-2 btn-close"
-                                                    aria-label="Close"></button>
+                                                <button type="button" class="btn-close" aria-label="Close"></button>
                                             </a>
                                         </div>
                                         <% } %>
                                             <% } %>
                                                 <div>
                                                     <button type="button"
-                                                        class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green"
+                                                        class="btn border rounded m-3 bg-blue2 text-white"
                                                         id="btn_ajout_allergie">
                                                         Ajouter une allergie
                                                     </button>
@@ -142,7 +193,8 @@
                                                         <form method="post" action="/patient/updateAllergie"
                                                             id="AllergiesUpdate" class="text-center mx-auto">
                                                             <div class="form-group mx-5 mb-3 px-5">
-                                                                <label for=" floatingNom">Ajouter une
+                                                                <label for=" floatingNom">Ajouter
+                                                                    une
                                                                     allergie</label>
                                                                 <select class="form-select"
                                                                     aria-label="Default select example" name="allergie">
@@ -163,62 +215,62 @@
                         </div>
                     </article>
                 </section>
-                <% } %>
-                    <section class="mt-5">
-                        <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
-                        <form method="post" action="/patient/updatePatient" id="signupFormClient"
-                            class="d-flex flex-wrap justify-content-center mx-auto">
-                            <div class="form-group m-3 wb40">
-                                <label for=" floatingNom">Nom</label>
-                                <input name="nom" type="text" class="form-control" id="floatingNom"
-                                    value="<%= patient.nom_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingPrenom">Prénom</label>
-                                <input name="prenom" type="text" class="form-control" id="floatingPrenom"
-                                    value="<%= patient.prenom_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingDate">Date de naissance</label>
-                                <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
-                                    value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingAdresse">Adresse</label>
-                                <input name="adresse" type="text" class="form-control" id="floatingAdresse"
-                                    value="<%= patient.adresse_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingCodePostal">Code Postal</label>
-                                <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
-                                    max="99999" min="11111" value="<%= patient.code_postal_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingVille">Ville</label>
-                                <input name="ville" type="text" class="form-control" id="floatingVille"
-                                    value="<%= patient.ville_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingNumTel">N° Téléphone</label>
-                                <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
-                                    value="<%= patient.numero_telephone_pat %>">
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingSecuSocial">N° Sécurité Sociale</label>
-                                <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
-                                    value="<%= patient.numero_sercurite %>" disabled>
-                            </div>
-                            <div class="form-group m-3 wb40">
-                                <label for="floatingEmail">Adresse email</label>
-                                <input name="email" type="email" class="form-control" id="floatingEmail"
-                                    value="<%= patient.email %>" disabled>
-                            </div>
+                <section class="mt-5">
+                    <h1 class="CaviarDreamsBold f-blue2" id="infos">Mes informations</h1>
+                    <form method="post" action="/patient/updatePatient" id="signupFormClient"
+                        class="d-flex flex-wrap justify-content-center mx-auto">
+                        <div class="form-group m-3 wb40">
+                            <label for=" floatingNom">Nom</label>
+                            <input name="nom" type="text" class="form-control" id="floatingNom"
+                                value="<%= patient.nom_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingPrenom">Prénom</label>
+                            <input name="prenom" type="text" class="form-control" id="floatingPrenom"
+                                value="<%= patient.prenom_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingDate">Date de naissance</label>
+                            <input name="dateNaissance" type="text" class="form-control" id="floatingDate"
+                                value="<%=jour_pat %>/<%=mois_pat %>/<%=annee_pat %>" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingAdresse">Adresse</label>
+                            <input name="adresse" type="text" class="form-control" id="floatingAdresse"
+                                value="<%= patient.adresse_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingCodePostal">Code Postal</label>
+                            <input name="codePostal" type="number" class="form-control" id="floatingCodePostal"
+                                max="99999" min="11111" value="<%= patient.code_postal_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingVille">Ville</label>
+                            <input name="ville" type="text" class="form-control" id="floatingVille"
+                                value="<%= patient.ville_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingNumTel">N° Téléphone</label>
+                            <input name="numeroTelephone" type="number" class="form-control" id="floatingNumTel"
+                                value="<%= patient.numero_telephone_pat %>">
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingSecuSocial">N° Sécurité Sociale</label>
+                            <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial"
+                                value="<%= patient.numero_sercurite %>" disabled>
+                        </div>
+                        <div class="form-group m-3 wb40">
+                            <label for="floatingEmail">Adresse email</label>
+                            <input name="email" type="email" class="form-control" id="floatingEmail"
+                                value="<%= patient.email %>" disabled>
+                        </div>
 
-                            <div class="form-group mb-3 w-75 text-center">
-                                <button type="submit" class="btn btn-outline-success">Enregistrer</button>
-                            </div>
-                        </form>
-                    </section>
+                        <div class="form-group mb-3 w-75 text-center">
+                            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
+
+                        </div>
+                    </form>
+                </section>
             </article>
         </main>
         <%- include("footer.ejs"); %>
