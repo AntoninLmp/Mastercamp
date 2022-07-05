@@ -56,14 +56,13 @@
                         </section>
                         <%} else { %>
                             <% if (ordonnances.length> 6) {%>
-                                <section class="d-flex flex-wrap justify-content-between">
+                                <section class="d-flex flex-wrap justify-content-around">
                                     <% for (let i=0; i < 6 ; i++) { %>
                                         <div class="div_ordo text-center border rounded rounded-4 w-28 ">
                                             <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
                                                 class="text-decoration-none text-dark">
                                                 <h1 class="f-blue1 fs-4">
-                                                    <%= ordonnances[i].nom_pro %>
-                                                        <%= ordonnances[i].prenom_pro %>
+                                                    Dr. <%= ordonnances[i].nom_pro %>
                                                 </h1>
                                                 <h2 class="f-blue_green">
                                                     <%= ordonnances[i].ville_ordo %>
@@ -81,14 +80,13 @@
                                 <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40">
                                     Afficher la suite
                                 </button>
-                                <section id="ordosuivantes" class=" flex-wrap justify-content-between">
+                                <section id="ordosuivantes" class=" flex-wrap justify-content-around">
                                     <% for (let i=6; i < ordonnances.length ; i++) { %>
                                         <div class="div_ordo text-center border rounded rounded-4 w-28 ">
                                             <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
                                                 class="text-decoration-none text-dark">
                                                 <h1 class="f-blue1 fs-4">
-                                                    <%= ordonnances[i].nom_pro %>
-                                                        <%= ordonnances[i].prenom_pro %>
+                                                    Dr. <%= ordonnances[i].nom_pro %>
                                                 </h1>
                                                 <h2 class="f-blue_green">
                                                     <%= ordonnances[i].ville_ordo %>
@@ -104,14 +102,13 @@
                                         <% } %>
                                 </section>
                                 <% } else { %>
-                                    <section class="d-flex flex-wrap justify-content-between">
+                                    <section class="d-flex flex-wrap justify-content-around">
                                         <% for (var ord of ordonnances) { %>
                                             <div class="div_ordo text-center border rounded rounded-4 w-28 ">
                                                 <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
                                                     class="text-decoration-none text-dark">
                                                     <h1 class="f-blue1 fs-4">
-                                                        <%= ord.nom_pro %>
-                                                            <%= ord.prenom_pro %>
+                                                        Dr. <%= ord.nom_pro %>
                                                     </h1>
                                                     <h2 class="f-blue_green">
                                                         <%= ord.ville_ordo %>
