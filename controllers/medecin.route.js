@@ -134,7 +134,7 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
 }
 
 
-router.post("/ordonnanceMedicamenteuseSsPatient", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuseSsPatient);
+router.post("/ordonnanceMedicamenteusePatient", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuseSsPatient);
 async function ordonnanceMedicamenteuseSsPatient(request, response) {
     var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
     if (okNumSecu == false) {
@@ -161,7 +161,7 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
         response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
     }
 }
-
+/*
 router.post("/ordonnanceMedicamenteuse/:numSecu", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
 async function ordonnanceMedicamenteuse(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
@@ -184,7 +184,7 @@ async function ordonnanceMedicamenteuse(request, response) {
         response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
 
     }
-}
+}*/
 
 router.post("/addMedicament/:id_ordo", auth.checkAuthentication("MEDECIN"), addMedicament);
 async function addMedicament(request, response) {
@@ -197,10 +197,35 @@ async function addMedicament(request, response) {
     let date = ("0" + date_time.getDate()).slice(-2);
     let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
     let year = date_time.getFullYear();
+    var listeMedicament = await ordonnanceRepository.getMedicamentSansCeuxQuiADeja(request.params.id_ordo);
+    var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
+    var medicamentOrdo = await ordonnanceRepository.getListeMedicament(ordonnance.id_ordo);
+    response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
+}
+
+router.get("/delMedicament/:id_patient/:id_medic/:id_ordo", auth.checkAuthentication("MEDECIN"), delMedicament);
+async function delMedicament(request, response) {
+    ordonnanceRepository.delOneMedicByOrdo(request.params.id_ordo, request.params.id_medic);
+    var date_time = new Date();
+    var patient = await patientRepo.getOnePatientById(request.params.id_patient);
+    var medecin = await medecinRepo.getOneMedecin(request.user.email);
+    var ordonnance = await ordonnanceRepository.getOneOrdonnance(request.params.id_ordo);
+    let date = ("0" + date_time.getDate()).slice(-2);
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    let year = date_time.getFullYear();
     var listeMedicament = await ordonnanceRepository.getAllMedicaments();
     var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
     var medicamentOrdo = await ordonnanceRepository.getListeMedicament(ordonnance.id_ordo);
     response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient,"allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
 }
+
+router.get("/annulerOrdo/:id_ordo", auth.checkAuthentication("MEDECIN"), annulerOrdo);
+async function annulerOrdo(request, response) {
+    ordonnanceRepository.delOneOrdo(request.params.id_ordo);
+    response.redirect("/medecin");
+}
+
+
+
 
 module.exports = router;
