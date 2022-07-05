@@ -154,8 +154,8 @@
                                                             <% } else { %>
                                                                 <select name="qt" id="quantiteMedoc"
                                                                     class="p-2 border rounded">
-                                                                    <% var nb=medoc.quantité - medoc.quantiteDonner; for
-                                                                        (var md=0; md <=nb; md++) { %>
+                                                                    <% var nb=medoc.quantité - medoc.quantiteDonner;
+                                                                        for(var md=0; md <=nb; md++) { %>
                                                                         <option value="<%= md %>">
                                                                             <%= md %>
                                                                         </option>
@@ -190,7 +190,11 @@
                                 </tbody>
                             </table>
                         </section>
-                        <% } %>
+                        <% if (medocdonner.nb_medocdonner==medocdonner.nb_ordo)%>
+                            <section>
+                                <p>C'est bon</p>
+                            </section>
+                            <% } %>
                 </div>
 
             </section>
