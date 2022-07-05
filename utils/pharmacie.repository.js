@@ -49,9 +49,9 @@ module.exports = {
     try {
       conn = await pool.getConnection();
       sql = "SELECT COUNT(*) as nb_medocdonner, (SELECT COUNT(*) from contenir where id_ordo = ?) as nb_ordo FROM contenir where id_ordo = ? and quantité = quantiteDonner;";
-      const rows = await conn.query(sql, [id_ordo, id_ordo])
-      conn.end()
-      return rows
+      const rows = await conn.query(sql, [id_ordo, id_ordo]);
+      conn.end();
+      return rows;
     } catch (err) {
       throw err;
     }

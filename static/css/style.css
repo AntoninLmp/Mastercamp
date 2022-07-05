@@ -126,7 +126,7 @@
 
 /*------------------------------------ FONTS JUSTIFICATION -----------------------------------*/
 
-.text-justify{
+.text-justify {
     text-align: justify;
 }
 
@@ -339,4 +339,15 @@
 
 .mx-20 {
     margin: 0 20%;
+}
+
+.mx-25 {
+    margin: 1em 25%;
+}
+
+#validcontainer {
+    background-color: rgb(99, 162, 99);
+    padding: 1em;
+    width: 50%;
+    align-items: center;
 }

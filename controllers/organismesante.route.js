@@ -45,7 +45,7 @@ async function voirOrdonnance(request, response) {
     var listeMedicament = await ordonnanceRepository.getListeMedicament(my_ordo.id_ordo);
     var patient = await patientRepo.getOnePatientById(my_ordo.id_patient);
     var medocdonner = await pharmaRepo.ToutMedocDonner(request.params.OrdoId);
-    console.log(medocdonner)
+    // console.log(medocdonner)
     request.session.flashMessage = "";
     // Date patient
     date_ordo = my_ordo.date_delivrance;

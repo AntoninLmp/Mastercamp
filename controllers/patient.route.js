@@ -7,6 +7,7 @@ const auth = require("../utils/users.auth");
 const userRepo = require("../utils/users.repository");
 const ordonnanceRepo = require('../utils/ordonnance.repository');
 const patientRepo = require('../utils/patient.repository');
+const pharmaRepo = require('../utils/pharmacie.repository');
 
 
 router.get("/", auth.checkAuthentication("PATIENT"), async function (request, response) {
@@ -44,7 +45,7 @@ async function voirOrdonnance(request, response) {
     var etablissement = await ordonnanceRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var listeMedicament = await ordonnanceRepo.getListeMedicament(my_ordo.id_ordo);
     var patient = await patientRepo.getOnePatient(request.user.email);
-
+    var medocdonner = await pharmaRepo.ToutMedocDonner(request.params.OrdoId);
     // Date patient
     date_ordo = my_ordo.date_delivrance;
     let day_ordo = ("0" + date_ordo.getDate()).slice(-2);
@@ -52,7 +53,7 @@ async function voirOrdonnance(request, response) {
     let year_ordo = date_ordo.getFullYear();
 
     request.session.flashMessage = "";
-    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
+    response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "medocdonner": medocdonner, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
 router.post("/updateAllergie", auth.checkAuthentication("PATIENT"), updateAllergies);
@@ -73,13 +74,13 @@ router.post("/searchOrdo", auth.checkAuthentication("PATIENT"), async function (
     //console.log(request.user);
     var patient = await patientRepo.getOnePatient(request.user.email);
     var ordonnance = [];
-    if ((request.body.ville != []) && (request.body.medecin != [])){
+    if ((request.body.ville != []) && (request.body.medecin != [])) {
         var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVilleAndNomMedecin(request.body.medecin, request.body.ville);
     }
-    else if (request.body.ville != []){
+    else if (request.body.ville != []) {
         var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVille(request.body.ville);
     }
-    else if (request.body.medecin != []){
+    else if (request.body.medecin != []) {
         var ordonnance = await ordonnanceRepo.getAllOrdonnanceByNomMedecin(request.body.medecin);
     }
     //var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc(request.user.email);

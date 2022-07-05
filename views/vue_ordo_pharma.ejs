@@ -123,78 +123,93 @@
                             <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
                         </div>
                     </section>
-                    <% if (my_ordo.description==null) {%>
-                        <section class="w-50 p-4 text-center CaviarDreams f-blue2">
-                            <h1 class="CaviarDreamsBold f-blue_green pb-5 border-bottom fs-4">
-                                Liste de médicaments
-                            </h1>
-                            <table class="">
-                                <thead>
-                                    <tr>
-                                        <th class="w-70">Médicament préscris</th>
-                                        <th class="w-100">Quantité déjà donnée</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (var medoc of listeMedicament) { %>
-                                        <form
-                                            action="/organismesante/updateOrdoPh/<%= medoc.id_medic%>/<%= medoc.id_ordo%>"
-                                            method="post">
-                                            <tr class="m-3">
-                                                <td class="w-25 p-2">
-                                                    <div class="m-3">
-                                                        <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
-                                                            <select name="qt" id="quantiteMedoc"
-                                                                class="p-2 border rounded" disabled>
-                                                                <option value="0">0</option>
-                                                            </select>
-                                                            <label for="medoc" class="text-decoration-line-through">
-                                                                <%= medoc.nom_medicament%>
-                                                            </label>
-                                                            <% } else { %>
-                                                                <select name="qt" id="quantiteMedoc"
-                                                                    class="p-2 border rounded">
-                                                                    <% var nb=medoc.quantité - medoc.quantiteDonner;
-                                                                        for(var md=0; md <=nb; md++) { %>
-                                                                        <option value="<%= md %>">
-                                                                            <%= md %>
-                                                                        </option>
-                                                                        <% } %>
-                                                                </select>
-                                                                <label for="medoc">
-                                                                    <%= medoc.nom_medicament%>
-                                                                </label>
-                                                                <% } %>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <%= medoc.quantiteDonner%> / <%= medoc.quantité%>
-                                                </td>
-                                                <td>
-                                                    <% if (medoc.quantité - medoc.quantiteDonner==0) {%>
-                                                        <button type="submit" id="btn_pdf"
-                                                            class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
-                                                            disabled>
-                                                            Enregistrer
-                                                        </button>
-                                                        <% } else { %>
-                                                            <button type="submit" id="btn_pdf"
-                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
-                                                                Enregistrer
-                                                            </button>
+                    <section class="w-50">
+                        <% for (var med of medocdonner) { %>
+                            <% if (med.nb_medocdonner==med.nb_ordo) {%>
+                                <section class="d-flex align-items-center justify-content-center rounded"
+                                    id="validcontainer">
+                                    <img src="/static/img/190411.png" alt="LOGO" class="w-15">
+                                    <p class="text-white m-2">Tout les médicaments ont été délivrés !</p>
+                                </section>
+                                <% } %>
+                                    <% } %>
+                                        <% if (my_ordo.description==null) {%>
+                                            <section class="p-4 text-center CaviarDreams f-blue2">
+                                                <h1 class="CaviarDreamsBold f-blue_green pb-5 border-bottom fs-4">
+                                                    Liste de médicaments
+                                                </h1>
+                                                <table class="">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="w-70">Médicament préscris</th>
+                                                            <th class="w-100">Quantité déjà donnée</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for (var medoc of listeMedicament) { %>
+                                                            <form
+                                                                action="/organismesante/updateOrdoPh/<%= medoc.id_medic%>/<%= medoc.id_ordo%>"
+                                                                method="post">
+                                                                <tr class="m-3">
+                                                                    <td class="w-25 p-2">
+                                                                        <div class="m-3">
+                                                                            <% if (medoc.quantité -
+                                                                                medoc.quantiteDonner==0) {%>
+                                                                                <select name="qt" id="quantiteMedoc"
+                                                                                    class="p-2 border rounded" disabled>
+                                                                                    <option value="0">0</option>
+                                                                                </select>
+                                                                                <label for="medoc"
+                                                                                    class="text-decoration-line-through">
+                                                                                    <%= medoc.nom_medicament%>
+                                                                                </label>
+                                                                                <% } else { %>
+                                                                                    <select name="qt" id="quantiteMedoc"
+                                                                                        class="p-2 border rounded">
+                                                                                        <% var nb=medoc.quantité -
+                                                                                            medoc.quantiteDonner;
+                                                                                            for(var md=0; md <=nb; md++)
+                                                                                            { %>
+                                                                                            <option value="<%= md %>">
+                                                                                                <%= md %>
+                                                                                            </option>
+                                                                                            <% } %>
+                                                                                    </select>
+                                                                                    <label for="medoc">
+                                                                                        <%= medoc.nom_medicament%>
+                                                                                    </label>
+                                                                                    <% } %>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= medoc.quantiteDonner%> / <%=
+                                                                                medoc.quantité%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (medoc.quantité - medoc.quantiteDonner==0)
+                                                                            {%>
+                                                                            <button type="submit" id="btn_pdf"
+                                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                                                disabled>
+                                                                                Enregistrer
+                                                                            </button>
+                                                                            <% } else { %>
+                                                                                <button type="submit" id="btn_pdf"
+                                                                                    class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
+                                                                                    Enregistrer
+                                                                                </button>
+                                                                                <% } %>
+                                                                    </td>
+                                                                </tr>
+                                                            </form>
                                                             <% } %>
-                                                </td>
-                                            </tr>
-                                        </form>
-                                        <% } %>
-                                </tbody>
-                            </table>
-                        </section>
-                        <% if (medocdonner.nb_medocdonner==medocdonner.nb_ordo)%>
-                            <section>
-                                <p>C'est bon</p>
-                            </section>
-                            <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </section>
+
+                                            <% } %>
+                    </section>
+
                 </div>
 
             </section>
