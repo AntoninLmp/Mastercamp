@@ -53,23 +53,25 @@
                     <% if (ordonnances.length==0) {%>
                         <section class="d-flex flex-wrap justify-content-center m-5 p-5">
                             <p>Aucune ordonnance disponible pour le moment.</p>
-                            <%} else { %>
+                        </section>
+                        <%} else { %>
+                            <% if (ordonnances.length> 6) {%>
                                 <section class="d-flex flex-wrap justify-content-between">
-                                    <% for (var ord of ordonnances) { %>
+                                    <% for (let i=0; i < 6 ; i++) { %>
                                         <div class="div_ordo text-center border rounded rounded-4 w-28 ">
-                                            <a href="/patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                            <a href="/patient/VoirOrdonnance/<%= ordonnances[i].id_ordo %>"
                                                 class="text-decoration-none text-dark">
                                                 <h1 class="f-blue1 fs-4">
                                                     Dr. <%= ord.nom_pro %>
                                                 </h1>
                                                 <h2 class="f-blue_green">
-                                                    <%= ord.ville_ordo %>
-
+                                                    <%= ordonnances[i].ville_ordo %>
                                                 </h2>
                                                 <h3 class="fs-5">
-                                                    <%=("0" + ord.date_delivrance.getDate()).slice(-2)%>/<%=("0" +
-                                                            (ord.date_delivrance.getMonth() + 1)).slice(-2)%>/<%=
-                                                                ord.date_delivrance.getFullYear()%>
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
+                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
+                                                            1)).slice(-2)%>/<%=
+                                                                ordonnances[i].date_delivrance.getFullYear()%>
                                                 </h3>
                                             </a>
                                         </div>
@@ -214,9 +216,8 @@
                                         value="<%= patient.email %>" disabled>
                                 </div>
 
-                                <div class="form-group mb-3 w-75 text-center">
-                                    <button type="submit" class="btn btn-outline-success">Enregistrer</button>
-
+                        <div class="form-group mb-3 w-75 text-center">
+                            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
                                 </div>
                             </form>
                         </section>
@@ -224,5 +225,5 @@
         </main>
         <%- include("footer.ejs"); %>
             <script src="/static/js/allergie.js"></script>
-
+            <script src="/static/js/ordonnances.js"></script>
 </body>

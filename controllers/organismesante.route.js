@@ -13,8 +13,9 @@ router.get("/", auth.checkAuthentication("PHARMACIE"), async function (request, 
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnances = [];
     var ordonnance = [];
+    var myContent=[];
     //console.log(ordonnance.length);
-    response.render("orgasante_home.ejs", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
+    response.render("orgasante_home.ejs", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie , "content": myContent});
 });
 
 router.post("/searchByIdOrdonnance", auth.checkAuthentication("PHARMACIE"), SearchByIdOrdonnance)
@@ -22,8 +23,12 @@ async function SearchByIdOrdonnance(request, response) {
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnances = [];
     var ordonnance = await ordonnanceRepo.getOneOrdonnance(request.body.numeroOrdo);
+    var myContent=[];
+    if (ordonnance == null){
+        myContent.push({ "category": "ERREUR",  "message": "Aucune ordonnance correspond à votre recherche" });
+    }
     //console.log(ordonnance);
-    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
+    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie, "content": myContent });
 };
 
 
@@ -32,8 +37,12 @@ async function searchByPatientOrdonnance(request, response) {
     var pharmacie = await pharmaRepo.getOnePharma(request.user.email);
     var ordonnance = [];
     var ordonnances = await ordonnanceRepo.getAllOrdonnanceByPatientBySecu(request.body.numeroSecu);
+    var myContent=[];
+    if (ordonnances.length == 0){
+        myContent.push({ "category": "ERREUR",  "message": "Aucune ordonnance correspond à votre recherche" });
+    }
     //console.log(ordonnances);
-    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie });
+    response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie, "content": myContent });
 };
 
 
@@ -58,7 +67,7 @@ async function voirOrdonnance(request, response) {
 router.post("/updatePharmacie", auth.checkAuthentication("PHARMACIE"), updateUser);
 async function updateUser(request, response) {
     pharmaRepo.updatePharmacie(request.user.email, request.body.nom, request.body.numtel);
-    response.redirect("/organismesante");
+    response.redirect("/organismesante#infos");
 }
 
 router.post("/updateOrdoPh/:idMedic/:idOrdo", auth.checkAuthentication("PHARMACIE"), updateOrdoPh);

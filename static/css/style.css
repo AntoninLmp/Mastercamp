@@ -340,7 +340,6 @@
 .mx-20 {
     margin: 0 20%;
 }
-
 .mx-25 {
     margin: 1em 25%;
 }
@@ -357,4 +356,7 @@
     padding: 1em;
     align-items: center;
     margin: 0 1em;
+}
+.mx-40 {
+    margin: 0 40%;
 }

@@ -111,7 +111,8 @@ module.exports = {
     try {
       conn = await pool.getConnection();
       var rows =[];
-      if(numsecup !=""){
+      console.log(numsecup)
+      if(numsecup){
         sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
         +"FROM patients pa "
         +"INNER JOIN ordonnance USING (id_patient) "
@@ -119,7 +120,7 @@ module.exports = {
         +"WHERE p.email = ?" 
         +"AND pa.numero_sercurite = ?"
         +"GROUP BY nom_pat;";
-        rows = await conn.query(sql,[email, nomp, prenomp,numsecup]);
+        rows = await conn.query(sql,[email, numsecup]);
       }else if(nomp!="" && prenomp != ""){
         sql = "SELECT id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, pa.email "
         +"FROM patients pa "
