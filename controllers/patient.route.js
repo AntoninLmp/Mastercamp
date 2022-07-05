@@ -34,7 +34,7 @@ router.post("/updatePatient", auth.checkAuthentication("PATIENT"), updateUser);
 async function updateUser(request, response) {
     patientRepo.updatePatient(request.user.email, request.body.nom, request.body.prenom,
         request.body.adresse, request.body.ville, request.body.codePostal, request.body.numeroTelephone);
-    response.redirect("/patient");
+    response.redirect("/patient#infos");
 }
 
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("PATIENT"), voirOrdonnance);

@@ -21,12 +21,23 @@ module.exports = {
       throw err
     }
   },
-
   async updatePharmacie(email, nom_pharmacie, numero_telephone) {
     try {
       conn = await pool.getConnection();
       sql = "UPDATE Pharmacie SET nom_pharmacie=?, numero_telephone=? WHERE email=?;";
-      const okPacket = await conn.query(sql,[nom_pharmacie, numero_telephone, email]);
+      const okPacket = await conn.query(sql, [nom_pharmacie, numero_telephone, email]);
+      conn.end();
+      //console.log(okPacket);
+      return okPacket.affectedRows;
+    } catch (err) {
+      throw err;
+    }
+  },
+  async updateOrdonnancePh(quantiteDonner, idmedoc, id_ordo) {
+    try {
+      conn = await pool.getConnection();
+      sql = "UPDATE contenir SET quantiteDonner = quantiteDonner + ? WHERE contenir.id_medic = ? AND contenir.id_ordo = ?;";
+      const okPacket = await conn.query(sql, [quantiteDonner, idmedoc, id_ordo]);
       conn.end();
       //console.log(okPacket);
       return okPacket.affectedRows;
@@ -35,7 +46,7 @@ module.exports = {
     }
   }
 
-  
 
-  
+
+
 }

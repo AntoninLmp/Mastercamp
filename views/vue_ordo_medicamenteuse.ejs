@@ -14,22 +14,44 @@
                 <article class="bg-grey p-4 rounded d-flex align-items-center">
                     <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
                     <div class="w-100 text-center">
-                        <% for (var al of allergies) { %>
-                            <div class="d-flex justify-content-center">
-                                <p class="f-blue1 fs-4 text-capitalize f">
-                                    <%= al.nom_allergie %>
-                                </p>
-                            </div>
+                        <% if (allergies.length != 0) {%>
+                            <% for (var al of allergies) { %>
+                                <div class="d-flex justify-content-center">
+                                    <p class="f-blue1 fs-4 text-capitalize f">
+                                        <%= al.nom_allergie %>
+                                    </p>
+                                </div>
                             <% } %>
+                        <% } else { %>
+                            Le patient n'as pas d'allergie détéctées.
+                        <% } %>
                     </div>
                 </article>
                 <% } %>
+
                     <h1 class="CaviarDreamsBold f-blue2 pt-2">Créer une ordonnance médicamenteuse</h1>
-                    <form action="/medecin/addPrescriptionMedicale/false" method="post" class="text-center">
+                    <form action="/medecin/addMedicament/<%= ordonnance.id_ordo %>" method="post">
+                        <div class="form-row d-flex flex-wrap justify-content-around">
+                            <div class="form-group m-2 w-30">
+                                <label for="inputDatePatient">Date</label>
+                                <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                    value="<%= annee %>-<%= mois %>-<%= jour %>" readonly>
+                            </div>
+                            <div class="form-group m-2 w-30">
+                                <label for="inputVille">Ville</label>
+                                <input name="ville" type="text" class="form-control" id="inputVille" value= "<%= ordonnance.ville_ordo %>"
+                                readonly>
+                            </div>
+                            <div class="form-group m-2 w-30">
+                                <label for="inputNumSecuSociale">Numéro de Sécurité Sociale</label>
+                                    <input name="NumSecu" type="number" class="form-control" id="inputNumSecuSociale"
+                                        value="<%= patient.numero_sercurite %>" readonly>
+                            </div>
+                        </div>
                         <div id="container_Medicament">
                             <div class="text-center mx-20 mt-5 border">
                                 <h1 class="CaviarDreams f-blue_green pt-2">Ajout médicament</h1>
-                                <form action="" method="post">
+                                
                                     <div class="form-row">
                                         <div class="form-group m-2 px-5">
                                             <label for="inputMedicament">Medicament</label>
@@ -47,16 +69,21 @@
                                         </div>
                                         <div class="form-group m-2 px-5">
                                             <label for="inputFrequence">Fréquence</label>
-                                            <input type="text" class="form-control" id="inputFrequence"
+                                            <input name="freq" type="text" class="form-control" id="inputFrequence"
                                                 placeholder="2 fois par jour">
                                         </div>
                                         <div class="form-group m-2 px-5">
                                             <label for="inputDuree">Durée de la prise</label>
-                                            <input type="text" class="form-control id=" inputDuree"
+                                            <input name="duree" type="text" class="form-control" id=" inputDuree"
                                                 placeholder="7 jours">
                                         </div>
+                                        <div class="form-group m-2 px-5">
+                                            <label for="inputQuantité">Quantité</label>
+                                            <input name="quant" type="text" class="form-control" id="inputQuantité"
+                                                placeholder="1 boite">
+                                        </div>
                                     </div>
-                                    <button type="button"
+                                    <button type="submit"
                                         class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Ajouter</button>
                                 </form>
                             </div>
@@ -68,22 +95,44 @@
                                             <th scope="col">Nom Médicament</th>
                                             <th scope="col">Fréquence</th>
                                             <th scope="col">Durée de la prise</th>
+                                            <th scope="col">Quantité</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">Doliprane 1g</th>
-                                            <td>2 fois par jour (matin et soir)</td>
-                                            <td>2 semaines</td>
-                                        </tr>
-
+                                        <% if ( medicamentOrdo.length !=0) { %>
+                                            <% for (var m of medicamentOrdo) { %>
+                                                <tr>
+                                                    <th scope="row"><%= m.nom_medicament %></th>
+                                                    <td><%= m.frequence %></td>
+                                                    <td><%= m.duree %></td>
+                                                    <td><%= m.quantité %></td>
+                                                    <td>
+                                                        <a href="/medecin/delMedicament/<%= patient.id_patient %>/<%= m.id_medic %>/<%= m.id_ordo %>">
+                                                            <button type="button" class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold">Supprimer</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <!-- <button type="submit"
-                            class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button> -->
-                    </form>
+                        <% if ( medicamentOrdo.length !=0) { %>
+                            <a href="/Medecin/VoirOrdonnance/<%= ordonnance.id_ordo %>">
+                                <button type="button"
+                                    class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
+                            </a>
+                        <% } else { %>  
+                            <a href="/medecin/annulerOrdo/<%= ordonnance.id_ordo %>">
+                                <button type="button"
+                                    class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Terminer</button>
+                            </a>
+                        <% } %>
+                        <a href="/medecin/annulerOrdo/<%= ordonnance.id_ordo %>">
+                            <button type="button"
+                                class="bg-blue1 border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Annuler</button>
+                        </a>
         </main>
         <%- include("footer.ejs"); %>
             <script src="/static/js/medecin_home.js"></script>

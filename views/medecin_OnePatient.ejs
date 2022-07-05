@@ -117,14 +117,13 @@
                     <section class="mb-5">
                         <h1 class="CaviarDreamsBold f-blue2" id="MP_">Créer une ordonnance</h1>
                         <section class="text-center m-4">
-                            <a href="/medecin/ordonnanceMedicamenteuse/<%= patient.numero_sercurite %>"
-                                class="text-decoration-none">
-                                <button type="button"
-                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
-                                    id="ajoutMedoc2">
-                                    Ordonnance médicamenteuse
-                                </button>
-                            </a>
+                            
+                            <button type="button"
+                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                id="ajoutMedoc2">
+                                Ordonnance médicamenteuse
+                            </button>
+                            
                             <button type="button"
                                 class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
                                 id="ajoutPrescrip2">
@@ -132,7 +131,29 @@
                             </button>
                         </section>
                         <div id="container_Medicament2">
-                            <!--USEFULL-->
+                            <form action="/medecin/ordonnanceMedicamenteusePatient" method="post" class="text-center">
+                                <div class="form-row">
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
+                                        <input name="date" type="text" class="form-control" id="inputDatePatient"
+                                            value="<%= annee %>-<%= mois %>-<%= jour %>" disabled>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputVille">Ville</label>
+                                        <input name="ville" type="text" class="form-control" id="inputVille"
+                                            placeholder="Paris" required>
+                                    </div>
+                                    <div class="form-group m-2 w-100 d-flex justify-content-between">
+                                        <label class="mx-5 w-40 fs-4 f-blue_green" for="inputNumSecuSociale">Numéro de
+                                            Sécurité
+                                            Sociale</label>
+                                        <input name="NumSecu" type="number" class="form-control"
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" readonly>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                            </form>
                         </div>
                         <div id="container_prescription2" class="p-3">
                             <h2 class="f-blue2">Prescription médicale</h2>
@@ -153,12 +174,12 @@
                                             Sécurité
                                             Sociale</label>
                                         <input name="NumSecu" type="number" class="form-control"
-                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" required>
+                                            id="inputNumSecuSociale" value="<%=patient.numero_sercurite %>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group m-2 px-5 resize-h">
                                     <label for="prescription" class="m-4 w-40 fs-3 f-blue_green">
-                                        Description de l'ordonnance
+                                        Description de l ordonnance
                                     </label>
                                     <textarea name="prescription" id="inputPrescription" rows="5"
                                         placeholder="Radiographie, Séance de kinésithérapeute... " class="w-100"
