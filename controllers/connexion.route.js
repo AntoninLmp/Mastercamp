@@ -5,6 +5,7 @@ const router = express.Router();
 //Les repertoires utiles
 const userRepo = require("../utils/users.repository");
 
+// routes permettant la connexion
 router.get("/", function (request, response) {
     response.render("connexion", { content: [] });
 });
@@ -41,6 +42,7 @@ async function loginPostAction(request, response) {
   }
 }
 
+// decconnexion
 function deconnexionAction(request, response) {
   request.logOut();
   response.redirect("/connexion");

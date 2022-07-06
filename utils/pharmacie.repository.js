@@ -4,13 +4,13 @@ pool = require("../utils/db.js");
 
 module.exports = {
 
+  // GET Pharmacie
   async getOnePharma(email) {
     try {
       conn = await pool.getConnection()
       sql = "SELECT * FROM Pharmacie INNER JOIN utilisateur USING (email) WHERE email = ?;"
       const rows = await conn.query(sql, email)
       conn.end()
-      //console.log("ROWS FETCHED: " + rows.length)
       if (rows.length == 1) {
         return rows[0]
       } else {
@@ -21,25 +21,28 @@ module.exports = {
       throw err
     }
   },
+
+  //UPDATE Pharmacie
   async updatePharmacie(email, nom_pharmacie, numero_telephone) {
     try {
       conn = await pool.getConnection();
       sql = "UPDATE Pharmacie SET nom_pharmacie=?, numero_telephone=? WHERE email=?;";
       const okPacket = await conn.query(sql, [nom_pharmacie, numero_telephone, email]);
       conn.end();
-      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
+      console.log(err)
       throw err;
     }
   },
+
+  //UPDATE Ordonnance
   async updateOrdonnancePh(quantiteDonner, idmedoc, id_ordo) {
     try {
       conn = await pool.getConnection();
       sql = "UPDATE contenir SET quantiteDonner = quantiteDonner + ? WHERE contenir.id_medic = ? AND contenir.id_ordo = ?;";
       const okPacket = await conn.query(sql, [quantiteDonner, idmedoc, id_ordo]);
       conn.end();
-      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
@@ -51,13 +54,13 @@ module.exports = {
       sql = "UPDATE ordonnance SET checkDescription = '1' WHERE ordonnance.id_ordo = ?;";
       const okPacket = await conn.query(sql, id_ordo);
       conn.end();
-      //console.log(okPacket);
       return okPacket.affectedRows;
     } catch (err) {
       throw err;
     }
   },
 
+  //GET Medicament de l'ordonnance déjà transmis au patient
   async ToutMedocDonner(id_ordo) {
     try {
       conn = await pool.getConnection();
@@ -69,10 +72,4 @@ module.exports = {
       throw err;
     }
   }
-
-
-
-
-
-
 }
