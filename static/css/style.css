@@ -293,6 +293,15 @@
     width: 30px;
 }
 
+#tit_cont {
+    background-color: white;
+    border-radius: 2em;
+    position: relative;
+    top: -50px;
+    padding: 1em;
+    width: fit-content;
+    margin: 0;
+}
 
 /* ORDONNANCE */
 
