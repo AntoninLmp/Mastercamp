@@ -9,7 +9,8 @@
 <body>
     <%- include("medecin_header.ejs"); %>
         <main class="container d-flex CaviarDreams p-3 ">
-            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25 sticky-top top-20">
+            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content height_ftcont  vw-25 vh-25 sticky-top top-20"
+                id="nav_ls">
                 <ul class=" list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#EO_" class="text-decoration-none text-white">Éditer une ordonnance</a>
@@ -49,7 +50,7 @@
                                         <h1 class="px-3">Type</h1>
                                         <hr class="w-40 ">
                                     </div>
-                                    
+
                                     <section class="d-flex flex-row align-items-center justify-content-center">
                                         <!-- <a href="/medecin/ordonnanceMedicamenteuseSsPatient"
                                             class="text-decoration-none"> -->
@@ -59,7 +60,7 @@
                                             Ordonnance Médicamenteuse
                                         </button>
                                         <!-- </a> -->
-                                        
+
                                         <button type="button"
                                             class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
                                             id="ajoutPrescrip">
@@ -118,7 +119,7 @@
                                                     <label for="prescription" class="m-4 fs-3 f-blue_green">
                                                         Description de l'ordonnance
                                                     </label>
-                                                    <textarea name="prescription" id="inputPrescription" cols="100"
+                                                    <textarea name="prescription" id="inputPrescription" cols="70"
                                                         rows="5"
                                                         placeholder="Radiographie, Séance de kinésithérapeute... "
                                                         required></textarea>
@@ -173,39 +174,39 @@
                                         </h3>
                                     </a>
                                 </div>
-                            <% } %>
-                        <% } else if (pdms.length !=0) { %>
-                            <% for (var pdm of pdms) { %>
-                                <div class="div_ordo text-center border rounded rounded-4 w-25">
-                                    <a href="/medecin/VoirPatient/<%= pdm.email %>"
-                                        class="text-decoration-none text-dark">
-                                        <h2 class="f-blue_green">
-                                            <%= pdm.nom_pat %> <br>
-                                                <%= pdm.prenom_pat %>
-                                        </h2>
-                                        <p>
-                                            <%= pdm.numero_sercurite %>
-                                        </p>
-                                        <h3 class="f-blue2">
-                                            <%= pdm.ville_pat %>
-                                        </h3>
-                                    </a>
-                                 </div>
-                            <% } %>
-                        <% } else if (content.length != 0) {%>
-                            <div>
-                                <% if (content.length) { %>
-                                    <% for (var c of content) { %>
-                                    <p>
-                                        <%= c.category %>:
-                                            <strong>
-                                                <%= c.message %>
-                                            </strong>
-                                    </p>
-                                    <% }%>
                                 <% } %>
-                            </div>
-                        <% } %>
+                                    <% } else if (pdms.length !=0) { %>
+                                        <% for (var pdm of pdms) { %>
+                                            <div class="div_ordo text-center border rounded rounded-4 w-25">
+                                                <a href="/medecin/VoirPatient/<%= pdm.email %>"
+                                                    class="text-decoration-none text-dark">
+                                                    <h2 class="f-blue_green fs-4">
+                                                        <%= pdm.nom_pat %> <br>
+                                                            <%= pdm.prenom_pat %>
+                                                    </h2>
+                                                    <p class="fs-08">
+                                                        <%= pdm.numero_sercurite %>
+                                                    </p>
+                                                    <h3 class="f-blue2 fs-4">
+                                                        <%= pdm.ville_pat %>
+                                                    </h3>
+                                                </a>
+                                            </div>
+                                            <% } %>
+                                                <% } else if (content.length !=0) {%>
+                                                    <div>
+                                                        <% if (content.length) { %>
+                                                            <% for (var c of content) { %>
+                                                                <p>
+                                                                    <%= c.category %>:
+                                                                        <strong>
+                                                                            <%= c.message %>
+                                                                        </strong>
+                                                                </p>
+                                                                <% }%>
+                                                                    <% } %>
+                                                    </div>
+                                                    <% } %>
                     </section>
                 </section>
 
@@ -283,7 +284,8 @@
                                     </td>
                                     <td>
                                         <a href="/medecin/delEtab/<%= eta.id_etablissement %>">
-                                            <button type="button" class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold">Supprimer</button>
+                                            <button type="button"
+                                                class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold">Supprimer</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -291,19 +293,20 @@
                         </tbody>
                     </table>
                     <div class="text-center">
-                        <form method="post" action="/medecin/updateEtab" id="signupFormClient"
-                            class="mx-auto">
+                        <form method="post" action="/medecin/updateEtab" id="signupFormClient" class="mx-auto">
 
                             <div class="form-group d-flex flex-row align-items-center px-5">
                                 <label for=" floatingNom">Sélectionner un établissement : </label>
-                                <select class="form-select ms-3 me-3 w-50" aria-label="Default select example" name="etab">
+                                <select class="form-select ms-3 me-3 w-50" aria-label="Default select example"
+                                    name="etab">
                                     <% for (var eta_ajout of etablissementAjout) { %>
                                         <option value="<%= eta_ajout.id_etablissement %>">
                                             <%= eta_ajout.nom_etablissement %>
                                         </option>
                                         <% } %>
                                 </select>
-                                <button type="submit" class="btn bg-light-grey btn-link-grey CaviarDreamsBold" id="add_eta_btn">Ajouter</button>
+                                <button type="submit" class="btn bg-light-grey btn-link-grey CaviarDreamsBold"
+                                    id="add_eta_btn">Ajouter</button>
                             </div>
                         </form>
                     </div>

@@ -13,7 +13,8 @@
         <!-- MAIN BODY -->
         <main class="container d-flex CaviarDreams p-3">
 
-            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20"
+                id="nav_ls">
                 <ul class="list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#HDT" class="text-decoration-none text-white">
@@ -84,42 +85,42 @@
                                 </a>
                             </div>
                         </section>
-                    <% } else if (ordonnances.length > 0) { %>
-                                <!---->
-                                <section class="d-flex flex-wrap">
-                                    <% for (var ord of ordonnances) { %>
-                                        <div class="div_ordo text-center border rounded rounded-4">
-                                            <a href="/organismesante/VoirOrdonnance/<%= ord.id_ordo %>"
-                                                class="text-decoration-none text-dark">
-                                                <h1>Ordonnance</h1>
-                                                <h2 class="f-blue_green">
-                                                    <%= ord.ville_ordo %>
-                                                </h2>
-                                                <h3>
-                                                    <%= ord.date_delivrance.toISOString().slice(0, 10) %>
-                                                </h3>
-                                            </a>
+                        <% } else if (ordonnances.length> 0) { %>
+                            <!---->
+                            <section class="d-flex flex-wrap">
+                                <% for (var ord of ordonnances) { %>
+                                    <div class="div_ordo text-center border rounded rounded-4">
+                                        <a href="/organismesante/VoirOrdonnance/<%= ord.id_ordo %>"
+                                            class="text-decoration-none text-dark">
+                                            <h1>Ordonnance</h1>
+                                            <h2 class="f-blue_green">
+                                                <%= ord.ville_ordo %>
+                                            </h2>
+                                            <h3>
+                                                <%= ord.date_delivrance.toISOString().slice(0, 10) %>
+                                            </h3>
+                                        </a>
 
-                                        </div>
-                                        <% } %>
+                                    </div>
+                                    <% } %>
+                            </section>
+                            <!---->
+                            <% } else { %>
+                                <section class="d-flex flex-wrap justify-content-center m-5">
+                                    <div>
+                                        <% if (content !=null) { %>
+                                            <% for (var c of content) { %>
+                                                <p>
+                                                    <%= c.category %>:
+                                                        <strong>
+                                                            <%= c.message %>
+                                                        </strong>
+                                                </p>
+                                                <% }%>
+                                                    <% } %>
+                                    </div>
                                 </section>
-                                <!---->
-                    <% } else { %>
-                        <section class="d-flex flex-wrap justify-content-center m-5">
-                            <div>
-                                <% if (content != null) { %>
-                                    <% for (var c of content) { %>
-                                    <p>
-                                        <%= c.category %>:
-                                            <strong>
-                                                <%= c.message %>
-                                            </strong>
-                                    </p>
-                                    <% }%>
                                 <% } %>
-                            </div>
-                        </section>
-                    <% } %>
                 </section>
 
                 <section id="#infos" class="mt-5">

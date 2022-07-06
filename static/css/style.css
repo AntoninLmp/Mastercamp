@@ -322,7 +322,7 @@
 }
 
 .w-28 {
-    width: 28%;
+    min-width: 28%;
 }
 
 .w-70 {
@@ -343,6 +343,10 @@
 
 .mx-25 {
     margin: 1em 25%;
+}
+
+.minwmax {
+    min-width: max-content;
 }
 
 #validcontainer {
@@ -366,4 +370,27 @@
 .box {
     width: 25px;
     height: 25px;
+}
+
+.fs-08 {
+    font-size: 0.8em;
+}
+
+@media (max-width: 1000px) {
+    #nav_ls {
+        display: none !important;
+    }
+
+    #ordonnance {
+        width: 100% !important;
+        margin: 0;
+    }
+
+    #container_vue_ph {
+        display: block !important;
+    }
+
+    div.wb40 {
+        width: 100% !important;
+    }
 }

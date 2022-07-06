@@ -9,8 +9,8 @@
 <body class="">
     <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams container">
-            <nav
-                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20"
+                id="nav_ls">
                 <ul class=" list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#MO_" class="text-decoration-none text-white">Mes ordonnances</a>
@@ -68,16 +68,16 @@
                                                     <%= ordonnances[i].ville_ordo %>
                                                 </h2>
                                                 <h3 class="fs-5">
-                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
-                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
-                                                            1)).slice(-2)%>/<%=
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/<%=
+                                                            ("0" + (ordonnances[i].date_delivrance.getMonth()
+                                                            +1)).slice(-2) %>/<%=
                                                                 ordonnances[i].date_delivrance.getFullYear()%>
                                                 </h3>
                                             </a>
                                         </div>
                                         <% } %>
                                 </section>
-                                <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40">
+                                <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40 minwmax">
                                     Afficher la suite
                                 </button>
                                 <section id="ordosuivantes" class=" flex-wrap justify-content-around">
