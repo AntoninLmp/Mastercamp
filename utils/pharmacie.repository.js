@@ -45,6 +45,19 @@ module.exports = {
       throw err;
     }
   },
+  async updateOrdonnancePhDesc(id_ordo) {
+    try {
+      conn = await pool.getConnection();
+      sql = "UPDATE ordonnance SET checkDescription = '1' WHERE ordonnance.id_ordo = ?;";
+      const okPacket = await conn.query(sql, id_ordo);
+      conn.end();
+      //console.log(okPacket);
+      return okPacket.affectedRows;
+    } catch (err) {
+      throw err;
+    }
+  },
+
   async ToutMedocDonner(id_ordo) {
     try {
       conn = await pool.getConnection();
