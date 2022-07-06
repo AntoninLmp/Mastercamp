@@ -9,16 +9,16 @@ const ordonnanceRepo = require('../utils/ordonnance.repository');
 const patientRepo = require('../utils/patient.repository');
 const pharmaRepo = require('../utils/pharmacie.repository');
 
+// routes permettant à l'utilisateur d'utiliser son espace dédié
+
 
 router.get("/", auth.checkAuthentication("PATIENT"), async function (request, response) {
-    //console.log(request.user);
     var patient = await patientRepo.getOnePatient(request.user.email);
     var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc(request.user.email);
     var flashMessage = request.session.flashMessage;
     var allergies = await ordonnanceRepo.getAllAllergiesWithoutPatient(patient.id_patient);
     var allergiesOfAPatient = await ordonnanceRepo.getAllAllergiesOfAPatient(patient.id_patient);
     request.session.flashMessage = "";
-    //console.log(patient);
     date_patient = patient.date_naissance;
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);
@@ -31,6 +31,7 @@ router.get("/", auth.checkAuthentication("PATIENT"), async function (request, re
     }
 });
 
+// utilisateur modifie ses informations
 router.post("/updatePatient", auth.checkAuthentication("PATIENT"), updateUser);
 async function updateUser(request, response) {
     patientRepo.updatePatient(request.user.email, request.body.nom, request.body.prenom,
@@ -38,6 +39,7 @@ async function updateUser(request, response) {
     response.redirect("/patient#infos");
 }
 
+// utilisateur regarde une ordonnance
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("PATIENT"), voirOrdonnance);
 async function voirOrdonnance(request, response) {
     var my_ordo = await ordonnanceRepo.getOneOrdonnance(request.params.OrdoId);
@@ -56,6 +58,7 @@ async function voirOrdonnance(request, response) {
     response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "medocdonner": medocdonner, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
+// utilisateur ajoute une allergie
 router.post("/updateAllergie", auth.checkAuthentication("PATIENT"), updateAllergies);
 async function updateAllergies(request, response) {
     var patient = await patientRepo.getOnePatient(request.user.email);
@@ -63,6 +66,7 @@ async function updateAllergies(request, response) {
     response.redirect("/patient#ALL");
 }
 
+// utilisateur supprime une allergie
 router.get("/delAllergie/:AllID", auth.checkAuthentication("PATIENT"), delAllerg);
 async function delAllerg(request, response) {
     var patient = await patientRepo.getOnePatient(request.user.email);
@@ -70,8 +74,8 @@ async function delAllerg(request, response) {
     response.redirect("/patient#ALL");
 }
 
+// utilisateur recherche une ordonnance (barre de recherche)
 router.post("/searchOrdo", auth.checkAuthentication("PATIENT"), async function (request, response) {
-    //console.log(request.user);
     var patient = await patientRepo.getOnePatient(request.user.email);
     var ordonnance = [];
     if ((request.body.ville != []) && (request.body.medecin != [])) {
@@ -83,12 +87,11 @@ router.post("/searchOrdo", auth.checkAuthentication("PATIENT"), async function (
     else if (request.body.medecin != []) {
         var ordonnance = await ordonnanceRepo.getAllOrdonnanceByNomMedecin(request.body.medecin);
     }
-    //var ordonnance = await ordonnanceRepo.getAllOrdonnanceByPatientWithDoc(request.user.email);
     var flashMessage = request.session.flashMessage;
     var allergies = await ordonnanceRepo.getAllAllergiesWithoutPatient(patient.id_patient);
     var allergiesOfAPatient = await ordonnanceRepo.getAllAllergiesOfAPatient(patient.id_patient);
     request.session.flashMessage = "";
-    //console.log(patient);
+    //Date
     date_patient = patient.date_naissance;
     let day_patient = ("0" + date_patient.getDate()).slice(-2);
     let month_patient = ("0" + (date_patient.getMonth() + 1)).slice(-2);

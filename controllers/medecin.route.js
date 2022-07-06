@@ -11,9 +11,9 @@ const pharmaRepo = require('../utils/pharmacie.repository');
 const { spawnSync } = require('child_process');
 const { Console } = require("console");
 
+// routes permettant au médecin d'utiliser son espace dédié
 router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     var patientDuMedecin = [];
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
@@ -33,10 +33,10 @@ router.get("/", auth.checkAuthentication("MEDECIN"), async function (request, re
     }
 });
 
+// medecin recherche un patient (barre de recherche)
 router.post("/searchPatByNPS", auth.checkAuthentication("MEDECIN"), searchPatByNPS)
 async function searchPatByNPS(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    //var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
     var patientDuMedecin = [];
     var etablissement = await medecinRepo.getEtablissementDuMedecin(medecin.id_professionneldesante);
     var etablissementAjout = await medecinRepo.getALLEtablissementSansCeuxQuiADeja(medecin.id_professionneldesante);
@@ -56,6 +56,7 @@ async function searchPatByNPS(request, response) {
     }
 };
 
+//medecin affiche tous ses patients
 router.get("/AllPatient", auth.checkAuthentication("MEDECIN"), async function (request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
     var patientDuMedecin = await medecinRepo.getPatientByMedecin(request.user.email);
@@ -74,6 +75,7 @@ router.get("/AllPatient", auth.checkAuthentication("MEDECIN"), async function (r
     }
 });
 
+// medecin modifie ses informations
 router.post("/updateMedecin", auth.checkAuthentication("MEDECIN"), updateUser);
 async function updateUser(request, response) {
     medecinRepo.updateMedecin(request.user.email, request.body.nom, request.body.prenom,
@@ -81,6 +83,7 @@ async function updateUser(request, response) {
     response.redirect("/medecin#Mesinformations");
 }
 
+// medecin ajoute un etablissement
 router.post("/updateEtab", auth.checkAuthentication("MEDECIN"), updateEtab);
 async function updateEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
@@ -88,6 +91,7 @@ async function updateEtab(request, response) {
     response.redirect("/medecin#ETAB");
 }
 
+// medecin regarde le profil d'un patient
 router.get("/VoirPatient/:PatientEmail", auth.checkAuthentication("MEDECIN"), voirPatient);
 async function voirPatient(request, response) {
     var patient = await patientRepo.getOnePatient(request.params.PatientEmail);
@@ -108,6 +112,7 @@ async function voirPatient(request, response) {
 
 }
 
+// medecin ouvre une ordonnance
 router.get("/VoirOrdonnance/:OrdoId", auth.checkAuthentication("MEDECIN"), voirOrdonnance);
 async function voirOrdonnance(request, response) {
     var my_ordo = await ordonnanceRepository.getOneOrdonnance(request.params.OrdoId);
@@ -117,7 +122,6 @@ async function voirOrdonnance(request, response) {
     var patient = await patientRepo.getOnePatientById(my_ordo.id_patient);
     var medocdonner = await pharmaRepo.ToutMedocDonner(request.params.OrdoId);
     request.session.flashMessage = "";
-
     // Date patient
     date_ordo = my_ordo.date_delivrance;
     let day_ordo = ("0" + date_ordo.getDate()).slice(-2);
@@ -126,6 +130,7 @@ async function voirOrdonnance(request, response) {
     response.render("vue_ordonnance", { "my_ordo": my_ordo, "medecin": medecin, "medocdonner": medocdonner, "etablissement": etablissement, "listeMedicament": listeMedicament, "patient": patient, "annee_ordo": year_ordo, "mois_ordo": month_ordo, "jour_ordo": day_ordo });
 }
 
+// medecin supprime un etablisssement
 router.get("/delEtab/:EtabId", auth.checkAuthentication("MEDECIN"), delEtab);
 async function delEtab(request, response) {
     var medecin = await medecinRepo.getOneMedecin(request.user.email);
@@ -133,6 +138,7 @@ async function delEtab(request, response) {
     response.redirect("/medecin#ETAB");
 }
 
+// creation d'une ordonnance prescriptive
 router.post("/addPrescriptionMedicale/:boolRedirect", auth.checkAuthentication("MEDECIN"), addPrescriptionMedicale);
 async function addPrescriptionMedicale(request, response) {
     var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
@@ -161,7 +167,7 @@ async function addPrescriptionMedicale(request, response) {
     }
 }
 
-
+// creation d'une ordonnance médicamenteuse
 router.post("/ordonnanceMedicamenteusePatient", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuseSsPatient);
 async function ordonnanceMedicamenteuseSsPatient(request, response) {
     var okNumSecu = await ordonnanceRepository.checkNumeroSecurite(request.body.NumSecu);
@@ -189,31 +195,8 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework;
         response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
     }
 }
-/*
-router.post("/ordonnanceMedicamenteuse/:numSecu", auth.checkAuthentication("MEDECIN"), ordonnanceMedicamenteuse);
-async function ordonnanceMedicamenteuse(request, response) {
-    var medecin = await medecinRepo.getOneMedecin(request.user.email);
-    var date_time = new Date();
-    let date = ("0" + date_time.getDate()).slice(-2);
-    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-    let year = date_time.getFullYear();
-    var listeMedicament = await ordonnanceRepository.getAllMedicaments();
-    var patient = await patientRepo.getOnePatientByNumSecu(request.params.numSecu);
-    var ordonnance = await ordonnanceRepository.addOrdoMedimanteuse(date_time,
-        request.body.ville,
-        medecin.id_professionneldesante,
-        patient.id_patient);
-        console.log(ordonnance.ville_ordo);
-    var medicamentOrdo = [];
-    if (patient == null) {
-        response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient });
-    } else {
-        var allergiesOfAPatient = await ordonnanceRepository.getAllAllergiesOfAPatient(patient.id_patient);
-        response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
 
-    }
-}*/
-
+// ajout d'un médicament à l'ordonnance
 router.post("/addMedicament/:id_ordo", auth.checkAuthentication("MEDECIN"), addMedicament);
 async function addMedicament(request, response) {
     ordonnanceRepository.addOneMedicToOrdo(request.body.medicaments, request.params.id_ordo, request.body.quant, request.body.freq, request.body.duree)
@@ -231,6 +214,7 @@ async function addMedicament(request, response) {
     response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
 }
 
+// supression d'un médicament e l'ordonnance
 router.get("/delMedicament/:id_patient/:id_medic/:id_ordo", auth.checkAuthentication("MEDECIN"), delMedicament);
 async function delMedicament(request, response) {
     ordonnanceRepository.delOneMedicByOrdo(request.params.id_ordo, request.params.id_medic);
@@ -247,13 +231,11 @@ async function delMedicament(request, response) {
     response.render("vue_ordo_medicamenteuse", { "medecin": medecin, "annee": year, "mois": month, "jour": date, "listeMedicament": listeMedicament, "patient": patient, "allergies": allergiesOfAPatient, "ordonnance": ordonnance, "medicamentOrdo": medicamentOrdo });
 }
 
+// medecin annule l'ordonnace
 router.get("/annulerOrdo/:id_ordo", auth.checkAuthentication("MEDECIN"), annulerOrdo);
 async function annulerOrdo(request, response) {
     ordonnanceRepository.delOneOrdo(request.params.id_ordo);
     response.redirect("/medecin");
 }
-
-
-
 
 module.exports = router;

@@ -26,7 +26,6 @@ module.exports = {
       sql = "SELECT * FROM utilisateur WHERE email = ? AND mdp = sha2(concat(date_creation, ?), 224) ";
       const rows = await conn.query(sql, [userpseudo, password]);
       conn.end();
-      //console.log(rows);
       if (rows.length == 1 && rows[0].email === userpseudo) {
         return true;
       } else {
@@ -45,8 +44,6 @@ module.exports = {
       sql = "INSERT INTO professionneldesante (id_professionneldesante, nom_pro, prenom_pro, RPPS, adeli, proffession, email) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
       const okPacket2 = await conn.query(sql, [nom, prenom, RPPS, adeli, proffession, email]);
       conn.end();
-      //console.log(okPacket1);
-      //console.log(okPacket2);
       return okPacket2.insertId;
     }
     catch (error) {
@@ -63,8 +60,6 @@ module.exports = {
       sql = "INSERT INTO patients (id_patient, nom_pat, prenom_pat, date_naissance, adresse_pat, code_postal_pat, ville_pat, numero_telephone_pat, numero_sercurite, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       const okPacket2 = await conn.query(sql, [nom, prenom, dateNaissance, adresse, codePostal, ville, numeroTelephone, numeroSecurite, email]);
       conn.end();
-      //console.log(okPacket1);
-      //console.log(okPacket2);
       return okPacket2.insertId;
     }
     catch (error) {
@@ -81,8 +76,6 @@ module.exports = {
       sql = "INSERT INTO pharmacie (id_pharmacie, nom_pharmacie, rpps, numero_telephone, email) VALUES (NULL, ?, ?, ?, ?)";
       const okPacket2 = await conn.query(sql, [nomPharmacie,rpps, telPharmacie, email]);
       conn.end();
-      //console.log(okPacket1);
-      //console.log(okPacket2);
       return okPacket2.insertId;
     }
     catch (error) {
@@ -96,7 +89,6 @@ module.exports = {
       conn = await pool.getConnection();
       sql = "SELECT * FROM utilisateur WHERE email = ?";
       const rows = await conn.query(sql, email);
-      console.log("USERS FETCHED: " + rows.length);
       if (rows.length == 0) {
         return true;
       } else
@@ -113,7 +105,6 @@ module.exports = {
           conn = await pool.getConnection();
           sql = "SELECT * FROM rpps WHERE num_rpps = ? AND Utiliser = 0";
           const rows = await conn.query(sql, rpps);
-          //console.log("rpps FETCHED: "+rows.length);
           if (rows.length == 1){
               sql = "UPDATE rpps SET Utiliser=1 WHERE num_rpps = ?";
               const rows = await conn.query(sql, rpps);
