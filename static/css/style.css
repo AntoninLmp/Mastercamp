@@ -130,6 +130,10 @@
     text-align: justify;
 }
 
+.bloc-center {
+    padding : auto;
+}
+
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
 .f-blue1 {
     color: #184C78;
@@ -222,14 +226,15 @@
     width: auto;
 }
 
-#burger {
-    width: 40px;
-    height: 40px;
-}
-
 #allergie {
     width: 10vw;
     height: auto;
+}
+
+#carousel {
+    width: 350px;
+    height: auto;
+    border-radius: 5vw;
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/
