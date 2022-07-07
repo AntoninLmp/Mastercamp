@@ -9,101 +9,100 @@
 </head>
 
 <body class="CaviarDreams">
+    <main class="vh-100">
+        <div class="mb-4">
+            <%- include("header.ejs"); %>
+        </div>
 
-<div class="mb-4">
-    <%- include("header.ejs"); %>
-</div>
-
-<div>
-    <h1 class="mt-3 mb-5 fs-1 CaviarDreamsBold text-center"> Foire aux questions </h1>
-</div>
+        <div>
+            <h1 class="mt-5 mb-5 fs-1 CaviarDreamsBold text-center f-blue2 border-bottom"> Foire aux questions </h1>
+        </div>
 
 
-<div class="accordion d-flex flex-column mb-4 pb-4 ms-4 me-4" id="accordionExample" >
-    <div class="accordion-item p-2">
-        <h2 class="accordion-header CaviarDreamsBold" id="headingOne">
-            <button class="accordion-button  fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Comment créer mon compte ?
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <p class="fs-6">
-                    Pour créer votre compte, rien de plus simple, il suffit de vous rendre sur la page d'accueil, cliquer sur le bouton inscription,
-                    de vous munir de votre carte vitale pour récupérer votre numéro de sécurité sociale et de disposer d'une adresse mail fonctionnel.
-                    A l'inscription vous devrez mettre un mot de passe que vous réutiliserez lors de vos prochaines connexions.
-                </p>
+        <div class="container accordion d-flex flex-column justify-content-center mb-5 pb-4" id="accordionExample" >
+            <div class="accordion-item p-2">
+                <h2 class="accordion-header CaviarDreamsBold" id="headingOne">
+                    <button class="accordion-button  fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Comment créer mon compte ?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p class="fs-6">
+                            Pour créer votre compte, rien de plus simple, il suffit de vous rendre sur la page d'accueil, cliquer sur le bouton inscription,
+                            de vous munir de votre carte vitale pour récupérer votre numéro de sécurité sociale et de disposer d'une adresse mail fonctionnelle.
+                            À l'inscription vous devrez mettre un mot de passe que vous réutiliserez lors de vos prochaines connexions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item p-2">
+                <h2 class="accordion-header CaviarDreamsBold" id="headingTwo">
+                    <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Comment gérer mes ordonnances ?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p class="fs-6">
+                          Vous pourrez retrouver vos ordonnances sur votre espace patient, elles sont classées par date d'émission. Vous pouvez les consulter à tout moment
+                          et votre pharmacien le pourra également.
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item p-2">
+                <h2 class="accordion-header CaviarDreamsBold" id="headingThree">
+                    <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Comment partager mes ordonnances ?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p class="fs-6">
+                            Le partage d'une ordonnance avec son pharmacien ou avec un autre professionnel de santé dispose de plusieurs avantages, que ce soit pour vous ou pour eux.
+                            C'est aussi la manière la plus sûre de se faire délivrer une ordonnance digitale. Après votre rendez-vous, en téléconsultation ou en présentiel, votre médecin peut vous partager une ordonnance sur votre compte patient.
+                            Vous pouvez alors partager ce document avec votre pharmacien en un clic.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item p-2">
+                <h2 class="accordion-header CaviarDreamsBold" id="headingFour">
+                    <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Comment modifier mes informations de santé ?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p class="fs-6">
+                            Pour modifier vos informations, lors de votre prochaine visite chez le médecin, vous pouvez lui demander de mettre à jour
+                            vos informations. S'il s'agit d'une erreur qui ne peut être modifiée par votre médecin traitant, envoyez-nous un mail afin que l'on
+                            puisse modifier notre base de donnée avec les bonnes informations (nous vous demanderons des justificatifs attestant des modifications).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item p-2">
+                <h2 class="accordion-header CaviarDreamsBold" id="headingFive">
+                    <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Comment sont conservées mes données ?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse " aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p class="fs-6">
+                            Vos données personnelles sont stockées en France (Paris) et en Allemagne (Francfort) chez un hébergeur agréé.
+                            En France, cet hébergeur est certifié par le label français "HDS" ("Hébergeur de Données de Santé") conformément
+                            à la loi et aux normes établies par l'ANS ("Agence du Numérique en Santé"),
+                            en concertation avec la CNIL ("Commission nationale de l'informatique et des libertés").
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="accordion-item p-2">
-        <h2 class="accordion-header CaviarDreamsBold" id="headingTwo">
-            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Comment gérer mes ordonnances ?
-            </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <p class="fs-6">
-                  Vous pourrez retrouver vos ordonnances sur votre espace patient, elles sont classées par date d'émission. Vous pouvez les consulter à tout moment
-                  et votre pharmacien le pourra également.
-              </p>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item p-2">
-        <h2 class="accordion-header CaviarDreamsBold" id="headingThree">
-            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Comment partager mes ordonnaces ?
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <p class="fs-6">
-                    Le partage d'une ordonnance avec son pharmacien ou avec un autre professionnel de santé dispose de plusieurs avantages, que ce soit pour vous ou pour eux.
-                    C'est aussi la manière la plus sûre de se faire délivrer une ordonnance digitale.Après votre rendez-vous, en téléconsultation ou en présentiel, votre médecin peut vous partager une ordonnance sur votre compte patient.
-                    Vous pouvez alors partager ce document avec votre pharmacien en un clic.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item p-2">
-        <h2 class="accordion-header CaviarDreamsBold" id="headingFour">
-            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Comment modifier mes informations de santé ?
-            </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <p class="fs-6">
-                    Pour modifier vos informations, lors de votre prochaine visite chez le médecin, vous pouvez lui demander de mettre à jour
-                    vos informations. S'il s'agit d'une erreur qui ne peut être modifier par votre médecin traitant, envoyer nous un mail afin qu'on
-                    puisse modifier notre base de donnée avec les bonnes informations (nous vous demanderons des justificatifs attestant des modifications).
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item p-2">
-        <h2 class="accordion-header CaviarDreamsBold" id="headingFive">
-            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                Comment sont conservés mes données ?
-            </button>
-        </h2>
-        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <p class="fs-6">
-                    Vos données personnelles sont stockées en France (Paris) et en Allemagne (Francfort) chez un hébergeur agréé.
-                    En France, cet hébergeur est certifié par le label français "HDS" ("Hébergeur de Données de Santé") conformément
-                    à la loi et aux normes établies par l'ANS ("Agence du Numérique en Santé"),
-                    en concertation avec la CNIL ("Commission nationale de l'informatique et des libertés").
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+    </main>
 
-<div >
     <%- include("footer.ejs"); %>
-</div>
 
 </body>
