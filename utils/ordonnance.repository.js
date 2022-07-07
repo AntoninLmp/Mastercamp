@@ -64,11 +64,11 @@ module.exports = {
         }
     },
 
-    async getAllOrdonnanceByVille(Ville) {
+    async getAllOrdonnanceByVille(email, Ville) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE ville_ordo=?  ORDER BY id_ordo DESC;"
-            const rows = await conn.query(sql,Ville)
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE patients.email= ? AND ville_ordo=?  ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql, [email, Ville])
             conn.end()
             return rows
         } catch (err) {
@@ -77,11 +77,11 @@ module.exports = {
         }
     },
 
-    async getAllOrdonnanceByNomMedecin(nomMedecin) {
+    async getAllOrdonnanceByNomMedecin(email, nomMedecin) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE nom_pro = ? ORDER BY id_ordo DESC;"
-            const rows = await conn.query(sql,nomMedecin)
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE patients.email= ? AND nom_pro = ? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql, [email, nomMedecin])
             conn.end()
             return rows
         } catch (err) {
@@ -90,11 +90,11 @@ module.exports = {
         }
     },
 
-    async getAllOrdonnanceByVilleAndNomMedecin(nomMedecin, Ville) {
+    async getAllOrdonnanceByVilleAndNomMedecin(email, nomMedecin, Ville) {
         try {
             conn = await pool.getConnection()
-            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE nom_pro = ? AND ville_ordo=? ORDER BY id_ordo DESC;"
-            const rows = await conn.query(sql, [nomMedecin, Ville])
+            sql = "SELECT ordonnance.*, nom_pro, prenom_pro, patients.email FROM ordonnance INNER JOIN patients USING (id_patient) INNER JOIN professionneldesante USING(id_professionneldesante) WHERE patients.email= ? AND nom_pro = ? AND ville_ordo=? ORDER BY id_ordo DESC;"
+            const rows = await conn.query(sql, [email, nomMedecin, Ville])
             conn.end()
             return rows
         } catch (err) {
