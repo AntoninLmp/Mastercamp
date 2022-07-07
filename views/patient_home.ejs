@@ -9,8 +9,8 @@
 <body class="">
     <%- include("patient_header.ejs"); %>
         <main class="d-flex mt-4 CaviarDreams container">
-            <nav
-                class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20">
+            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20"
+                id="nav_ls">
                 <ul class=" list-unstyled h5">
                     <li class="text-white p-2 CaviarDreamsBold">
                         <a href="#MO_" class="text-decoration-none text-white">Mes ordonnances</a>
@@ -32,12 +32,13 @@
 
             <article class="m-3">
                 <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace personnel !</h1>
-                <section id="MO_">
+                <section class="d-flex flex-column justify-content-center" id="MO_">
                     <h1 class="CaviarDreamsBold f-blue2">Mes Ordonnances</h1>
-                    <a href="/patient" class="btn rounded m-3 bg-blue2 text-white">
-                        Toutes les ordonnances
-                    </a>
+
                     <form action="/patient/searchOrdo" method="post">
+                        <a href="/patient" class="btn rounded mt-3 mb-3 bg-blue2 text-white">
+                            Toutes les ordonnances
+                        </a>
                         <div class="input-group rounded d-flex">
                             <input name="ville" type="search" class="rounded border p-1 w-25 mx-1"
                                 placeholder="Rechercher une ville. Ex : Paris" aria-label="search"
@@ -51,7 +52,7 @@
                         </div>
                     </form>
                     <% if (ordonnances.length==0) {%>
-                        <section class="d-flex flex-wrap justify-content-center m-5 p-5">
+                        <section class="d-flex flex-wrap align-items-center justify-content-center m-5 p-5">
                             <p>Aucune ordonnance disponible pour le moment.</p>
                         </section>
                         <%} else { %>
@@ -68,18 +69,19 @@
                                                     <%= ordonnances[i].ville_ordo %>
                                                 </h2>
                                                 <h3 class="fs-5">
-                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/
-                                                        <%=("0" + (ordonnances[i].date_delivrance.getMonth() +
-                                                            1)).slice(-2)%>/<%=
+                                                    <%=("0" + ordonnances[i].date_delivrance.getDate()).slice(-2)%>/<%=
+                                                            ("0" + (ordonnances[i].date_delivrance.getMonth()
+                                                            +1)).slice(-2) %>/<%=
                                                                 ordonnances[i].date_delivrance.getFullYear()%>
                                                 </h3>
                                             </a>
                                         </div>
                                         <% } %>
+                                        <button id="afficherlasuite" class="btn rounded bg-blue2 text-white minwmax">
+                                            Afficher la suite
+                                        </button>
                                 </section>
-                                <button id="afficherlasuite" class="btn rounded bg-blue2 text-white mx-40">
-                                    Afficher la suite
-                                </button>
+
                                 <section id="ordosuivantes" class=" flex-wrap justify-content-around">
                                     <% for (let i=6; i < ordonnances.length ; i++) { %>
                                         <div class="div_ordo text-center border rounded rounded-4 w-28 ">
@@ -127,7 +129,7 @@
                 </section>
                 <section class="mt-3" id="UTIL">
                     <h1 class="CaviarDreamsBold f-blue2">Utilisation</h1>
-                    <section class="border rounded p-3">
+                    <section class="border rounded p-3 text-justify">
                         <p class="fs-4">
                             Cet espace est dédié à votre suivi de santé ainsi qu'à la gestion de
                             vos différents
@@ -141,7 +143,7 @@
                             dématérialiser et de télétransmettre vos
                             ordonnances et feuilles de soin. Dans cet espace, vous pouvez :
                         </p>
-                        <ul class="fs-5">
+                        <ul class="fs-5 ms-5">
                             <li>Consulter vos ordonnances (Médecin, kinésithérapeute,
                                 podologue...)</li>
                             <li>Consulter vos feuilles de soin.</li>
@@ -163,9 +165,9 @@
                 </section>
                 <section class="mt-5 mb-5">
                     <h1 class="CaviarDreamsBold f-blue2" id="ALL">Mes Allergies</h1>
-                    <article class="bg-grey p-4 rounded d-flex align-items-center">
-                        <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
-                        <div class="w-100 text-center">
+                    <article class="bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
+                        <img src="/static/img/allergies.png" alt="Allergies" id="allergie">
+                        <div class="text-center">
                             <% if (allergiesOfAPatient.length==0) {%>
                                 <p>Aucune allergie</p>
                                 <%} else { %>
@@ -175,21 +177,21 @@
                                                 <%= al.nom_allergie %>
                                             </p>
                                             <a href="/patient/delAllergie/<%= al.id_allergie %>">
-                                                <button type="button" class="btn-close" aria-label="Close"></button>
+                                                <button type="button" class="btn-close ms-2" aria-label="Close"></button>
                                             </a>
                                         </div>
                                         <% } %>
                                             <% } %>
                                                 <div>
                                                     <button type="button"
-                                                        class="btn border rounded m-3 bg-blue2 text-white"
+                                                        class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green"
                                                         id="btn_ajout_allergie">
                                                         Ajouter une allergie
                                                     </button>
                                                     <div id="form_allergie">
                                                         <form method="post" action="/patient/updateAllergie"
                                                             id="AllergiesUpdate" class="text-center mx-auto">
-                                                            <div class="form-group mx-5 mb-3 px-5">
+                                                            <div class="form-group mx-5 mt-3 px-5">
                                                                 <label for=" floatingNom">Ajouter
                                                                     une
                                                                     allergie</label>
@@ -202,7 +204,7 @@
                                                                         <% } %>
                                                                 </select>
                                                             </div>
-                                                            <button type="submit" class="border rounded m-0 f-blue2"
+                                                            <button type="submit" class="border rounded m-0 mt-2 f-blue2"
                                                                 id="add_all_btn">
                                                                 Enregistrer
                                                             </button>

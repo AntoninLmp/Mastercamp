@@ -31,7 +31,7 @@
                         </h3>
                     </article>
                 </section>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center" id="container_vue_ph">
                     <section id="ordonnance" class="border bg-grey p-4 w-75">
                         <div id="cabinet" class="CaviarDreamsBold f-blue2 text-center m-2">
                             <% for (var eta of etablissement) { %>
@@ -123,9 +123,12 @@
                             <p class="CaviarDreams f-blue1">Retrouver vos ordonnances sur notre site internet ©</p>
                         </div>
                     </section>
+
+                    <!-- LISTES  -->
                     <section class="w-50">
                         <% for (var med of medocdonner) { %>
-                            <% if (med.nb_medocdonner==med.nb_ordo) {%>
+                            <% if (my_ordo.checkDescription==true || (med.nb_medocdonner==med.nb_ordo &&
+                                med.nb_medocdonner !=0) ) {%>
                                 <section class="d-flex align-items-center justify-content-center rounded"
                                     id="validcontainer_ph">
                                     <img src="/static/img/190411.png" alt="LOGO" class="w-15">
@@ -207,7 +210,39 @@
                                                 </table>
                                             </section>
 
-                                            <% } %>
+                                            <% } else { %>
+                                                <form action="/organismesante/updateOrdoPhDesc/<%= my_ordo.id_ordo %>"
+                                                    method="post" class="p-3 text-center">
+                                                    <% if (my_ordo.checkDescription==true) {%>
+                                                        <div class="d-flex align-items-baseline justify-content-center">
+                                                            <input type="checkbox" name="checkDes" id="checkD"
+                                                                class="box" disabled checked>
+                                                            <label for="checkD"
+                                                                class="CaviarDreams fs-3 p-2 text-decoration-line-through">
+                                                                <%= my_ordo.description %>
+                                                            </label>
+                                                        </div>
+                                                        <button type="submit" id="btn_"
+                                                            class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                            disabled>
+                                                            Enregistrer
+                                                        </button>
+                                                        <% } else {%>
+                                                            <div
+                                                                class="d-flex align-items-baseline  justify-content-center">
+                                                                <input type="checkbox" name="checkDes" id="checkD"
+                                                                    class="box">
+                                                                <label for="checkD" class="CaviarDreams fs-3 p-2">
+                                                                    <%= my_ordo.description %>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" id="btn_"
+                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
+                                                                Enregistrer
+                                                            </button>
+                                                            <% } %>
+                                                </form>
+                                                <% } %>
                     </section>
 
                 </div>

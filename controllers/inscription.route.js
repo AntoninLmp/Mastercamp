@@ -96,7 +96,6 @@ async function addPatient(request, response) {
 //Route inscription pour les organismes de sante
 async function addOrganismeSante(request, response) {   
     bool = await utilisateurRepo.VerifExiste(request.body.email);
-    console.log(request.body.mdp, request.body.mdp2);
     if (request.body.mdp != request.body.mdp2) {
         var myContent = [];
         myContent.push({ "category": "ERREUR", "message": "Les deux mots de passe sont différents." });
