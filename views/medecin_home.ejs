@@ -88,13 +88,13 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">
-                                                Ajouter Médicament(s)
+                                                    class="btn bg-light-grey btn-link-grey text-uppercase CaviarDreamsBold">
+                                                Créer
                                             </button>
                                         </form>
                                     </div>
                                     <div id="container_prescription">
-                                        <h2>Faire une prescription médicale</h2>
+                                        <h5 class="f-blue2 text-uppercase CaviarDreamsBold">Faire une prescription médicale</h5>
                                         <form action="/medecin/addPrescriptionMedicale/false" method="post">
                                             <div class="form-row mb-3">
                                                 <div class="form-group m-2 text-center">
@@ -121,12 +121,12 @@
                                                     </label>
                                                     <textarea name="prescription" id="inputPrescription" cols="70"
                                                         rows="5"
-                                                        placeholder="Radiographie, Séance de kinésithérapeute... "
+                                                        placeholder="Radiographie, séance(s) de kinésithérapie... "
                                                         required></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                                                class="btn bg-light-grey btn-link-grey text-uppercase CaviarDreamsBold">Enregistrer</button>
                                         </form>
                                     </div>
                                 </article>
@@ -156,7 +156,7 @@
                             </button>
                         </form>
                     </div>
-                    <section class="d-flex flex-wrap">
+                    <section class="d-flex flex-wrap justify-content-around">
                         <% if ( ptrier.length !=0) { %>
                             <% for (var pat of ptrier) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 w-25">

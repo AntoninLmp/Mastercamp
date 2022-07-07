@@ -280,6 +280,10 @@
     display: none;
 }
 
+.w-50 {
+    width: 50%;
+}
+
 .w-40 {
     width: 40%;
 }
