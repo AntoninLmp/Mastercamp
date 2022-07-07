@@ -130,10 +130,6 @@
     text-align: justify;
 }
 
-.bloc-center {
-    padding : auto;
-}
-
 /*------------------------------------ FONTS COLORS ------------------------------------------*/
 .f-blue1 {
     color: #184C78;
@@ -201,6 +197,16 @@
 
 .rounded-4 {
     border-radius: 1vw;
+}
+
+.rounded-ul-top {
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.rounded-ul-bottom {
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
 }
 
 /*--------------------------------------------- IMG -------------------------------------------------*/
