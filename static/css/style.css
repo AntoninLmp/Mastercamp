@@ -60,6 +60,10 @@
     width: 25vh;
 }
 
+.vw-45 {
+    width: 45vw;
+}
+
 .min-width-content {
     min-width: fit-content;
 }
@@ -199,6 +203,16 @@
     border-radius: 1vw;
 }
 
+.rounded-ul-top {
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.rounded-ul-bottom {
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
 /*--------------------------------------------- IMG -------------------------------------------------*/
 #header-logo,
 .img_logo {
@@ -222,14 +236,15 @@
     width: auto;
 }
 
-#burger {
-    width: 40px;
-    height: 40px;
-}
-
 #allergie {
     width: 10vw;
     height: auto;
+}
+
+#carousel {
+    width: 350px;
+    height: auto;
+    border-radius: 5vw;
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/
@@ -269,6 +284,10 @@
     display: none;
 }
 
+.w-50 {
+    width: 50%;
+}
+
 .w-40 {
     width: 40%;
 }
@@ -291,6 +310,16 @@
 
 #loupe {
     width: 30px;
+}
+
+#tit_cont {
+    background-color: white;
+    border-radius: 2em;
+    position: relative;
+    top: -50px;
+    padding: 1em;
+    width: fit-content;
+    margin: 0;
 }
 
 

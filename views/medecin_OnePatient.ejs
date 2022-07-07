@@ -7,12 +7,12 @@
 </head>
 
 <body>
-    <%- include("medecin_header.ejs"); %>
+    <%- include("vue_ordo_header.ejs"); %>
         <main class="p-2">
-            <section class=" d-flex">
-                <section class="p-4 w-50 h-100">
-                    <div class="text-center">
-                        <img src="/static/img/user_.png" alt="userlogo" class="w-25">
+            <section class="d-flex">
+                <section class="vw-45 p-4 pe-5">
+                    <div class="text-center mt-5">
+                        <img src="/static/img/utilisateur.png" alt="userlogo" class="w-25 mb-5">
                         <h1 class="CaviarDreamsBold f-blue2 text-center" id="ETAB">
                             <%=patient.nom_pat %>
                                 <%=patient.prenom_pat %>
@@ -95,23 +95,26 @@
                         </tbody>
                     </table>
                 </section>
-                <section class="w-100 p-3">
+                <section class="container CaviarDreamsBold p-3 border-start ps-5">
                     <section class="mt-5 mb-5">
-                        <% if (allergies.length> 0) {%>
-                            <h1 class="CaviarDreamsBold f-blue2" id="ALL">Allergies du Patient</h1>
-                            <article class="bg-grey p-4 rounded d-flex align-items-center">
-                                <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
-                                <div class="w-100 text-center">
-                                    <% for (var al of allergies) { %>
-                                        <div class="d-flex justify-content-center">
-                                            <p class="f-blue1 fs-4 text-capitalize f">
-                                                <%= al.nom_allergie %>
-                                            </p>
-                                        </div>
+                        <h1 class="mt-3 CaviarDreamsBold f-blue2" id="ALL">Allergies du patient</h1>
+                        <section class="d-flex justify-content-center mb-5">
+                            <article class="w-100 bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
+                                <img src="/static/img/allergies.png" alt="Allergies" id="allergie">
+                                <div class="text-center">
+                                    <% if (allergies.length !=0) {%>
+                                        <% for (var al of allergies) { %>
+                                            <div class="d-flex justify-content-center">
+                                                <p class="f-blue1 fs-4 text-capitalize f">
+                                                    <%= al.nom_allergie %>
+                                                </p>
+                                            </div>
+                                        <% } %>
+                                    <% } else { %>Le patient n'a pas d'allergie détectée.
                                         <% } %>
                                 </div>
                             </article>
-                            <% } %>
+                        </section>
                     </section>
 
                     <section class="mb-5">
@@ -119,20 +122,20 @@
                         <section class="text-center m-4">
 
                             <button type="button"
-                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
                                 id="ajoutMedoc2">
                                 Ordonnance médicamenteuse
                             </button>
 
                             <button type="button"
-                                class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4"
+                                class="CaviarDreamsBold f-white link-blue-green text-uppercase btn-link-white btn bg-blue_green m-4"
                                 id="ajoutPrescrip2">
                                 Ordonnance prescriptive
                             </button>
                         </section>
                         <div id="container_Medicament2">
                             <form action="/medecin/ordonnanceMedicamenteusePatient" method="post" class="text-center">
-                                <div class="form-row">
+                                <div class="form-row text-end">
                                     <div class="form-group m-2 w-100 d-flex justify-content-between">
                                         <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
                                         <input name="date" type="text" class="form-control" id="inputDatePatient"
@@ -152,13 +155,13 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                                    class="btn bg-light-grey btn-link-grey text-uppercase CaviarDreamsBold mt-3">Créer</button>
                             </form>
                         </div>
                         <div id="container_prescription2" class="p-3">
-                            <h2 class="f-blue2">Prescription médicale</h2>
-                            <form action="/medecin/addPrescriptionMedicale/true" method="post" class="text-center">
-                                <div class="form-row">
+                            <h4 class="f-blue2 text-uppercase CaviarDreamsBold mb-3 text-center">Faire une prescription médicale</h4>
+                            <form action="/medecin/addPrescriptionMedicale/true" method="post" class="mt-4 text-center">
+                                <div class="form-row text-end">
                                     <div class="form-group m-2 w-100 d-flex justify-content-between">
                                         <label class="mx-5 w-40 fs-4 f-blue_green" for="inputDatePatient">Date</label>
                                         <input name="date" type="text" class="form-control" id="inputDatePatient"
@@ -179,14 +182,14 @@
                                 </div>
                                 <div class="form-group m-2 px-5 resize-h">
                                     <label for="prescription" class="m-4 w-40 fs-3 f-blue_green">
-                                        Description de l ordonnance
+                                        Description de l'ordonnance
                                     </label>
                                     <textarea name="prescription" id="inputPrescription" rows="5"
                                         placeholder="Radiographie, Séance de kinésithérapeute... " class="w-100"
                                         required></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="bg-blue_green border p-3 mx-4 rounded text-uppercase CaviarDreamsBold text-white m-4">Enregistrer</button>
+                                    class="btn bg-light-grey btn-link-grey text-uppercase CaviarDreamsBold mt-3">Enregistrer</button>
                             </form>
                         </div>
                     </section>
@@ -198,7 +201,7 @@
                                     <%=patient.prenom_pat %>
                             </span>
                         </h1>
-                        <div class="d-flex flex-wrap">
+                        <div class="d-flex flex-row justify-content-center flex-wrap">
                             <% for (var ord of ordoPatient) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 w-28">
                                     <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"

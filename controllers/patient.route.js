@@ -78,14 +78,15 @@ async function delAllerg(request, response) {
 router.post("/searchOrdo", auth.checkAuthentication("PATIENT"), async function (request, response) {
     var patient = await patientRepo.getOnePatient(request.user.email);
     var ordonnance = [];
+
     if ((request.body.ville != []) && (request.body.medecin != [])) {
-        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVilleAndNomMedecin(request.body.medecin, request.body.ville);
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVilleAndNomMedecin(request.user.email, request.body.medecin, request.body.ville);
     }
     else if (request.body.ville != []) {
-        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVille(request.body.ville);
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByVille(request.user.email, request.body.ville);
     }
     else if (request.body.medecin != []) {
-        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByNomMedecin(request.body.medecin);
+        var ordonnance = await ordonnanceRepo.getAllOrdonnanceByNomMedecin(request.user.email, request.body.medecin);
     }
     var flashMessage = request.session.flashMessage;
     var allergies = await ordonnanceRepo.getAllAllergiesWithoutPatient(patient.id_patient);

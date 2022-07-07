@@ -25,7 +25,7 @@ async function SearchByIdOrdonnance(request, response) {
     var ordonnance = await ordonnanceRepo.getOneOrdonnance(request.body.numeroOrdo);
     var myContent = [];
     if (ordonnance == null) {
-        myContent.push({ "category": "ERREUR", "message": "Aucune ordonnance correspond à votre recherche" });
+        myContent.push({ "category": "ERREUR ", "message" : "Aucune ordonnance ne correspond à votre recherche." });
     }
     response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie, "content": myContent });
 };
@@ -38,7 +38,7 @@ async function searchByPatientOrdonnance(request, response) {
     var ordonnances = await ordonnanceRepo.getAllOrdonnanceByPatientBySecu(request.body.numeroSecu);
     var myContent = [];
     if (ordonnances.length == 0) {
-        myContent.push({ "category": "ERREUR", "message": "Aucune ordonnance correspond à votre recherche" });
+        myContent.push({ "category": "ERREUR ", "message" : "Aucune ordonnance ne correspond à votre recherche." });
     }
     response.render("orgasante_home", { "ordonnance": ordonnance, "ordonnances": ordonnances, "pharma": pharmacie, "content": myContent });
 };

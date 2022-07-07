@@ -132,19 +132,19 @@
                                 <section class="d-flex align-items-center justify-content-center rounded"
                                     id="validcontainer_ph">
                                     <img src="/static/img/190411.png" alt="LOGO" class="w-15">
-                                    <p class="text-white m-2">Tout les médicaments ont été délivrés !</p>
+                                    <p class="text-white m-2">Tous les médicaments ont été délivrés !</p>
                                 </section>
                                 <% } %>
                                     <% } %>
                                         <% if (my_ordo.description==null) {%>
                                             <section class="p-4 text-center CaviarDreams f-blue2">
                                                 <h1 class="CaviarDreamsBold f-blue_green pb-5 border-bottom fs-4">
-                                                    Liste de médicaments
+                                                    Liste des médicaments
                                                 </h1>
                                                 <table class="">
                                                     <thead>
                                                         <tr>
-                                                            <th class="w-70">Médicament préscris</th>
+                                                            <th class="w-70">Médicament prescrit</th>
                                                             <th class="w-100">Quantité déjà donnée</th>
                                                         </tr>
                                                     </thead>
@@ -192,13 +192,13 @@
                                                                         <% if (medoc.quantité - medoc.quantiteDonner==0)
                                                                             {%>
                                                                             <button type="submit" id="btn_pdf"
-                                                                                class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                                                class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold"
                                                                                 disabled>
                                                                                 Enregistrer
                                                                             </button>
                                                                             <% } else { %>
                                                                                 <button type="submit" id="btn_pdf"
-                                                                                    class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6">
+                                                                                    class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold">
                                                                                     Enregistrer
                                                                                 </button>
                                                                                 <% } %>
@@ -223,7 +223,7 @@
                                                             </label>
                                                         </div>
                                                         <button type="submit" id="btn_"
-                                                            class="border rounded m-4 f-blue2 text-uppercase btn-lg fs-6"
+                                                            class="btn bg-light-grey btn-link-grey m-3 CaviarDreamsBold"
                                                             disabled>
                                                             Enregistrer
                                                         </button>
