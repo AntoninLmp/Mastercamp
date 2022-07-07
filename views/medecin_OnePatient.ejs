@@ -7,10 +7,10 @@
 </head>
 
 <body>
-    <%- include("medecin_header.ejs"); %>
+    <%- include("vue_ordo_header.ejs"); %>
         <main class="p-2">
             <section class="d-flex">
-                <section class="p-4 w-50 h-100 pe-5">
+                <section class="vw-45 p-4 pe-5">
                     <div class="text-center mt-5">
                         <img src="/static/img/utilisateur.png" alt="userlogo" class="w-25 mb-5">
                         <h1 class="CaviarDreamsBold f-blue2 text-center" id="ETAB">
@@ -95,23 +95,26 @@
                         </tbody>
                     </table>
                 </section>
-                <section class="w-100 p-3 border-start ps-5">
+                <section class="container CaviarDreamsBold p-3 border-start ps-5">
                     <section class="mt-5 mb-5">
-                        <% if (allergies.length> 0) {%>
-                            <h1 class="CaviarDreamsBold f-blue2" id="ALL">Allergies du Patient</h1>
-                            <article class="bg-grey p-4 rounded d-flex align-items-center">
-                                <img src="/static/img/allergies.png" alt="Allergies" class="w-15 h-100 " id="allergie">
-                                <div class="w-100 text-center">
-                                    <% for (var al of allergies) { %>
-                                        <div class="d-flex justify-content-center">
-                                            <p class="f-blue1 fs-4 text-capitalize f">
-                                                <%= al.nom_allergie %>
-                                            </p>
-                                        </div>
+                        <h1 class="mt-3 CaviarDreamsBold f-blue2" id="ALL">Allergies du patient</h1>
+                        <section class="d-flex justify-content-center mb-5">
+                            <article class="w-100 bg-grey p-4 rounded-4 d-flex flex-row align-items-center justify-content-evenly">
+                                <img src="/static/img/allergies.png" alt="Allergies" id="allergie">
+                                <div class="text-center">
+                                    <% if (allergies.length !=0) {%>
+                                        <% for (var al of allergies) { %>
+                                            <div class="d-flex justify-content-center">
+                                                <p class="f-blue1 fs-4 text-capitalize f">
+                                                    <%= al.nom_allergie %>
+                                                </p>
+                                            </div>
+                                        <% } %>
+                                    <% } else { %>Le patient n'as pas d'allergie détectée.
                                         <% } %>
                                 </div>
                             </article>
-                            <% } %>
+                        </section>
                     </section>
 
                     <section class="mb-5">
@@ -198,7 +201,7 @@
                                     <%=patient.prenom_pat %>
                             </span>
                         </h1>
-                        <div class="d-flex flex-wrap">
+                        <div class="d-flex flex-row justify-content-center flex-wrap">
                             <% for (var ord of ordoPatient) { %>
                                 <div class="div_ordo text-center border rounded rounded-4 w-28">
                                     <a href="../../Medecin/VoirOrdonnance/<%= ord.id_ordo %>"
