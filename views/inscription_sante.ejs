@@ -13,7 +13,8 @@
 
         <!-- Main -->
         <main class="d-flex justify-content-center">
-            <article class="d-flex flex-column justify-content-center align-items-center text-center p-4 mb-5 mt-5 wb65">
+            <article
+                class="d-flex flex-column justify-content-center align-items-center text-center p-4 mb-5 mt-5 wb65">
                 <div>
                     <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
@@ -64,7 +65,8 @@
                         <label for="floatingpassword1">Mot de passe</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
-                        <input type="password" class="form-control" id="floatingpassword2" placeholder="************">
+                        <input name="mdp2" type="password" class="form-control" id="floatingpassword2"
+                            placeholder="************">
                         <label for="floatingpassword2">Confirmation de mot de passe</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
@@ -79,7 +81,6 @@
         <!-- Footer -->
         <%- include("footer.ejs"); %>
 
-            <script src="/static/js/inscription.js"></script>
 </body>
 
 </html>

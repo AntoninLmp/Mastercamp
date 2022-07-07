@@ -84,6 +84,7 @@ CREATE TABLE ProfessionnelDeSante(
 CREATE TABLE Pharmacie(
    id_pharmacie INT AUTO_INCREMENT,
    nom_pharmacie VARCHAR(50),
+   rpps BIGINT,
    numero_telephone VARCHAR(50),
    email VARCHAR(100) NOT NULL,
    PRIMARY KEY(id_pharmacie),
@@ -94,7 +95,8 @@ CREATE TABLE Ordonnance(
    id_ordo INT AUTO_INCREMENT,
    date_delivrance DATE NOT NULL,
    ville_ordo VARCHAR(50),
-   description VARCHAR(50),
+   description VARCHAR(1000),
+   checkDescription BOOLEAN,
    id_professionneldesante INT NOT NULL,
    id_patient INT NOT NULL,
    PRIMARY KEY(id_ordo),
@@ -108,6 +110,7 @@ CREATE TABLE contenir(
    quantité INT,
    frequence VARCHAR(200),
    duree VARCHAR(200),
+   quantiteDonner INT, 
    PRIMARY KEY(id_medic, id_ordo),
    FOREIGN KEY(id_medic) REFERENCES ListeDeMedicaments(id_medic),
    FOREIGN KEY(id_ordo) REFERENCES Ordonnance(id_ordo)
@@ -145,10 +148,10 @@ INSERT INTO Etablissement VALUES
 
 INSERT INTO RPPS VALUES
 	(12345678909, true),
-    (13542676787, false),
-    (43454534789, false),
-    (12121789874, false),
-    (90909078785, false),
+    (13542676787, true),
+    (43454534789, true),
+    (12121789874, true),
+    (90909078785, true),
     (56565656578, false),
     (81828393045, false),
     (11111111111, false),
@@ -175,8 +178,13 @@ INSERT INTO ListeDeMedicaments VALUES
 
 INSERT INTO Utilisateur VALUES 
 	("patient@gmail.com", sha2(concat(now(), 'pa'), 224), now(), "PATIENT"),
+    ("amelie@gmail.com", sha2(concat(now(), 'amelie'), 224), now(), "PATIENT"),
+    ("justine@gmail.com", sha2(concat(now(), 'justine'), 224), now(), "PATIENT"),
     ("medecin@gmail.com", sha2(concat(now(), 'me'), 224), now(), "MEDECIN"),
-    ("pharmacie@gmail.com", sha2(concat(now(), 'ph'), 224), now(), "PHARMACIE");
+    ("astryd@gmail.com", sha2(concat(now(), 'astryd'), 224), now(), "MEDECIN"),
+    ("antonin@gmail.com", sha2(concat(now(), 'antonin'), 224), now(), "MEDECIN"),
+    ("pharmacie@gmail.com", sha2(concat(now(), 'ph'), 224), now(), "PHARMACIE"),
+    ("chloe@gmail.com", sha2(concat(now(), 'clhoe'), 224), now(), "PHARMACIE");
     
 INSERT INTO Allergie VALUES
 (1,"gluten"),
@@ -198,32 +206,78 @@ INSERT INTO Allergie VALUES
 (17,"anti-bactérien"),
 (18,"aspirine"),
 (19,"oeuf"),
-(20,"cortisone");
+(20,"cortisone"),
+(21, "hyménoptères"),
+(22, "citronellal"),
+(23, "lavande"),
+(24, "citronnelle"),
+(25, "methylisothiazolinone"),
+(26, "Aspergillus"),
+(27, "Alternaria "),
+(28, "Penicillium "),
+(29, "Cladosporium "),
+(30, "moustiques");
 
 
 INSERT INTO Patients VALUES
-	(1, "Patient", "Amélie", "2000-09-22", "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "patient@gmail.com");
+	(1, "Patient", "patient", "2000-09-22", "40 rue des lilas", 75007, "Paris", "0656458080", 122334455566609, "patient@gmail.com"),
+    (2, "SENAUX", "Amélie", "2001-10-05", "67 avenue de la République", 94800, "Villejuif", "0656458080", 201107855128208, "amelie@gmail.com"),
+    (3, "BOILLOT", "Justine", "2001-05-12", "20 rue du Dr Jean Vaquier", 93160, "Noisy-le-Grand", "0656458080", 201057665127208, "justine@gmail.com");
 
 INSERT INTO ProfessionnelDeSante VALUES 
-	(1, "Médecin", "Antonin", 12345678909, 951703248, "Généraliste", "medecin@gmail.com");
+	(1, "Médecin", "medecin", 12345678909, 951703248, "Généraliste", "medecin@gmail.com"),
+    (2, "LAMPIN", "Antonin", 13542676787, 453627890, "Cardiologue", "antonin@gmail.com"),
+    (3, "CASIMIR", "Astryd", 43454534789, 987654321, "Chirurgien", "astryd@gmail.com");
 
 INSERT INTO Pharmacie VALUES
-	(1, "PHARMACIE", "0000000000", "pharmacie@gmail.com");
+	(1, "PHARMACIE", 12121789874, "0000000000", "pharmacie@gmail.com"),
+    (2, "Pharmacie de Chloe", 90909078785, "0122334455", "Chloe@gmail.com");
 
 INSERT INTO Ordonnance VALUES
-	(1, "2021-09-22", "Villejuif", "1 comprimé par jour le matin", 1, 1),
-   (2, "2020-05-22", "Paris", "1 comprimé par jour le soir", 1, 1),
-   (3, "2021-09-22", "Villejuif", "Doliprane", 1, 1);
+	(1, "2022-05-22", "Villejuif", NULL, NULL, 1, 1),
+    (2, "2022-04-22", "Villejuif", "15 séances de kinésitérapie pour rééducation de la cheville", false, 1, 2),
+    (3, "2021-12-21", "Villejuif", "Mamographie",false, 1, 3),
+    (4, "2021-05-02", "Villejuif", NULL,NULL, 1, 3),
+    (5, "2020-06-22", "Villejuif", NULL,NULL, 1, 2),
+    (6, "2022-05-25", "Paris", NULL,NULL, 2, 2),
+    (7, "2022-03-17", "Paris", NULL,NULL, 2, 3),
+    (8, "2021-10-20", "Lyon", "Soins à domicile",false, 3, 1),
+    (9, "2022-05-22", "Lyon", NULL,NULL, 3, 1),
+    (10, "2022-06-22", "Lyon", "Radiographie de la hanche",false, 3, 1),
+    (11, "2022-06-22", "Lyon", "IRM de la hanche",false, 3, 1),
+    (12, "2022-06-22", "Lyon", "Radiographie du genoux",false, 3, 1),
+    (13, "2022-06-22", "Lyon", "Prescription de semelles orthopédique",false, 3, 1),
+    (14, "2022-06-22", "Lyon", "IRM du genou droit",false, 3, 1),
+    (15, "2022-06-22", "Lyon", "Radiographie de la hanche",false, 3, 3);
     
 INSERT INTO contenir VALUES
-	(1, 1, 3, "1 comprimé matin","1 semaine"),
-    (7, 1, 2,"2 comprimés /jour","3 jours");
+	(1, 1, 3, "1 comprimé matin","1 semaine", 3),
+    (2, 1, 4, "1 comprimé matin et soir","2 jours", 0),
+    (3, 1, 10, "1 sachet par jour","1 mois", 5),
+    (4, 1, 1, "1 comprimé matin et soir","2 jours", 0),
+    (5, 1, 8, "2 comprimés matin et soir ","1 mois", 3),
+    (6, 1, 1, "1 comprimé soir","1 mois", 0),
+    (7, 1, 10, "2 comprimés par jour","1 mois", 0),
+    (3, 4, 7, "1 comprimé matin","1 semaine", 0),
+    (4, 4, 3, "1 sachet par jour","1 semaine", 0),
+    (5, 4, 9, "3 cachets par jours","1 semaine", 7),
+    (1, 4, 2, "1 pastille par repas","1 semaine", 2),
+    (1, 5, 3, "1 comprimé matin","1 semaine", 1),
+    (1, 6, 3, "1 comprimé matin","1 semaine", 3),
+    (1, 7, 3, "1 comprimé matin","1 semaine", 0),
+    (7, 9, 2,"2 comprimés /jour","3 jours", 2);
     
 INSERT INTO exercer VALUES
 	(1, 1),
-    (1, 2);
+    (1, 2),
+    (2, 1),
+    (3, 4),
+    (3, 5);
     
 INSERT INTO avoirAllergie VALUES
 (1,2),
 (1,3),
-(1,17);
+(1,17),
+(2,3),
+(2,21),
+(1,30);

@@ -13,75 +13,84 @@
         <!-- MAIN BODY -->
         <main class="container d-flex CaviarDreams p-3">
 
-
-            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 min-width-content vw-25 vh-25 sticky-top">
+            <nav class="border rounded-4 m-3 me-5 p-4 bg-green opacity-50 height_ftcont min-width-content vw-25 vh-25 sticky-top top-20"
+                id="nav_ls">
                 <ul class="list-unstyled h5">
-                    <li class="text-white p-2 CaviarDreamsBold">Historique des traitements</li>
-                    <li class="text-white p-2 CaviarDreamsBold">Mes informations</li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#HDT" class="text-decoration-none text-white">
+                            Historique des traitements
+                        </a>
+                    </li>
+                    <li class="text-white p-2 CaviarDreamsBold">
+                        <a href="#infos" class="text-decoration-none text-white">
+                            Mes informations
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
-            <div class ="d-flex flex-column">
-                <section class="pt-3 ms-3">
+            <div class="d-flex flex-column">
+                <section id="#HDT" class="pt-3 ms-3">
                     <h1 class="CaviarDreamsBold f-blue2 pb-5 border-bottom">Bienvenue dans votre espace !</h1>
-                    <form method="post" action="/organismesante/searchByIdOrdonnance">
-                        <h5 class="CaviarDreamsBold">Rechercher une ordonnance :</h5>
-                        <div class="row g-3 mt-2 align-items-center">
-                            <div class="col-auto">
-                                <label for="floatingNumOrdo" class="col-form-label">Numéro d'ordonnance : </label>
+                    <div class="d-flex text-center">
+                        <form method="post" action="/organismesante/searchByIdOrdonnance">
+                            <h5 class="CaviarDreamsBold">Rechercher une ordonnance :</h5>
+                            <div class="row g-3 mt-2 align-items-center">
+                                <div class="col-auto">
+                                    <label for="floatingNumOrdo" class="col-form-label">Numéro d'ordonnance : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input name="numeroOrdo" type="number" class="form-control" id="floatingNumOrdo"
+                                        required placeholder="Ex : 248024">
+                                </div>
+                                <div class="col-auto w-100">
+                                    <button type="submit"
+                                        class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green ">
+                                        Rechercher</button>
+                                </div>
                             </div>
-                            <div class="col-auto">
-                                <input name="numeroOrdo" type="number" class="form-control" id="floatingNumOrdo" required
-                                    placeholder="Ex : 248024">
+                        </form>
+                        <form method="post" action="/organismesante/searchByPatientOrdonnance">
+                            <h5 class="CaviarDreamsBold">Rechercher un patient :</h5>
+                            <div class="row g-3 mt-2 align-items-center">
+                                <div class="col-auto">
+                                    <label for="floatingNumOrdo" class="col-form-label">Numéro de Sécurité Sociale :
+                                    </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input name="numeroSecu" type="number" class="form-control" id="floatingNumOrdo"
+                                        required placeholder="Ex : 201107855128208">
+                                </div>
+                                <div class="col-auto w-100">
+                                    <button type="submit"
+                                        class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green">Rechercher</button>
+                                </div>
                             </div>
-                            <div class="col-auto">
-                                <btn type="submit"
-                                    class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green">
-                                    Rechercher</btn>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
 
                     <!-- ADD ORDO TROUVEE -->
                     <% if (ordonnance!=null && ordonnance.length !=0) { %>
                         <section class="d-flex flex-wrap justify-content-center">
                             <div class="div_ordo text-center border rounded rounded-4">
                                 <a href="/organismesante/VoirOrdonnance/<%= ordonnance.id_ordo %>"
-                                class="text-decoration-none text-dark">
-                                <h1>Ordonnance</h1>
-                                <h2 class="f-blue_green">
-                                    <%= ordonnance.ville_ordo %>
-                                </h2>
-                                <h3>
-                                    <%= ordonnance.date_delivrance.toISOString().slice(0, 10) %>
-                                </h3>
+                                    class="text-decoration-none text-dark">
+                                    <h1>Ordonnance</h1>
+                                    <h2 class="f-blue_green">
+                                        <%= ordonnance.ville_ordo %>
+                                    </h2>
+                                    <h3>
+                                        <%= ordonnance.date_delivrance.toISOString().slice(0, 10) %>
+                                    </h3>
                                 </a>
                             </div>
                         </section>
-                        <% } %>
-                            <!--END -->
-                            <form method="post" action="/organismesante/searchByPatientOrdonnance">
-                                <h5 class="CaviarDreamsBold">Rechercher un patient :</h5>
-                                <div class="row g-3 mt-2 align-items-center">
-                                    <div class="col-auto">
-                                        <label for="floatingNumOrdo" class="col-form-label">Numéro de Sécurité Sociale :
-                                        </label>
-                                    </div>
-                                    <div class="col-auto">
-                                        <input name="numeroSecu" type="number" class="form-control" id="floatingNumOrdo"
-                                            required placeholder="Ex : 201107855128208">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="submit"
-                                            class="CaviarDreamsBold f-white link-blue-green btn-link-white btn bg-blue_green">Rechercher</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <% } else if (ordonnances.length> 0) { %>
                             <!---->
                             <section class="d-flex flex-wrap">
                                 <% for (var ord of ordonnances) { %>
                                     <div class="div_ordo text-center border rounded rounded-4">
-                                        <a href="Patient/VoirOrdonnance/<%= ord.id_ordo %>"
+                                        <a href="/organismesante/VoirOrdonnance/<%= ord.id_ordo %>"
                                             class="text-decoration-none text-dark">
                                             <h1>Ordonnance</h1>
                                             <h2 class="f-blue_green">
@@ -96,9 +105,25 @@
                                     <% } %>
                             </section>
                             <!---->
+                            <% } else { %>
+                                <section class="d-flex flex-wrap justify-content-center m-5">
+                                    <div>
+                                        <% if (content !=null) { %>
+                                            <% for (var c of content) { %>
+                                                <p>
+                                                    <%= c.category %>:
+                                                        <strong>
+                                                            <%= c.message %>
+                                                        </strong>
+                                                </p>
+                                                <% }%>
+                                                    <% } %>
+                                    </div>
+                                </section>
+                                <% } %>
                 </section>
 
-                <section class="mt-5">
+                <section id="#infos" class="mt-5">
                     <h1 class="CaviarDreamsBold f-blue2 mb-3" id="Mesinformations">Mes informations</h1>
                     <form method="post" action="/organismesante/updatePharmacie" id="signupFormClient"
                         class="d-flex flex-column flex-wrap mx-auto">
@@ -110,7 +135,12 @@
                         <div class="form-group mb-3 w-50">
                             <label for="floatingRPPS">Numéro de téléphone</label>
                             <input name="numtel" type="text" class="form-control" id="floatingRPPS"
-                                 value="<%= pharma.numero_telephone %>" >
+                                value="<%= pharma.numero_telephone %>">
+                        </div>
+                        <div class="form-group mb-3 w-50">
+                            <label for="floatingRPPS">Numéro RPPS</label>
+                            <input name="rpps" type="text" class="form-control" id="floatingRPPS"
+                                value="<%= pharma.rpps %>" disabled>
                         </div>
 
                         <div class="form-group mb-3 w-50">

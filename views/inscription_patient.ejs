@@ -16,10 +16,21 @@
             <article class="align-items-center w-50 bg-blue_green justify-content-center" id="container_medecins">
                 <img src="/static/img/patient_inscription.png" alt="patient">
             </article>
-            <article class="d-flex flex-column justify-content-center align-items-center text-center p-4 mb-5 mt-5 wb65">
+            <article
+                class="d-flex flex-column justify-content-center align-items-center text-center p-4 mb-5 mt-5 wb65">
                 <div>
                     <img src="/static/img/HelloDoc Blue-01.png" alt="logo" class="" id="logo_insc_form">
                     <h1 class="display-6 fs-3 m-4">Rejoignez la communauté et simplifiez vous la vie !</h1>
+                </div>
+                <div style="color:red">
+                    <% if (content.length) { %>
+                        <% for (var c of content) { %>
+                            <p>
+                                <%= c.category %>:
+                                    <%= c.message %>
+                            </p>
+                            <% }%>
+                                <% } %>
                 </div>
                 <form method="post" action="/inscription/patient/add" id="signupFormClient"
                     class="d-flex flex-wrap justify-content-center mx-auto">
@@ -60,17 +71,7 @@
                     <div class="form-floating m-3 wb40">
                         <input name="numeroSecurite" type="number" class="form-control" id="floatingSecuSocial" required
                             placeholder="**">
-                        <label for="floatingSecuSocial">N° Securité sociale</label>
-                    </div>
-                    <div style="color:red">
-                        <% if (content.length) { %>
-                            <% for (var c of content) { %>
-                                <p>
-                                    <%= c.category %>:
-                                        <%= c.message %>
-                                </p>
-                                <% }%>
-                                    <% } %>
+                        <label for="floatingSecuSocial">N° Sécurité sociale</label>
                     </div>
                     <div class="form-floating m-3 wb40">
                         <input name="email" type="email" class="form-control" id="floatingEmail" required
@@ -83,9 +84,9 @@
                         <label for="floatingpassword1">Mot de passe</label>
                     </div>
                     <div class="form-floating m-3 wb40">
-                        <input type="password" class="form-control" id="floatingpassword2" required
+                        <input name="mdp2" type="password" class="form-control" id="floatingpassword2" required
                             placeholder="************">
-                        <label for="floatingpassword2">Mot de passe</label>
+                        <label for="floatingpassword2">Confirmation de mot de passe</label>
                     </div>
                     <div class="form-floating mb-3 w-75">
                         <button type="submit" class="btn btn-outline-success">Inscription</button>
@@ -98,7 +99,6 @@
         <!-- Footer -->
         <%- include("footer.ejs"); %>
 
-            <script src="../static/js/inscription.js"></script>
 </body>
 
 </html>
