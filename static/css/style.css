@@ -199,6 +199,16 @@
     border-radius: 1vw;
 }
 
+.rounded-ul-top {
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.rounded-ul-bottom {
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
 /*--------------------------------------------- IMG -------------------------------------------------*/
 #header-logo,
 .img_logo {
@@ -222,14 +232,15 @@
     width: auto;
 }
 
-#burger {
-    width: 40px;
-    height: 40px;
-}
-
 #allergie {
     width: 10vw;
     height: auto;
+}
+
+#carousel {
+    width: 350px;
+    height: auto;
+    border-radius: 5vw;
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/
