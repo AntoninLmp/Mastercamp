@@ -60,6 +60,10 @@
     width: 25vh;
 }
 
+.vw-45 {
+    width: 45vw;
+}
+
 .min-width-content {
     min-width: fit-content;
 }
