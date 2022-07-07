@@ -1,119 +1,126 @@
 <!DOCTYPE html>
 
 <html lang="fr">
+
 <head>
-     <%- include("partial_header.ejs"); %>
-      <title>Ordo130</title>
-      <link rel="stylesheet" href="/static/css/index.css">
+    <%- include("partial_header.ejs"); %>
+        <title>Ordo130</title>
+        <link rel="stylesheet" href="/static/css/index.css">
 
 </head>
 
 <body class="CaviarDreams">
     <%- include("header.ejs"); %>
 
-<div>
+        <div>
 
-    <img  id="photo_1" width="100%" height="20%" src="/static/img/prescription.png" alt="prescription_img_1"/>
-</div>
-    <div class="container text-center">
-        <div class="d-flex justify-content-center">
-            <h1 class="fs-1 CaviarDreamsBold text-uppercase f-blue2" id="tit_cont">Comment ça marche ?</h1>
+            <img id="photo_1" width="100%" height="20%" src="/static/img/prescription.png" alt="prescription_img_1" />
         </div>
-        <div class=" row mb-4 ">
-            <div class="col mb-2">
-                <img class="mt-4" src="/static/img/consultant.png" alt="consultant_img_2" width="35%" />
-                <p class="text-center mt-3 fs-3"> 1. <span class="f-blue_green">Consultation</span> chez un
-                    professionnel de santé</p>
+        <div class="container text-center">
+            <div class="d-flex justify-content-center">
+                <h1 class="fs-1 CaviarDreamsBold text-uppercase f-blue2" id="tit_cont">Comment ça marche ?</h1>
             </div>
-            <div class="col mb-2">
-                <img class="mt-4" src="/static/img/prescription-medicale.png" alt="prescription_img_3"
-                     width="35%" />
-                <p class="mt-3 fs-3"> 2. <span class="f-blue_green">Création de votre ordonnance</span> en ligne</p>
-            </div>
-            <div class="col mb-2">
-                <img class="mt-4" src="/static/img/navigateur-web.png" alt="navigateur_web_img_4" width="35%" />
-                <p class="mt-3 fs-3"> 3. Mise en ligne de l’ordonnance <span class="f-blue_green">visible par
-                            tous</span></p>
-            </div>
-        </div>
+            <div class=" row mb-4 ">
+                <div class="col mb-2">
+                    <img class="mt-4" src="/static/img/consultant.png" alt="consultant_img_2" width="35%" />
+                    <p class="text-center mt-3 fs-3"> 1. <span class="f-blue_green">Consultation</span> chez un
+                        professionnel de santé</p>
+                </div>
+                <div class="col mb-2">
+                    <img class="mt-4" src="/static/img/prescription-medicale.png" alt="prescription_img_3"
+                        width="35%" />
+                    <p class="mt-3 fs-3"> 2. <span class="f-blue_green">Création de votre ordonnance</span> en ligne par
+                        votre médecin</p>
 
-</div>
-
-<div class="bg-blue2 text-white">
-    <h1 class="pt-3 CaviarDreamsBold border-bottom text-center" >Ils ont testé</h1>
-
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
-                    <div>
-                        <img src="/static/img/Doctor-01.png" id="carousel">
-                    </div>
-                    <div class="w-40">
-                        <p class="h3 mt-2 text-justify" >Très pratique et la prise en main est simple.
-                            Ordo130 m'a permis de faciliter les échanges d'ordonnances avec mes patients.
-                            Avoir accès à leur dossier médical s'avère très pratique, cela me permet de contrôler
-                            leurs allergies avant de prescrire les médicaments. Qu'elle soit médicale ou thérapeutique,
-                            il est très simple d'émettre une ordonnance à nos patients. C'est un gain de temps important.
-                        </p>
-                    </div>
-
+                </div>
+                <div class="col mb-2">
+                    <img class="mt-4" src="/static/img/navigateur-web.png" alt="navigateur_web_img_4" width="35%" />
+                    <p class="mt-3 fs-3"> 3. Mise en ligne de l’ordonnance, <span class="f-blue_green">visible par
+                            le corps médical</span></p>
                 </div>
             </div>
 
-            <div class="carousel-item">
-                <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
-                    <div>
-                        <img src="/static/img/Patient-01.png" class="mt-3" id="carousel">
-                    </div>
-                    <div class="w-40">
-                        <p class="h3 mt-2 text-justify" >Avec Ordo130, une prise en main rapide est possible.
-                            Ce que j'adore également, c'est de pouvoir récupérer mes ordonnances et les consulter
-                            à tout moment. Ordo130 est un site très bien construit. De l'inscription à l'utilisation,
-                            il est très facile d'utilisation. Les médecins ont accès à mon dossier médical
-                            sans que je me promène tout le temps avec mes documents.
-                        </p>
+        </div>
 
+        <div class="bg-blue2 text-white">
+            <h1 class="container pt-3 pb-2 CaviarDreamsBold border-bottom text-center">Ils ont testé</h1>
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
+                            <div>
+                                <img src="/static/img/Doctor-01.png" id="carousel">
+                            </div>
+                            <div class="w-40">
+                                <p class="h3 mt-2 text-justify">Très pratique et la prise en main est simple.
+                                    Ordo130 m'a permis de faciliter les échanges d'ordonnances avec mes patients.
+                                    Avoir accès à leur dossier médical s'avère très pratique, cela me permet de
+                                    contrôler
+                                    leurs allergies avant de prescrire les médicaments. Qu'elle soit médicale ou
+                                    thérapeutique,
+                                    il est très simple d'émettre une ordonnance à nos patients. C'est un gain de temps
+                                    important.
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
 
+                    <div class="carousel-item">
+                        <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
+                            <div>
+                                <img src="/static/img/Patient-01.png" class="mt-3" id="carousel">
+                            </div>
+                            <div class="w-40">
+                                <p class="h3 mt-2 text-justify">Avec Ordo130, une prise en main rapide est possible.
+                                    Ce que j'adore également, c'est de pouvoir récupérer mes ordonnances et les
+                                    consulter
+                                    à tout moment. Ordo130 est un site très bien construit. De l'inscription à
+                                    l'utilisation,
+                                    il est très facile d'utilisation. Les médecins ont accès à mon dossier médical
+                                    sans que je me promène tout le temps avec mes documents.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
+                            <div>
+                                <img src="/static/img/Pharmacist-01.png" class=" mt-3" id="carousel">
+                            </div>
+                            <div class="w-40">
+                                <p class="h3 mt-2 text-justify"> L'accès pharmacie est très pratique, les patients
+                                    ne se présentent plus avec des ordonnances abimées, voire perdues. Plus de
+                                    difficulté
+                                    à déchiffrer l'écriture des médecins. Pouvoir contrôler et cocher les quantités
+                                    distribuées
+                                    est un gain de temps pour nous. Le seul bémol actuel est le manque de liaison avec
+                                    la CPAM ce
+                                    qui nous faciliterait grandement le travail.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex flex-row justify-content-evenly align-items-center mt-3 mb-4">
-                    <div>
-                        <img src="/static/img/Pharmacist-01.png" class=" mt-3" id="carousel">
-                    </div>
-                    <div class="w-40">
-                        <p class="h3 mt-2 text-justify" > L'accès pharmacie est très pratique, les patients
-                            ne se présentent plus avec des ordonnances abimées, voire perdues. Plus de difficulté
-                            à déchiffrer l'écriture des médecins. Pouvoir contrôler et cocher les quantités distribuées
-                            est un gain de temps pour nous. Le seul bémol actuel est le manque de liaison avec la CPAM ce
-                            qui nous faciliterait grandement le travail.
-                        </p>
-
-                    </div>
-
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
 
-    <%- include("footer.ejs"); %>
+        <%- include("footer.ejs"); %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-
-
-
-
-
